@@ -1,0 +1,21 @@
+# IDE
+.vs/
+.vscode/
+.idea/
+
+# Build
+bin/
+obj/
+build/
+dist/
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
