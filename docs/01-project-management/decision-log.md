@@ -55,6 +55,7 @@
 | DEC-044 | Gate 6 | WPF shell은 revision-aware ViewModel projection부터 구현하고 최종 visual style은 기능 연결 후 승인 | 확정 |
 | DEC-045 | Gate 6 | 실행 App은 Provider→Coordinator→Dispatcher projection과 Tray/X 단일 shutdown 경로로 구성 | 확정 |
 | DEC-046 | CHG-003 | DualSense USB 지원, 단일 compact indicator, Tray-only Topmost로 Requirements v1.3 승인 | 확정 |
+| DEC-047 | CHG-004 | USB 연결 중 valid charging 유지, Bluetooth freshness 유지, frameless indicator로 Requirements v1.4 승인 | 확정 |
 
 ## 변경요청 현황
 

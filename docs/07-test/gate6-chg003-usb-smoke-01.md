@@ -16,3 +16,9 @@ CLEANUP=COMPLETE
 
 원본 HID ID는 출력하지 않았고 `USB-` transport prefix와 축약 hash key만 사용했다.
 판정은 `PASS`다.
+
+## CHG-004 35초 유지 회귀
+
+USB 전용 freshness timeout 제외 후 35초 동안 관찰했다. 30초 Dormant 경계를 지난 최종
+summary에서도 `Visible=True`, `Available`, `5%`, `Charging`, `Faulted=0`이 유지됐고
+cleanup이 완료됐다. CHG-004 USB 충전 표시 유지 판정은 `PASS`다.

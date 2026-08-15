@@ -1,8 +1,8 @@
 # 요구사항 추적 매트릭스 (RTM)
 
 - 프로젝트: Device Battery Widget
-- 문서 버전: **1.3**
-- Requirements Baseline: **v1.3**
+- 문서 버전: **1.4**
+- Requirements Baseline: **v1.4**
 - 상태: Approved
 
 > Gate 5에서 승인된 ARC ID를 매핑했다. Gate 6에서 구현된 항목부터 구현 대상과 자동 사양 ID를 연결하며, TBD는 아직 Production 미착수 상태를 의미한다.
@@ -11,7 +11,7 @@
 |---|---|---|---|---|---|---|
 | FR-001 | DualSense Bluetooth/USB 탐색 | Must | ARC-002 | targeted watcher/transport filter | SPEC-DS-PARSER + G6-CHG003-USB-01 | Implemented / Integration PASS |
 | FR-002 | 장치 이름 획득 | Must | ARC-002, ARC-006 | DualSenseHidProvider DeviceDiscovered | G6-SMOKE-01 | Implemented / Integration PASS |
-| FR-003 | Battery 상태 조회 | Must | ARC-001~004 | Domain BatteryState, DualSenseHidBatteryParser, reducer/coordinator, ReportFreshnessTracker | SPEC-DOM, SPEC-APP, SPEC-COORD, SPEC-DS-PARSER, SPEC-DS-FRESHNESS | In Implementation |
+| FR-003 | Battery 상태 조회 | Must | ARC-001~004 | BatteryState, parser, reducer/coordinator, transport freshness | SPEC-DOM/APP/COORD/DS + G6-CHG003-USB-01 | Implemented / Integration PASS |
 | FR-004 | 충전 상태 조회 | Must | ARC-001~003 | Domain BatteryState, DualSenseHidBatteryParser | SPEC-DOM, SPEC-DS-PARSER | In Implementation |
 | FR-005 | Event 기반 Battery 갱신 | Must | ARC-002, ARC-003 | ProviderEvent, DeviceStateCoordinator | SPEC-APP, SPEC-COORD | In Implementation |
 | FR-006 | Polling Fallback | Must | ARC-002, ARC-004 | TBD | TBD | Architecture Draft |

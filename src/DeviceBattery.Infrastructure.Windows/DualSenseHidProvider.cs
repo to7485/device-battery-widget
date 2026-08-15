@@ -181,6 +181,7 @@ public sealed class DualSenseHidProvider : IBatteryProvider
                 timeProvider,
                 unknownAfter,
                 dormantAfter,
+                DualSenseDeviceIdentity.UsesReportFreshnessTimeout(information.Id),
                 TryPublish);
             if (!registration.TryAttach(session))
             {
@@ -286,6 +287,7 @@ public sealed class DualSenseHidProvider : IBatteryProvider
         private readonly TimeProvider timeProvider;
         private readonly ReportFreshnessTracker freshness;
         private readonly TimeSpan unknownAfter;
+        private readonly bool usesFreshnessTimeout;
         private readonly Func<ProviderEvent, bool> publish;
         private byte lastStatus;
         private bool hasStatus;
@@ -298,6 +300,7 @@ public sealed class DualSenseHidProvider : IBatteryProvider
             TimeProvider timeProvider,
             TimeSpan unknownAfter,
             TimeSpan dormantAfter,
+            bool usesFreshnessTimeout,
             Func<ProviderEvent, bool> publish)
         {
             this.device = device;
@@ -305,6 +308,7 @@ public sealed class DualSenseHidProvider : IBatteryProvider
             this.parser = parser;
             this.timeProvider = timeProvider;
             this.unknownAfter = unknownAfter;
+            this.usesFreshnessTimeout = usesFreshnessTimeout;
             freshness = new(timeProvider, unknownAfter, dormantAfter);
             this.publish = publish;
         }
@@ -313,6 +317,9 @@ public sealed class DualSenseHidProvider : IBatteryProvider
 
         public void EvaluateFreshness(DateTimeOffset occurredAt)
         {
+            if (!usesFreshnessTimeout)
+                return;
+
             ProviderEvent? first = null;
             ProviderEvent? second = null;
             lock (sync)

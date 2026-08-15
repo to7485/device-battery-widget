@@ -19,6 +19,8 @@ public static class DualSenseDeviceIdentity
     public static bool IsSupportedEndpoint(string deviceId) =>
         IsBluetoothEndpoint(deviceId) || IsUsbEndpoint(deviceId);
 
+    public static bool UsesReportFreshnessTimeout(string deviceId) => IsBluetoothEndpoint(deviceId);
+
     public static DeviceKey CreateKey(string deviceId)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(deviceId);

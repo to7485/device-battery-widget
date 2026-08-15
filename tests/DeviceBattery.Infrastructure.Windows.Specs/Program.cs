@@ -81,6 +81,8 @@ var specs = new (string Name, Action Run)[]
         Equal(true, DualSenseDeviceIdentity.IsUsbEndpoint(usb));
         Equal(true, DualSenseDeviceIdentity.IsSupportedEndpoint(bluetooth));
         Equal(true, DualSenseDeviceIdentity.IsSupportedEndpoint(usb));
+        Equal(true, DualSenseDeviceIdentity.UsesReportFreshnessTimeout(bluetooth));
+        Equal(false, DualSenseDeviceIdentity.UsesReportFreshnessTimeout(usb));
     }),
     ("Stable key is deterministic and does not expose device ID", () =>
     {

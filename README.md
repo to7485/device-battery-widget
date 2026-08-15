@@ -188,3 +188,7 @@ The WPF presentation project now contains a functional widget shell and revision
 ## Update 31 — CHG-003
 
 Requirements v1.3 adds DualSense USB, changes the widget to one compact indicator with USB priority, and moves Always On Top control exclusively to the tray menu. Read-only HID safety restrictions remain unchanged.
+
+## Update 32 — CHG-004
+
+Requirements v1.4 keeps the last validated charging state while the USB endpoint remains connected, retains freshness timeouts for Bluetooth, and removes the Windows title bar for a frameless indicator.
