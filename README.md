@@ -204,3 +204,5 @@ The first visual candidate uses a DualSense-inspired white shell, dark center su
 The second visual iteration removes the brand label, increases the gauge thickness, and overlays a centered lightning symbol only while charging.
 
 The third visual iteration keeps the 360px shell width, places the device name to the left of the gauge with a 10px gap, and adds 5px vertical gauge spacing.
+
+The fourth visual iteration shapes the gauge as a battery, centers the percentage inside it, and removes the lightning and separate charging label. Charging continues to use the established green gauge color.

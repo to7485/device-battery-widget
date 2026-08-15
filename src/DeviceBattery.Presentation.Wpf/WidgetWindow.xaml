@@ -5,7 +5,7 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolVisibility" />
         <Style x:Key="DualSenseGauge" TargetType="ProgressBar">
-            <Setter Property="Height" Value="14"/><Setter Property="Maximum" Value="100"/><Setter Property="Foreground" Value="#2864F0"/>
+            <Setter Property="Height" Value="18"/><Setter Property="Maximum" Value="100"/><Setter Property="Foreground" Value="#2864F0"/>
             <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ProgressBar"><Grid>
                 <Border Background="#DCE2EC" CornerRadius="4"/>
                 <Border x:Name="PART_Track" Background="Transparent" CornerRadius="4"><Border x:Name="PART_Indicator" HorizontalAlignment="Left" Background="{TemplateBinding Foreground}" CornerRadius="4"/></Border>
@@ -32,20 +32,23 @@
                 </StackPanel>
             </Border>
             <ItemsControl ItemsSource="{Binding Devices}"><ItemsControl.ItemTemplate><DataTemplate><Grid>
-                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
                 <DockPanel LastChildFill="False"><Button Content="×" DockPanel.Dock="Right" Style="{StaticResource CloseButton}" Margin="8,-3,-3,0" Click="OnCloseClick" ToolTip="종료"/></DockPanel>
-                <TextBlock Grid.Row="1" Text="{Binding BatteryText}" HorizontalAlignment="Right" Margin="0,3,0,0" FontSize="17" FontWeight="Bold" Foreground="#101522"/>
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="10"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                     <TextBlock Text="{Binding DisplayName}" FontSize="12" FontWeight="SemiBold" Foreground="#202738" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" MaxWidth="170"/>
-                    <Grid Grid.Column="2" Margin="0,5">
-                        <ProgressBar Value="{Binding GaugePercent, Mode=OneWay}" Style="{StaticResource DualSenseGauge}"/>
-                        <TextBlock Text="⚡" FontSize="10" FontWeight="Bold" Foreground="#17633C"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False"
-                                   Visibility="{Binding IsCharging, Converter={StaticResource BoolVisibility}}"/>
+                    <Grid Grid.Column="2" Height="28" Margin="0,5,5,5">
+                        <Border Margin="0,0,5,0" BorderBrush="#8792A5" BorderThickness="2" CornerRadius="5" Padding="2" Background="#F7F9FC">
+                            <Grid>
+                                <ProgressBar Value="{Binding GaugePercent, Mode=OneWay}" Style="{StaticResource DualSenseGauge}"/>
+                                <TextBlock Text="{Binding BatteryText}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           FontSize="11" FontWeight="Bold" Foreground="#101522" IsHitTestVisible="False"/>
+                            </Grid>
+                        </Border>
+                        <Border Width="5" Height="11" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                Background="#8792A5" CornerRadius="0,2,2,0"/>
                     </Grid>
                 </Grid>
-                <TextBlock Grid.Row="3" Text="{Binding StatusText}" FontSize="10"><TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Foreground" Value="#667085"/><Style.Triggers><DataTrigger Binding="{Binding IsCharging}" Value="True"><Setter Property="Foreground" Value="#23965A"/><Setter Property="FontWeight" Value="SemiBold"/></DataTrigger></Style.Triggers></Style></TextBlock.Style></TextBlock>
             </Grid></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
         </Grid>
     </Border>
