@@ -68,3 +68,37 @@ Added:
 - `docs/03-poc/poc-status-update-07.md`
 
 The new probe opens the DualSense HID collection read-only and parses the battery/charging status from incoming full HID reports using the upstream `hid-playstation` report layout as technical evidence.
+
+## Update 09 — POC-B03-2 validated / POC-B04-1 Receiver HID Discovery
+
+DualSense Bluetooth HID POC-B03-2 was validated on real hardware:
+
+- Report ID `0x31`
+- 78-byte Bluetooth full input report
+- battery bucket parsed
+- real USB charging cable connection changed charging code from `0x0` to `0x1`
+
+Final B03-2 status: `PASS WITH LIMITATION` because battery percentage is a coarse bucket estimate.
+
+Added:
+
+```text
+poc/DeviceBattery.Poc.ReceiverHidProbe
+docs/03-poc/receiver-hid-poc-plan.md
+docs/03-poc/poc-status-update-08.md
+```
+
+Run B04-1 with the G703/Corsair receivers connected and send the complete first-run output before doing additional power-cycle tests.
+
+## Update 10 — POC-B04-1 validated / POC-B04-2 approved
+
+Real-hardware read-only discovery found 7 Logitech and 5 Corsair HID top-level collections. Both receivers exposed readable vendor-defined collections and passive reports correlated with peripheral OFF/ON transitions.
+
+- Logitech `FF00/0001`, report `0x10`: byte offset 4 changed `0x62 (OFF) <-> 0xA2 (ON)` twice.
+- Corsair `FF42/0002`, report `0x03`: repeated `OFF -> ON transition -> ON initialized` report sequence twice.
+
+B04-1 is frozen as `PASS WITH LIMITATION`; B04-2 is approved to begin with passive battery correlation. No output report, feature command, or vendor request has been sent.
+
+## Update 11 — CHG-002 / v1.0 DualSense-only scope
+
+The approved v1.0 device scope is now Sony DualSense over Bluetooth (`054C:0CE6`) only. Mouse, keyboard, headset, other controllers, and receiver battery work are deferred to a later release. Existing BLE and receiver POC evidence remains preserved; B04-2 is stopped without sending vendor commands.

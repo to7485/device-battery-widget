@@ -1,15 +1,15 @@
 # 요구사항 추적 매트릭스 (RTM)
 
 - 프로젝트: Device Battery Widget
-- 문서 버전: **1.1**
-- Requirements Baseline: **v1.1**
+- 문서 버전: **1.2**
+- Requirements Baseline: **v1.2**
 - 상태: Approved
 
 > 현재는 설계/구현 전이므로 설계·구현·테스트 칼럼의 TBD가 정상이다.
 
 | 요구사항 ID | 요구사항 요약 | 우선순위 | 설계 ID | 구현 대상 | 테스트 ID | 상태 |
 |---|---|---|---|---|---|---|
-| FR-001 | 연결 장치 탐색 | Must | TBD | TBD | TBD | Baseline |
+| FR-001 | DualSense Bluetooth 탐색 | Must | TBD | TBD | TBD | Baseline v1.2 |
 | FR-002 | 장치 이름 획득 | Must | TBD | TBD | TBD | Baseline |
 | FR-003 | Battery 상태 조회 | Must | TBD | TBD | TBD | Baseline |
 | FR-004 | 충전 상태 조회 | Must | TBD | TBD | TBD | Baseline |
@@ -36,7 +36,7 @@
 | UIR-008 | Always On Top UI | Must | TBD | TBD | TBD | Baseline |
 | UIR-009 | Empty State | Must | TBD | TBD | TBD | Baseline |
 | UIR-010 | 조회 중 상태 | Should | TBD | TBD | TBD | Baseline |
-| UIR-011 | Battery 미지원 장치 표시 | Must | TBD | TBD | TBD | Baseline |
+| UIR-011 | Battery 미지원 장치 표시 | Deferred | TBD | TBD | TBD | vNext / CHG-002 |
 | UIR-012 | Battery Unknown 표시 | Must | TBD | TBD | TBD | Baseline |
 | UIR-013 | System Tray Context Menu | Must | TBD | TBD | TBD | Baseline |
 | NFR-PERF-001 | 유휴 CPU 목표 | Must | TBD | TBD | TBD | Baseline |

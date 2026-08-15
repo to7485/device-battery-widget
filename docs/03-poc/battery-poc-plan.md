@@ -43,6 +43,8 @@ Raw HID 단계에서도 undocumented byte offset을 사전 가정하지 않고 �
 
 ## B04 — 2.4GHz Receiver / Vendor Provider
 
+상태: **DEFERRED TO VNEXT / CHG-002**
+
 Receiver 자체의 연결 상태와 실제 Peripheral Online/Battery 상태를 분리한다.
 
 G703/Corsair 실측에서 Receiver가 유지된 상태의 본체 OFF/ON은 Generic DeviceWatcher 이벤트가 없었다.
@@ -72,3 +74,12 @@ Provider가 달라도 애플리케이션 Core에는 동일 모델로 전달한�
 - 이벤트가 없지만 신뢰 가능한 실제 endpoint battery signal이 있으면 저주기 polling
 - 일시 조회 실패 시 stale %를 유지하지 않고 Unknown
 - Generic Receiver 연결 상태를 실제 Peripheral battery/online 상태로 대체하지 않음
+
+## 2026-08-15 status addendum
+
+- B01 Windows.Devices.Power peripheral battery: FAIL / NEED ALTERNATIVE
+- B02 BLE GATT Battery: PASS (AULA F87Pro read + Notify subscribe + reconnect re-read)
+- B03-1 Windows.Gaming.Input: NEED ALTERNATIVE for Bluetooth DualSense (`TryGetBatteryReport() == null`)
+- B03-2 DualSense HID: PASS WITH LIMITATION (battery bucket + charging state event verified)
+- B04-1 Receiver HID Discovery: PASS WITH LIMITATION / evidence frozen
+- B04-2 Receiver Battery Correlation: DEFERRED TO VNEXT / CHG-002

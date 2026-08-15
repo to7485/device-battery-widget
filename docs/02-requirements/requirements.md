@@ -6,9 +6,9 @@
 |---|---|
 | 프로젝트 | Device Battery Widget |
 | 문서명 | 요구사항 명세서 |
-| 문서 버전 | **1.1** |
+| 문서 버전 | **1.2** |
 | 상태 | **Approved / Baseline** |
-| 기준 | Gate 3 승인 + CHG-001 승인 |
+| 기준 | Gate 3 승인 + CHG-001 + CHG-002 승인 |
 | 최종 승인권자 | 발주자 |
 
 ---
@@ -19,6 +19,7 @@
 |---|---|
 | v1.0 | Gate 3 요구사항 Baseline 승인 |
 | v1.1 | CHG-001 System Tray 기능 추가 반영 |
+| v1.2 | CHG-002 v1.0 지원 범위를 Sony DualSense Bluetooth 단일 장치로 축소 |
 
 ---
 
@@ -27,7 +28,9 @@
 ## FR-001 — 연결 장치 탐색
 - 우선순위: Must
 - Windows PC에 연결된 지원 대상 장치를 탐색한다.
-- 우선 지원 장치: 마우스, 키보드, 게임 컨트롤러, 헤드셋
+- v1.0 지원 장치: Sony DualSense Bluetooth (`VID 0x054C / PID 0x0CE6`)
+- Mouse, Keyboard, Headset 및 기타 Game Controller는 후속 릴리스 확장 범위로 이관한다.
+- v1.0 범위 밖 장치는 Widget 장치 목록에 표시하지 않는다.
 
 ## FR-002 — 장치 이름 획득
 - 우선순위: Must
@@ -137,7 +140,8 @@
 - Should
 
 ## UIR-011 — Battery 미지원 장치 표시
-- Must
+- Deferred to vNext (CHG-002)
+- v1.0은 지원 대상 DualSense만 장치 목록에 표시한다.
 
 ## UIR-012 — Battery Unknown 표시
 - Must

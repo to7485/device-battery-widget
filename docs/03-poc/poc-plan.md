@@ -5,7 +5,7 @@
 - 단계: Gate 4 — POC / 기술 타당성 검증
 - 문서 버전: 0.2
 - 상태: In Progress
-- 기준: Requirements Baseline v1.1
+- 기준: Requirements Baseline v1.2 (CHG-002 DualSense-only v1.0 scope)
 
 ## POC 목적
 본개발 전에 핵심 기술의 구현 가능성, 장치별 제약, 실행 중 자원 사용량을 실제 Windows 환경에서 검증한다.

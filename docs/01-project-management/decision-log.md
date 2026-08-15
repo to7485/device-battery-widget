@@ -1,8 +1,8 @@
 # 의사결정 기록 (Decision Log)
 
 - 프로젝트: Device Battery Widget
-- 문서 버전: 1.1
-- 상태: Requirements Baseline v1.1
+- 문서 버전: 1.2
+- 상태: Requirements Baseline v1.2
 - 최종 승인권자: 발주자
 
 ## 주요 결정사항
@@ -37,9 +37,14 @@
 | DEC-026 | CHG-001 | Widget 숨김/최소화 시 Application과 Tray 유지, Tray에서 Widget 복원 | 확정 |
 | DEC-027 | CHG-001 | 기존 OR-005 유지: Widget X 버튼은 Application 전체 종료 | 확정 |
 | DEC-028 | CHG-001 | Requirements Baseline을 v1.1로 개정 | 확정 |
+| DEC-029 | CHG-002 | v1.0 지원 장치를 Sony DualSense Bluetooth로 제한 | 확정 |
+| DEC-030 | CHG-002 | Mouse/Keyboard/Headset/기타 Controller 지원을 vNext로 이관 | 확정 |
+| DEC-031 | CHG-002 | Receiver POC 결과를 보존하고 B04 추가 조사를 동결 | 확정 |
+| DEC-032 | CHG-002 | Requirements Baseline을 v1.2로 개정 | 확정 |
 
 ## 변경요청 현황
 
 | CHG ID | 변경 내용 | 상태 |
 |---|---|---|
 | CHG-001 | System Tray 기능 추가 | **Approved** |
+| CHG-002 | v1.0 DualSense 단일 장치 범위 | **Approved** |
