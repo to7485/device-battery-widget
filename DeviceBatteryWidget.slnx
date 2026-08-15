@@ -6,4 +6,5 @@
   <Project Path="tests/DeviceBattery.Application.Specs/DeviceBattery.Application.Specs.csproj" />
   <Project Path="tests/DeviceBattery.Coordinator.Specs/DeviceBattery.Coordinator.Specs.csproj" />
   <Project Path="tests/DeviceBattery.Infrastructure.Windows.Specs/DeviceBattery.Infrastructure.Windows.Specs.csproj" />
+  <Project Path="tools/DeviceBattery.ProductionSmoke/DeviceBattery.ProductionSmoke.csproj" />
 </Solution>

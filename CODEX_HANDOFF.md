@@ -808,6 +808,13 @@ DeviceInformation.GetAqsFilterFromDeviceClass(DeviceClass.All)
 Domain/Application foundation 다음으로 single-reader state reducer와 deterministic specs를
 구현했다. Channel coordinator와 순수 DualSense report parser를 검증했고, Bluetooth 전용
 read-only Windows HID Provider와 WPF를 해당 contract 위에 단계적으로 추가한다.
+
+실장비 통합은 `tools/DeviceBattery.ProductionSmoke`로 원본 HID ID를 출력하지 않고
+Provider → Coordinator → Reducer 경로와 종료 cleanup을 먼저 확인한다.
+
+2026-08-15 첫 15초 Production smoke에서 `Unknown → Available 15% / NotCharging`,
+`Processed=2`, `Faulted=0`, cleanup 완료를 확인했다. 판정은 추가 lifecycle 시나리오가
+남아 `PASS WITH LIMITATION`이다.
 Mouse/Keyboard/Headset/Receiver 지원은 vNext로 유지한다.
 ```
 

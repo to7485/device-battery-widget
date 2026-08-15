@@ -168,3 +168,9 @@ The Production pure parser now recognizes the POC-verified 78-byte Bluetooth and
 ## Update 27 — Gate 6 Read-Only DualSense Provider
 
 The Windows provider now uses the targeted DualSense gamepad selector, accepts Bluetooth HID endpoints only, opens with `FileAccessMode.Read`, coalesces unchanged reports, and emits semantic discovery/battery/freshness/offline/removal events. Output, Feature, vendor commands, and `DeviceClass.All` are not used.
+
+## Update 28 — Gate 6 Production Pipeline Smoke Host
+
+A time-bounded console host connects the Production Provider, coordinator, and reducer for real-device verification. It prints hashed keys and normalized state only, then cancels the Provider, drains the mailbox, and reports cleanup.
+
+The first 15-second real-device run completed with `Unknown → Available 15% / NotCharging`, `Processed=2`, `Faulted=0`, and cleanup complete. The current integration verdict is `PASS WITH LIMITATION` pending Production OFF/ON, Dormant, and sleep/resume scenarios.

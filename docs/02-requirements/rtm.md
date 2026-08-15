@@ -9,13 +9,13 @@
 
 | 요구사항 ID | 요구사항 요약 | 우선순위 | 설계 ID | 구현 대상 | 테스트 ID | 상태 |
 |---|---|---|---|---|---|---|
-| FR-001 | DualSense Bluetooth 탐색 | Must | ARC-002 | DualSenseHidProvider targeted watcher/BT filter | SPEC-DS-PARSER + 실장비 통합 TBD | In Implementation |
-| FR-002 | 장치 이름 획득 | Must | ARC-002, ARC-006 | DualSenseHidProvider DeviceDiscovered | 실장비 통합 TBD | In Implementation |
+| FR-001 | DualSense Bluetooth 탐색 | Must | ARC-002 | DualSenseHidProvider targeted watcher/BT filter | SPEC-DS-PARSER + G6-SMOKE-01 | Implemented / Integration PASS |
+| FR-002 | 장치 이름 획득 | Must | ARC-002, ARC-006 | DualSenseHidProvider DeviceDiscovered | G6-SMOKE-01 | Implemented / Integration PASS |
 | FR-003 | Battery 상태 조회 | Must | ARC-001~004 | Domain BatteryState, DualSenseHidBatteryParser, reducer/coordinator | SPEC-DOM, SPEC-APP, SPEC-COORD, SPEC-DS-PARSER | In Implementation |
 | FR-004 | 충전 상태 조회 | Must | ARC-001~003 | Domain BatteryState, DualSenseHidBatteryParser | SPEC-DOM, SPEC-DS-PARSER | In Implementation |
 | FR-005 | Event 기반 Battery 갱신 | Must | ARC-002, ARC-003 | ProviderEvent, DeviceStateCoordinator | SPEC-APP, SPEC-COORD | In Implementation |
 | FR-006 | Polling Fallback | Must | ARC-002, ARC-004 | TBD | TBD | Architecture Draft |
-| FR-007 | 시작 시 즉시 조회 | Must | ARC-002, ARC-003 | watcher enumeration + read-only open | 실장비 통합 TBD | In Implementation |
+| FR-007 | 시작 시 즉시 조회 | Must | ARC-002, ARC-003 | watcher enumeration + read-only open | G6-SMOKE-01 | Implemented / Integration PASS |
 | FR-008 | 신규 장치 즉시 조회 | Must | ARC-002, ARC-003 | watcher Added + read-only open | 실장비 통합 TBD | In Implementation |
 | FR-009 | 장치 해제 즉시 제거 | Must | ARC-003, ARC-004 | DeviceStateReducer | SPEC-APP | In Implementation |
 | FR-010 | 절전 복귀 처리 | Must | ARC-002, ARC-004 | TBD | TBD | Architecture Draft |
@@ -52,7 +52,7 @@
 | NFR-USAB-001 | 사용자 개입 최소화 | Must | ARC-002~008 | TBD | TBD | Architecture Draft |
 | NFR-MAINT-001 | 장치 유형 확장성 | Must | ARC-001~005 | TBD | TBD | Architecture Draft |
 | NFR-MAINT-002 | 장치별 Provider 분리 | Should | ARC-002, ARC-005 | IBatteryProvider, DualSenseHidProvider | SPEC-APP + build | In Implementation |
-| IR-001 | Windows Device Interface | Must | ARC-002 | targeted DeviceWatcher, HidDevice FromIdAsync(Read) | static safety scan + 실장비 통합 TBD | In Implementation |
+| IR-001 | Windows Device Interface | Must | ARC-002 | targeted DeviceWatcher, HidDevice FromIdAsync(Read) | static safety scan + G6-SMOKE-01 | Implemented / Integration PASS |
 | IR-002 | Event Interface | Must | ARC-002, ARC-003 | IBatteryProvider, ProviderEvent, DeviceStateCoordinator | SPEC-APP, SPEC-COORD | In Implementation |
 | IR-003 | 연결 유형 POC 검증 | Must | ARC-002 | DualSenseHidBatteryParser | SPEC-DS-PARSER + Gate 4 실장비 POC | In Implementation |
 | IR-004 | 장치 고유 식별 POC 검증 | Must | ARC-005 | TBD | TBD | Architecture Draft |
