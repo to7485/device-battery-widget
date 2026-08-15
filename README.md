@@ -152,3 +152,7 @@ Provider contracts, state machine, concurrency, test strategy, RTM mappings, and
 ## Update 23 — Gate 5 Approved / Gate 6 Foundation
 
 Gate 5 is `APPROVED WITH CONDITIONS`, ADR-001~010 are Accepted, and Gate 6 Production Implementation has started with the platform-independent Domain/Application foundation. Windows HID and WPF code remain subsequent increments.
+
+## Update 24 — Gate 6 State Reducer
+
+The platform-independent state reducer now serializes semantic provider events, rejects stale generations and out-of-order sequences, clears stale battery values, hides dormant devices, restores recovered devices, and removes Windows-removed devices. Windows HID access is not part of this increment.

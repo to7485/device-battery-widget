@@ -46,6 +46,7 @@
 | DEC-035 | Gate 5 | Architecture baseline과 ADR-001~010 조건부 승인 | 확정 |
 | DEC-036 | Gate 5 | WPF+NotifyIcon, 10초 Unknown/30초 Dormant, SCD win-x64 기본 정책 채택 | 확정 |
 | DEC-037 | Gate 6 | Domain/Application foundation부터 Production 구현 시작 | 확정 |
+| DEC-038 | Gate 6 | Provider semantic event를 순수 single-reader reducer에서 세대/순번 검증 후 상태로 반영 | 확정 |
 
 ## 변경요청 현황
 
