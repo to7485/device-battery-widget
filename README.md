@@ -124,3 +124,7 @@ Hardware result: `PASS`. After Windows resume, the existing Bluetooth HID sessio
 ## Update 16 — POC-D System Tray / Lifecycle
 
 Added `poc/DeviceBattery.Poc.SystemTrayLifecycle`. Hardware testing passed tray display, context menu, minimize/hide, double-click and menu restore, Always On Top, Widget X exit, tray-menu exit, explicit cleanup, and absence of a ghost icon. Final result: `PASS`.
+
+## Update 17 — POC-E Resource Baselines
+
+Added `poc/DeviceBattery.Poc.ResourceSampler`. Five-minute Release measurements passed the idle targets: Tray averaged 0.001% CPU with 42.16 MiB Working Set; Bluetooth-only DualSense monitoring averaged 0.144% CPU with 46.43 MiB Working Set. Neither run showed Handle/Thread growth. Overall result is `PASS WITH LIMITATION` because long soak, startup, OS, deployment, and same-host incremental measurements remain.

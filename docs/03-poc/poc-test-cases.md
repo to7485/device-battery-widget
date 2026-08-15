@@ -26,14 +26,14 @@
 | POC-TC-019 | D03 | Hide/Restore | Tray에서 Widget 복원 | PASS |
 | POC-TC-020 | D04 | X 종료 | Application 전체 종료 | PASS |
 | POC-TC-021 | D05 | Tray 정리 | Ghost Icon/Leak 없음 | PASS |
-| POC-TC-022 | E01 | Idle CPU | 5분 평균 측정값 확보 | NOT TESTED |
-| POC-TC-023 | E02 | Memory | Working Set/Private Memory 확보 | NOT TESTED |
-| POC-TC-024 | E03 | Handle/Thread | 지속 증가 여부 확인 | NOT TESTED |
+| POC-TC-022 | E01 | Idle CPU | 5분 평균 측정값 확보 | PASS (Tray 0.001%, BT Battery 0.144%) |
+| POC-TC-023 | E02 | Memory | Working Set/Private Memory 확보 | PASS (최대 46.43/12.74 MiB) |
+| POC-TC-024 | E03 | Handle/Thread | 지속 증가 여부 확인 | PASS (5분 지속 증가 없음) |
 | POC-TC-025 | E04 | Startup | 시작시간 측정 | NOT TESTED |
 | POC-TC-026 | E05 | OS | Win10/11 차이 기록 | NOT TESTED |
 | POC-TC-027 | E06 | Runtime/Deploy | 배포 특성 확인 | NOT TESTED |
 | POC-TC-028 | E07 | 기술 적합성 | 채택/조건부/대체 권고 | NOT TESTED |
-| **POC-TC-029** | **E08** | **기능별 Resource 증가량** | **기능 추가 단계별 CPU/Memory/Handle/Thread 변화량 확보** | **NOT TESTED** |
+| **POC-TC-029** | **E08** | **기능별 Resource 증가량** | **기능 추가 단계별 CPU/Memory/Handle/Thread 변화량 확보** | **PASS WITH LIMITATION (별도 POC 간 1차 비교; 동일-host pending)** |
 | POC-TC-030 | B05 | DualSense 상태 정규화 | bucket/charging code를 BatteryState로 변환 | PASS |
 | POC-TC-031 | B05 | Stale percent 제거 | 일시 실패 시 Percent=null, Availability=Unknown | PASS |
 | POC-TC-032 | B05 | Unknown 복구 | 정상 report 재수신 시 Available 복귀 | PASS |

@@ -552,6 +552,9 @@ POC-C06 DualSense Sleep / Resume
 
 POC-D01~D05 System Tray / Lifecycle
 → PASS (tray/menu/hide/restore/X exit/tray exit/cleanup; ghost icon 없음)
+
+POC-E01~E03/E08 Resource / Performance
+→ PASS WITH LIMITATION (Tray CPU 0.001%/WS 42.16 MiB; BT Battery CPU 0.144%/WS 46.43 MiB; 5분 baseline만 완료)
 ```
 
 ---
