@@ -26,3 +26,7 @@
 **PASS WITH LIMITATION**
 
 CPU and five-minute stability passed, but NFR-PERF-003 does not pass because the Production Working Set remained above 100 MiB. This is an optimization input and must not be reclassified using Private Memory alone. The five-minute run also does not replace the required 24-hour and 72-hour stability tests.
+
+## Requirements v1.8 re-evaluation
+
+CHG-008 preserved the original v1.7 FAIL and changed the approved Production acceptance limits to Working Set 150 MiB and Private Memory 100 MiB. Against v1.8, the measured 138.16 MiB Working Set and 71.43 MiB Private Memory are **PASS**. Long-duration stability remains pending.

@@ -1,8 +1,8 @@
 # 요구사항 추적 매트릭스 (RTM)
 
 - 프로젝트: Device Battery Widget
-- 문서 버전: **1.7**
-- Requirements Baseline: **v1.7**
+- 문서 버전: **1.8**
+- Requirements Baseline: **v1.8**
 - 상태: Approved
 
 > Gate 5에서 승인된 ARC ID를 매핑했다. Gate 6에서 구현된 항목부터 구현 대상과 자동 사양 ID를 연결하며, TBD는 아직 Production 미착수 상태를 의미한다.
@@ -41,7 +41,7 @@
 | UIR-013 | Tray-only 실행 presence | Must | ARC-007 | ShowInTaskbar=False + Show/Topmost/Exit tray | App smoke + manual verification TBD | In Implementation |
 | NFR-PERF-001 | 유휴 CPU 목표 | Must | ARC-002~004, ARC-009 | current multi-provider Production app | G6-PERF-05M-01 avg 0.358% | Integration PASS |
 | NFR-PERF-002 | 작업 중 CPU 목표 | Must | ARC-002~004, ARC-009 | current multi-provider Production app | G6-PERF-05M-01 max 1.679% | Integration PASS |
-| NFR-PERF-003 | Memory 목표 | Must | ARC-007, ARC-009 | current multi-provider Production app | G6-PERF-05M-01 Working Set 138.16 MiB | **Integration FAIL / Optimization Required** |
+| NFR-PERF-003 | Working Set 150 MiB / Private Memory 100 MiB | Must | ARC-007, ARC-009 | current multi-provider Production app | G6-PERF-05M-01 138.16/71.43 MiB + CHG-008 | Integration PASS |
 | NFR-PERF-004 | Widget 표시 시간 | Must | ARC-006, ARC-007, ARC-009 | TBD | TBD | Architecture Draft |
 | NFR-PERF-005 | 최초 장치 정보 시간 | Must | ARC-002~004, ARC-009 | TBD | TBD | Architecture Draft |
 | NFR-STAB-001 | Memory Leak 방지 | Must | ARC-007, ARC-009 | TBD | TBD | Architecture Draft |

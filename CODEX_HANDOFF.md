@@ -3,7 +3,7 @@
 ## 1. 프로젝트 개요
 
 프로젝트명: **Device Battery Widget**
-현재 Requirements Baseline: **v1.7 (CHG-007 Approved)**
+현재 Requirements Baseline: **v1.8 (CHG-008 Approved)**
 
 Windows PC에 현재 연결된 주변기기의 이름과 배터리 상태를 표시하는 가벼운 데스크톱 위젯을 개발한다. 단순 데모가 아니라 실제 배포 가능한 Windows 응용프로그램을 목표로 하며, 기획 → 요구사항 → 기술검증 → 설계 → 구현 → 테스트 → 배포까지 SI 프로젝트 방식으로 진행한다.
 
@@ -105,7 +105,7 @@ Widget 숨김/최소화 시 앱과 Tray는 유지한다. Tray에서 Widget 복�
 
 - Idle CPU 5분 평균 ≤ 1%
 - 순간 작업 CPU ≤ 5% 목표
-- 일반 Memory ≤ 100 MB 목표
+- 정상 Working Set ≤ 150 MiB, Private Memory ≤ 100 MiB
 - 24시간 Memory 증가 ≤ 10 MB 또는 10%
 - 24시간 비정상 종료 0회
 - Widget 표시 ≤ 2초
@@ -866,3 +866,7 @@ NFR-STAB-004 자원 정리는 8초 Production timed smoke가 exit code 0, 잔존
 60초 단계별 분리 측정은 shell 108.78 MiB, DualSense 추가 20.54 MiB, BLE 추가 5.61 MiB,
 WGI 추가 1.11 MiB로 나타났다. 전체는 136.04 MiB로 재현됐다. NFR-PERF-003 해결은 WPF/tray/HID
 구조 변경 또는 실측 기반 요구사항 변경 승인이 필요하며 강제 Working Set trim은 사용하지 않는다.
+
+CHG-008 승인으로 Requirements v1.8의 Memory 기준은 Working Set 150 MiB 이하, Private Memory
+100 MiB 이하다. 기존 v1.7 100 MiB Working Set FAIL 증거는 보존하며, 5분 실측 138.16/71.43 MiB는
+v1.8 기준 PASS다. CPU 및 24시간/72시간 안정성 기준은 변경하지 않았다.

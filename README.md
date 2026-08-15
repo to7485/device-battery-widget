@@ -250,3 +250,7 @@ The current multi-provider Release app completed 300 read-only samples with 0.35
 ## Update 43 — Memory Attribution
 
 Diagnostic-only Production runs measured 108.78 MiB for the WPF/tray shell, then incremental Working Set costs of approximately 20.54 MiB for DualSense HID, 5.61 MiB for BLE, and 1.11 MiB for WGI. The full result reproduced at 136.04 MiB. NFR-PERF-003 therefore needs an explicit shell/HID technology or requirement decision; forced working-set trimming is not accepted as an optimization.
+
+## Update 44 — CHG-008 Memory Baseline
+
+Requirements v1.8 approves measured full-feature limits of 150 MiB Working Set and 100 MiB Private Memory while preserving the original v1.7 failure evidence. The five-minute result of 138.16/71.43 MiB passes v1.8; CPU and long-duration stability requirements are unchanged.

@@ -6,9 +6,9 @@
 |---|---|
 | 프로젝트 | Device Battery Widget |
 | 문서명 | 요구사항 명세서 |
-| 문서 버전 | **1.7** |
+| 문서 버전 | **1.8** |
 | 상태 | **Approved / Baseline** |
-| 기준 | Gate 3 승인 + CHG-001~CHG-007 승인 |
+| 기준 | Gate 3 승인 + CHG-001~CHG-008 승인 |
 | 최종 승인권자 | 발주자 |
 
 ---
@@ -25,6 +25,7 @@
 | v1.5 | CHG-005 compact typography 및 taskbar 숨김/Tray-only presence |
 | v1.6 | CHG-006 표준 BLE GATT Battery Production 지원 및 다중 indicator |
 | v1.7 | CHG-007 Xbox Windows.Gaming.Input Battery Production 지원 |
+| v1.8 | CHG-008 Production Memory 수용 기준을 Working Set 150 MiB / Private Memory 100 MiB로 현실화 |
 
 ---
 
@@ -183,7 +184,9 @@ Widget window는 taskbar에 표시하지 않으며 실행 중 presence는 Tray i
 
 ## NFR-PERF-003 — Memory
 - Must
-- 정상 상태 100MB 이하 목표
+- 정상 상태 Working Set 150 MiB 이하
+- 정상 상태 Private Memory 100 MiB 이하
+- 강제 Working Set trim 또는 주기적 강제 GC로 수치를 인위적으로 맞추지 않는다.
 
 ## NFR-PERF-004 — Widget 표시 시간
 - Must
