@@ -18,6 +18,7 @@ public partial class App : System.Windows.Application
     private readonly JsonWidgetSettingsStore settingsStore = new();
     private readonly IAutoStartService autoStartService = new RegistryRunAutoStartService(Environment.ProcessPath ?? throw new InvalidOperationException("Executable path is unavailable."));
     private readonly object resumeSync = new();
+    private readonly Stopwatch startupClock = new();
     private DeviceStateCoordinator? coordinator;
     private IBatteryProvider[] providers = [];
     private WidgetWindow? window;
@@ -27,6 +28,7 @@ public partial class App : System.Windows.Application
     private CancellationTokenSource? resumeRefreshCancellation;
     private Task resumeRefreshTask = Task.CompletedTask;
     private BoundedFileTraceListener? traceListener;
+    private int firstAvailableLogged;
     private int shutdownStarted;
     private bool allowWindowClose;
     private bool windowPlacementRestored;
@@ -34,12 +36,13 @@ public partial class App : System.Windows.Application
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
+        startupClock.Start();
 
         try
         {
             traceListener = new BoundedFileTraceListener();
             Trace.Listeners.Add(traceListener);
-            Trace.WriteLine("APP_START");
+            Trace.WriteLine($"APP_START pid={Environment.ProcessId}");
         }
         catch (Exception error) when (error is IOException or UnauthorizedAccessException)
         {
@@ -85,6 +88,7 @@ public partial class App : System.Windows.Application
         tray.SetTopmost(viewModel.IsTopmost);
         tray.SetAutoStart(GetAutoStart());
         window.Show();
+        Trace.WriteLine($"WIDGET_VISIBLE pid={Environment.ProcessId} elapsedMs={startupClock.Elapsed.TotalMilliseconds:F1}");
 
         if (TryGetSmokeDuration(e.Args, out TimeSpan duration))
         {
@@ -318,11 +322,14 @@ public partial class App : System.Windows.Application
         return null;
     }
 
-    private static void LogReduction(ReductionResult result)
+    private void LogReduction(ReductionResult result)
     {
         if (result.Snapshot is { } snapshot)
         {
             Trace.WriteLine($"STATE outcome={result.Outcome} device={snapshot.Key} availability={snapshot.Battery.Availability} percent={snapshot.Battery.Percent?.ToString() ?? "null"} charging={snapshot.Battery.Charging}");
+            if (snapshot.Battery.Availability == DeviceBattery.Domain.BatteryAvailability.Available &&
+                Interlocked.CompareExchange(ref firstAvailableLogged, 1, 0) == 0)
+                Trace.WriteLine($"FIRST_DEVICE_AVAILABLE pid={Environment.ProcessId} elapsedMs={startupClock.Elapsed.TotalMilliseconds:F1}");
             return;
         }
         if (result.RemovedKey is { } removedKey)

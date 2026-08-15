@@ -870,3 +870,6 @@ WGI 추가 1.11 MiB로 나타났다. 전체는 136.04 MiB로 재현됐다. NFR-P
 CHG-008 승인으로 Requirements v1.8의 Memory 기준은 Working Set 150 MiB 이하, Private Memory
 100 MiB 이하다. 기존 v1.7 100 MiB Working Set FAIL 증거는 보존하며, 5분 실측 138.16/71.43 MiB는
 v1.8 기준 PASS다. CPU 및 24시간/72시간 안정성 기준은 변경하지 않았다.
+
+전체 Provider Production startup 10회는 Widget visible 10/10, 평균 846.7 ms, 최대/P95 939.1 ms다.
+최초 Available marker는 10/10, 평균 781.0 ms, 최대/P95 849.6 ms다. NFR-PERF-004/005는 PASS다.

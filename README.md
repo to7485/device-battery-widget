@@ -254,3 +254,7 @@ Diagnostic-only Production runs measured 108.78 MiB for the WPF/tray shell, then
 ## Update 44 — CHG-008 Memory Baseline
 
 Requirements v1.8 approves measured full-feature limits of 150 MiB Working Set and 100 MiB Private Memory while preserving the original v1.7 failure evidence. The five-minute result of 138.16/71.43 MiB passes v1.8; CPU and long-duration stability requirements are unchanged.
+
+## Update 45 — Production Startup Timing
+
+Ten full-provider Release starts reached a visible widget in 10/10 runs, averaging 846.7 ms with a 939.1 ms maximum/P95. Privacy-safe process-relative markers recorded first battery availability in 781.0 ms average and 849.6 ms maximum/P95. Both the two-second widget and five-second device-information targets pass.

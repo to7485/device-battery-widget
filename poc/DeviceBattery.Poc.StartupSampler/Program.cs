@@ -8,7 +8,9 @@ if (!options.TryGetValue("exe", out string? exe) || !File.Exists(exe))
 
 int iterations = ReadInt(options, "iterations", 10, 1, 100);
 int timeoutMs = ReadInt(options, "timeout-ms", 10000, 1000, 60000);
+int shutdownTimeoutMs = ReadInt(options, "shutdown-timeout-ms", 15000, 1000, 60000);
 string stage = options.GetValueOrDefault("stage", "STARTUP");
+string executableArguments = options.GetValueOrDefault("arguments", string.Empty);
 string outputDirectory = options.GetValueOrDefault(
     "output", Path.Combine(Environment.CurrentDirectory, "artifacts", "startup"));
 
@@ -20,6 +22,8 @@ var samples = new List<double>();
 Console.WriteLine("Gate 4 POC-E04 Startup Sampler");
 Console.WriteLine($"Executable={Path.GetFullPath(exe)}");
 Console.WriteLine($"Iterations={iterations}, ReadyTimeout={timeoutMs}ms");
+Console.WriteLine($"ShutdownTimeout={shutdownTimeoutMs}ms");
+Console.WriteLine($"Arguments={executableArguments}");
 Console.WriteLine("Readiness=first visible top-level window owned by target PID\n");
 
 using var writer = new StreamWriter(csvPath, false, new System.Text.UTF8Encoding(false));
@@ -30,6 +34,7 @@ for (int i = 1; i <= iterations; i++)
     using Process? process = Process.Start(new ProcessStartInfo
     {
         FileName = Path.GetFullPath(exe),
+        Arguments = executableArguments,
         UseShellExecute = true
     });
     if (process is null)
@@ -66,7 +71,7 @@ for (int i = 1; i <= iterations; i++)
     {
         if (window != IntPtr.Zero)
             NativeMethods.PostMessage(window, NativeMethods.WmClose, IntPtr.Zero, IntPtr.Zero);
-        if (!process.WaitForExit(5000))
+        if (!process.WaitForExit(shutdownTimeoutMs))
         {
             Console.WriteLine($"[{i:00}] CloseMainWindow did not exit; stop the run and inspect the POC.");
             return 4;
@@ -112,7 +117,7 @@ static int ReadInt(Dictionary<string, string> options, string key, int fallback,
 static int Usage(string error)
 {
     Console.Error.WriteLine(error);
-    Console.Error.WriteLine("Usage: --exe <path> [--stage name] [--iterations 10] [--timeout-ms 10000]");
+    Console.Error.WriteLine("Usage: --exe <path> [--arguments text] [--stage name] [--iterations 10] [--timeout-ms 10000] [--shutdown-timeout-ms 15000]");
     return 1;
 }
 

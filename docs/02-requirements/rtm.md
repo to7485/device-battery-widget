@@ -42,8 +42,8 @@
 | NFR-PERF-001 | 유휴 CPU 목표 | Must | ARC-002~004, ARC-009 | current multi-provider Production app | G6-PERF-05M-01 avg 0.358% | Integration PASS |
 | NFR-PERF-002 | 작업 중 CPU 목표 | Must | ARC-002~004, ARC-009 | current multi-provider Production app | G6-PERF-05M-01 max 1.679% | Integration PASS |
 | NFR-PERF-003 | Working Set 150 MiB / Private Memory 100 MiB | Must | ARC-007, ARC-009 | current multi-provider Production app | G6-PERF-05M-01 138.16/71.43 MiB + CHG-008 | Integration PASS |
-| NFR-PERF-004 | Widget 표시 시간 | Must | ARC-006, ARC-007, ARC-009 | TBD | TBD | Architecture Draft |
-| NFR-PERF-005 | 최초 장치 정보 시간 | Must | ARC-002~004, ARC-009 | TBD | TBD | Architecture Draft |
+| NFR-PERF-004 | Widget 표시 시간 | Must | ARC-006, ARC-007, ARC-009 | Production WPF/tray startup | G6-STARTUP-10X-01 max/P95 939.1 ms | Integration PASS |
+| NFR-PERF-005 | 최초 장치 정보 시간 | Must | ARC-002~004, ARC-009 | first normalized Available projection | G6-STARTUP-10X-01 max/P95 849.6 ms | Integration PASS |
 | NFR-STAB-001 | Memory Leak 방지 | Must | ARC-007, ARC-009 | TBD | TBD | Architecture Draft |
 | NFR-STAB-002 | 24시간 안정성 | Must | ARC-009 | TBD | TBD | Architecture Draft |
 | NFR-STAB-003 | 72시간 Soak Test | Must | ARC-009, ARC-010 | TBD | TBD | Architecture Draft |
