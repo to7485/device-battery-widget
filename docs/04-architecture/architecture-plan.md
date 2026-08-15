@@ -20,6 +20,9 @@ POC 코드를 복사해 제품화하지 않고, 검증된 기술 사실을 Produ
 7. RTM Design ID 매핑
 8. Architecture Decision Record
 
+현재 작성 완료: Overview, Domain/Provider Contract, State Machine, Test Strategy, ADR Draft,
+RTM Design ID Draft.
+
 ## Gate 4 이관 조건
 
 - v1.0 DualSense Bluetooth-only

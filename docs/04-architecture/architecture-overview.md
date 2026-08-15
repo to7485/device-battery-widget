@@ -69,7 +69,7 @@ Targeted DualSense selector
 - 모든 의미 있는 상태 변경은 single-reader channel에서 순서화한다.
 - timer는 직접 UI/state를 변경하지 않고 coordinator command를 발행한다.
 - session generation을 event에 포함해 dispose된 이전 session의 late callback을 폐기한다.
-- cleanup 순서: watcher stop → callback detach → timer cancel → channel complete → HID dispose → tray dispose.
+- cleanup 순서: watcher stop → timer cancel → callback detach → HID dispose → provider 종료 → channel complete/drain → tray dispose.
 
 이 정책은 POC에서 관찰된 동일 시각 `RECOVERED/TIMEOUT` 로그 경합을 제거한다.
 
