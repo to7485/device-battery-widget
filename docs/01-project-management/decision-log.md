@@ -58,6 +58,7 @@
 | DEC-047 | CHG-004 | USB 연결 중 valid charging 유지, Bluetooth freshness 유지, frameless indicator로 Requirements v1.4 승인 | 확정 |
 | DEC-048 | CHG-005 | compact typography와 ShowInTaskbar=False Tray-only presence로 Requirements v1.5 승인 | 확정 |
 | DEC-049 | Gate 6 UI | DualSense white/black/blue visual language와 green charging feedback를 1차 시안으로 구현 | 검토 중 |
+| DEC-050 | Gate 6 UI | 2차 시안에서 brand label 제거, 14px gauge, charging-only centered lightning 적용 | 검토 중 |
 
 ## 변경요청 현황
 

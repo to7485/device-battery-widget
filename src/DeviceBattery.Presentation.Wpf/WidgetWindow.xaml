@@ -5,7 +5,7 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolVisibility" />
         <Style x:Key="DualSenseGauge" TargetType="ProgressBar">
-            <Setter Property="Height" Value="8"/><Setter Property="Maximum" Value="100"/><Setter Property="Foreground" Value="#2864F0"/>
+            <Setter Property="Height" Value="14"/><Setter Property="Maximum" Value="100"/><Setter Property="Foreground" Value="#2864F0"/>
             <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ProgressBar"><Grid>
                 <Border Background="#DCE2EC" CornerRadius="4"/>
                 <Border x:Name="PART_Track" Background="Transparent" CornerRadius="4"><Border x:Name="PART_Indicator" HorizontalAlignment="Left" Background="{TemplateBinding Foreground}" CornerRadius="4"/></Border>
@@ -27,16 +27,20 @@
         <Grid Margin="16,12">
             <Border Background="#111725" CornerRadius="13" Padding="16,13" Visibility="{Binding IsEmpty, Converter={StaticResource BoolVisibility}}">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Text="SONY  ·  DUALSENSE" Foreground="#5E8EFF" FontSize="10" FontWeight="SemiBold" HorizontalAlignment="Center"/>
-                    <TextBlock Text="컨트롤러 연결 대기 중" Foreground="#F4F7FC" FontSize="13" FontWeight="SemiBold" Margin="0,6,0,0"/>
+                    <TextBlock Text="컨트롤러 연결 대기 중" Foreground="#F4F7FC" FontSize="13" FontWeight="SemiBold"/>
                     <TextBlock Text="Bluetooth 또는 USB 연결을 확인해 주세요" Foreground="#98A4B8" FontSize="10" Margin="0,3,0,0"/>
                 </StackPanel>
             </Border>
             <ItemsControl ItemsSource="{Binding Devices}"><ItemsControl.ItemTemplate><DataTemplate><Grid>
                 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-                <DockPanel LastChildFill="True"><Button Content="×" DockPanel.Dock="Right" Style="{StaticResource CloseButton}" Margin="8,-3,-3,0" Click="OnCloseClick" ToolTip="종료"/><TextBlock Text="SONY  ·  DUALSENSE" Foreground="#2864F0" FontSize="10" FontWeight="SemiBold" VerticalAlignment="Center"/></DockPanel>
+                <DockPanel LastChildFill="False"><Button Content="×" DockPanel.Dock="Right" Style="{StaticResource CloseButton}" Margin="8,-3,-3,0" Click="OnCloseClick" ToolTip="종료"/></DockPanel>
                 <DockPanel Grid.Row="1" Margin="0,5,0,0" LastChildFill="True"><TextBlock Text="{Binding BatteryText}" DockPanel.Dock="Right" FontSize="17" FontWeight="Bold" Foreground="#101522" Margin="9,0,0,0"/><TextBlock Text="{Binding DisplayName}" FontSize="12" FontWeight="SemiBold" Foreground="#202738" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/></DockPanel>
-                <ProgressBar Grid.Row="2" Margin="0,10,0,7" Value="{Binding GaugePercent, Mode=OneWay}" Style="{StaticResource DualSenseGauge}"/>
+                <Grid Grid.Row="2" Margin="0,9,0,7">
+                    <ProgressBar Value="{Binding GaugePercent, Mode=OneWay}" Style="{StaticResource DualSenseGauge}"/>
+                    <TextBlock Text="⚡" FontSize="10" FontWeight="Bold" Foreground="#17633C"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False"
+                               Visibility="{Binding IsCharging, Converter={StaticResource BoolVisibility}}"/>
+                </Grid>
                 <TextBlock Grid.Row="3" Text="{Binding StatusText}" FontSize="10"><TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Foreground" Value="#667085"/><Style.Triggers><DataTrigger Binding="{Binding IsCharging}" Value="True"><Setter Property="Foreground" Value="#23965A"/><Setter Property="FontWeight" Value="SemiBold"/></DataTrigger></Style.Triggers></Style></TextBlock.Style></TextBlock>
             </Grid></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
         </Grid>
