@@ -114,12 +114,13 @@ correlation 실패 시 새 device instance로 취급하고 stale instance를 gra
 - autostart는 기본 OFF이며 packaging 방식 확정 후 adapter 선택
 - FDD/SCD 모두 가능; Windows 11 및 packaging 검증 후 운영 mode 결정
 
-## 11. Open Decisions
+## 11. Review Recommendations
 
-- WPF 최종 채택 여부
-- 10초 Unknown / 30초 제거 정책
-- FDD와 self-contained 중 기본 배포 mode
-- autostart 구현 방식
-- local log 보존 기간과 privacy 범위
+- WPF + WinForms NotifyIcon 채택
+- 10초 Unknown / 30초 Dormant 정책
+- self-contained win-x64 기본 배포, FDD 보조 profile
+- unpackaged v1 HKCU Run / packaged StartupTask adapter
+- 기본 local log 7일 또는 총 10 MiB, raw HID/전체 Device ID 금지
 
-이 문서는 Production 구현 승인이 아닌 Gate 5 검토 초안이다.
+세부 근거는 `open-decisions-review.md`에 있다. 이 문서는 Production 구현 승인이 아닌
+Gate 5 검토 초안이다.

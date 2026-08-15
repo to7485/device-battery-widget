@@ -1,7 +1,7 @@
 # Gate 5 — Architecture Design 계획
 
 작성일: 2026-08-15
-상태: IN PROGRESS
+상태: READY FOR OWNER REVIEW
 입력: Requirements Baseline v1.2 / Gate 4 APPROVED WITH CONDITIONS
 
 ## 목표
@@ -21,7 +21,7 @@ POC 코드를 복사해 제품화하지 않고, 검증된 기술 사실을 Produ
 8. Architecture Decision Record
 
 현재 작성 완료: Overview, Domain/Provider Contract, State Machine, Test Strategy, ADR Draft,
-RTM Design ID Draft.
+RTM Design ID Draft, Open Decisions Review, Architecture Review.
 
 ## Gate 4 이관 조건
 

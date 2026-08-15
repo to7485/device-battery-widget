@@ -809,4 +809,7 @@ settings/deployment 구조를 확정하기 전 Production 구현을 시작하지
 Mouse/Keyboard/Headset/Receiver 지원은 vNext로 유지한다.
 ```
 
+Gate 5 Architecture는 `READY FOR OWNER REVIEW`다. ADR-001~010은 아직
+`Recommended`이며 발주자 승인 전 `Accepted`가 아니다.
+
 Gate 5 Architecture 승인 전 Production UI/Provider 구현, Installer 제작 등으로 넘어가지 않는다.

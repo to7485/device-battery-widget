@@ -144,3 +144,7 @@ Added `poc/DeviceBattery.Poc.DualSenseEventContinuityProbe`. Passive Bluetooth H
 ## Update 21 — Gate 4 Approved / Gate 5 Started
 
 Gate 4 is `APPROVED WITH CONDITIONS`. Gate 5 Architecture Design is now in progress. Production implementation remains blocked until the architecture baseline is explicitly approved.
+
+## Update 22 — Gate 5 Architecture Ready for Review
+
+Provider contracts, state machine, concurrency, test strategy, RTM mappings, and open-decision recommendations are complete drafts. The recommendation is WPF + NotifyIcon, 10-second Unknown / 30-second Dormant, self-contained win-x64 default deployment, an autostart adapter using HKCU Run for unpackaged v1, and privacy-limited local diagnostics. Production remains blocked pending owner approval.
