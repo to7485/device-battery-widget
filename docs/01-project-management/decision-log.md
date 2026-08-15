@@ -43,6 +43,9 @@
 | DEC-032 | CHG-002 | Requirements Baseline을 v1.2로 개정 | 확정 |
 | DEC-033 | Gate 4 | Technical Feasibility POC를 APPROVED WITH CONDITIONS로 승인 | 확정 |
 | DEC-034 | Gate 4 | C#/.NET 10, targeted read-only HID, event-first, normalized state, NotifyIcon을 Architecture 입력으로 채택 | 확정 |
+| DEC-035 | Gate 5 | Architecture baseline과 ADR-001~010 조건부 승인 | 확정 |
+| DEC-036 | Gate 5 | WPF+NotifyIcon, 10초 Unknown/30초 Dormant, SCD win-x64 기본 정책 채택 | 확정 |
+| DEC-037 | Gate 6 | Domain/Application foundation부터 Production 구현 시작 | 확정 |
 
 ## 변경요청 현황
 
@@ -56,4 +59,5 @@
 | Gate | 상태 |
 |---|---|
 | Gate 4 Technical Feasibility POC | **Approved With Conditions** |
-| Gate 5 Architecture Design | **In Progress** |
+| Gate 5 Architecture Design | **Approved With Conditions** |
+| Gate 6 Production Implementation | **In Progress** |

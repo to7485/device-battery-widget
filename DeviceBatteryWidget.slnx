@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="src/DeviceBattery.Domain/DeviceBattery.Domain.csproj" />
+  <Project Path="src/DeviceBattery.Application/DeviceBattery.Application.csproj" />
+  <Project Path="tests/DeviceBattery.Domain.Specs/DeviceBattery.Domain.Specs.csproj" />
+</Solution>

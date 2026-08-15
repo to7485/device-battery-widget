@@ -209,10 +209,11 @@ POC 코드는 기술 선택 근거로 보존한다.
 | Gate 3 Requirements | APPROVED |
 | CHG-001 System Tray | APPROVED |
 | Gate 4 Technical Feasibility POC | APPROVED WITH CONDITIONS |
-| Gate 5 Architecture Design | IN PROGRESS |
-| Gate 6 이후 | NOT STARTED |
+| Gate 5 Architecture Design | APPROVED WITH CONDITIONS |
+| Gate 6 Production Implementation | IN PROGRESS |
+| Gate 7 이후 | NOT STARTED |
 
-Gate 5 Architecture 승인 전 Production 구현으로 임의로 넘어가지 않는다.
+Gate 6 구현은 승인된 Architecture/RTM 범위 안에서 진행한다.
 
 ---
 
@@ -800,16 +801,16 @@ DeviceInformation.GetAqsFilterFromDeviceClass(DeviceClass.All)
 
 ---
 
-## 33. 현재 최우선 목표 — Gate 5 Architecture Design
+## 33. 현재 최우선 목표 — Gate 6 Production Foundation
 
 ```text
-Gate 4 조건을 Architecture로 구체화하고 설계 승인을 준비하는 것.
-Provider 경계, 상태 직렬화, freshness/offline 정책, WPF/Tray lifecycle,
-settings/deployment 구조를 확정하기 전 Production 구현을 시작하지 않는다.
+승인된 Domain/Provider contract와 state lifecycle을 Production project로 구현하는 것.
+먼저 Domain/Application foundation과 deterministic specs를 만들고, Windows HID와 WPF는
+해당 contract 위에 단계적으로 추가한다.
 Mouse/Keyboard/Headset/Receiver 지원은 vNext로 유지한다.
 ```
 
-Gate 5 Architecture는 `READY FOR OWNER REVIEW`다. ADR-001~010은 아직
-`Recommended`이며 발주자 승인 전 `Accepted`가 아니다.
+Gate 5 Architecture는 `APPROVED WITH CONDITIONS`다. ADR-001~010은 `Accepted`다.
 
-Gate 5 Architecture 승인 전 Production UI/Provider 구현, Installer 제작 등으로 넘어가지 않는다.
+Gate 6 구현은 승인된 Architecture와 ADR 범위 안에서 단계별로 진행하며,
+각 구현 increment는 검증 후 기록한다. Installer와 Gate 7 검증으로는 별도 승인 없이 넘어가지 않는다.

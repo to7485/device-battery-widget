@@ -1,7 +1,7 @@
 # Gate 5 — Architecture Design 계획
 
 작성일: 2026-08-15
-상태: READY FOR OWNER REVIEW
+상태: APPROVED WITH CONDITIONS
 입력: Requirements Baseline v1.2 / Gate 4 APPROVED WITH CONDITIONS
 
 ## 목표
