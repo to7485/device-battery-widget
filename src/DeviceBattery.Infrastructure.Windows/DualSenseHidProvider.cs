@@ -121,7 +121,7 @@ public sealed class DualSenseHidProvider : IBatteryProvider
 
     private void OnDeviceAdded(DeviceWatcher sender, DeviceInformation information)
     {
-        if (!DualSenseDeviceIdentity.IsBluetoothEndpoint(information.Id))
+        if (!DualSenseDeviceIdentity.IsSupportedEndpoint(information.Id))
             return;
         Track(OpenReadOnlyAsync(information));
     }
@@ -157,7 +157,7 @@ public sealed class DualSenseHidProvider : IBatteryProvider
             generation,
             registration.NextSequence(),
             discoveredAt,
-            string.IsNullOrWhiteSpace(information.Name) ? "DualSense Wireless Controller" : information.Name));
+            GetDisplayName(information)));
 
         try
         {
@@ -220,6 +220,15 @@ public sealed class DualSenseHidProvider : IBatteryProvider
             timeProvider.GetUtcNow(),
             fingerprint,
             message));
+
+    private static string GetDisplayName(DeviceInformation information)
+    {
+        if (DualSenseDeviceIdentity.IsUsbEndpoint(information.Id))
+            return "DualSense Controller (USB)";
+        return string.IsNullOrWhiteSpace(information.Name)
+            ? "DualSense Wireless Controller"
+            : information.Name;
+    }
 
     private bool TryPublish(ProviderEvent providerEvent) => events?.TryWrite(providerEvent) == true;
 

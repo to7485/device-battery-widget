@@ -26,7 +26,7 @@ await using var provider = new DualSenseHidProvider();
 
 Console.WriteLine("Gate 6 — Production Pipeline Read-Only Smoke");
 Console.WriteLine($"Duration={durationSeconds}s, Provider={provider.ProviderId}");
-Console.WriteLine("Safety=Targeted Bluetooth DualSense watcher + FileAccessMode.Read only");
+Console.WriteLine("Safety=Targeted Bluetooth/USB DualSense watcher + FileAccessMode.Read only");
 Console.WriteLine("Raw HID IDs, Output/Feature reports, vendor commands, and DeviceClass.All are not used.");
 
 Task coordinatorTask = coordinator.RunAsync();

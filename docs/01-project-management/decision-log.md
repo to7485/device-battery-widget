@@ -54,6 +54,7 @@
 | DEC-043 | Gate 6 | 10초 Unknown/30초 Dormant 판단을 monotonic TimeProvider 기반 독립 freshness policy로 분리 | 확정 |
 | DEC-044 | Gate 6 | WPF shell은 revision-aware ViewModel projection부터 구현하고 최종 visual style은 기능 연결 후 승인 | 확정 |
 | DEC-045 | Gate 6 | 실행 App은 Provider→Coordinator→Dispatcher projection과 Tray/X 단일 shutdown 경로로 구성 | 확정 |
+| DEC-046 | CHG-003 | DualSense USB 지원, 단일 compact indicator, Tray-only Topmost로 Requirements v1.3 승인 | 확정 |
 
 ## 변경요청 현황
 

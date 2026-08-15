@@ -78,6 +78,9 @@ var specs = new (string Name, Action Run)[]
         const string usb = @"\\?\HID#VID_054C&PID_0CE6&MI_03#device";
         Equal(true, DualSenseDeviceIdentity.IsBluetoothEndpoint(bluetooth));
         Equal(false, DualSenseDeviceIdentity.IsBluetoothEndpoint(usb));
+        Equal(true, DualSenseDeviceIdentity.IsUsbEndpoint(usb));
+        Equal(true, DualSenseDeviceIdentity.IsSupportedEndpoint(bluetooth));
+        Equal(true, DualSenseDeviceIdentity.IsSupportedEndpoint(usb));
     }),
     ("Stable key is deterministic and does not expose device ID", () =>
     {
@@ -86,6 +89,7 @@ var specs = new (string Name, Action Run)[]
         DeviceKey second = DualSenseDeviceIdentity.CreateKey(id.ToLowerInvariant());
         Equal(first, second);
         Equal(DualSenseHidBatteryParser.ProviderId, first.ProviderId);
+        Equal(true, first.StableId.StartsWith("BT-", StringComparison.Ordinal));
         Equal(false, first.StableId.Contains("HID", StringComparison.OrdinalIgnoreCase));
     }),
     ("Freshness remains active before 10 seconds", () =>

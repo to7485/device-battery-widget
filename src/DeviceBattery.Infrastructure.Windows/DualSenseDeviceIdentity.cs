@@ -12,11 +12,19 @@ public static class DualSenseDeviceIdentity
         !string.IsNullOrWhiteSpace(deviceId) &&
         deviceId.Contains(BluetoothHidServiceId, StringComparison.OrdinalIgnoreCase);
 
+    public static bool IsUsbEndpoint(string deviceId) =>
+        !string.IsNullOrWhiteSpace(deviceId) &&
+        deviceId.Contains("HID#VID_054C&PID_0CE6", StringComparison.OrdinalIgnoreCase);
+
+    public static bool IsSupportedEndpoint(string deviceId) =>
+        IsBluetoothEndpoint(deviceId) || IsUsbEndpoint(deviceId);
+
     public static DeviceKey CreateKey(string deviceId)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(deviceId);
         byte[] normalized = Encoding.UTF8.GetBytes(deviceId.Trim().ToUpperInvariant());
-        string stableId = Convert.ToHexString(SHA256.HashData(normalized))[..24];
+        string transport = IsUsbEndpoint(deviceId) ? "USB" : "BT";
+        string stableId = $"{transport}-{Convert.ToHexString(SHA256.HashData(normalized))[..24]}";
         return new(DualSenseHidBatteryParser.ProviderId, stableId);
     }
 }

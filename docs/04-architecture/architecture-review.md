@@ -34,7 +34,7 @@
 
 - Production 통합 테스트에서 timeout 값 조정 가능
 - Release 전 Windows 11, signed installer, autostart, 24시간/72시간 soak 검증
-- v1.0 범위는 DualSense Bluetooth-only 유지
+- 최초 승인 범위는 DualSense Bluetooth-only였으며 CHG-003에서 Bluetooth+USB로 변경
 
 2026-08-15 발주자가 다음 단계 진행을 승인해 ADR-001~010을 Accepted로 전환했다.
 Release 전 Windows 11, signed installer, autostart, 24시간/72시간 soak 조건은 유지한다.

@@ -96,7 +96,7 @@ ProviderFaulted
 ## 5. DualSense Provider Boundary
 
 - selector: UsagePage 0x0001 / Usage 0x0005 / VID 0x054C / PID 0x0CE6
-- Bluetooth interface만 허용하고 USB interface는 v1 provider에서 제외
+- Bluetooth와 USB gamepad interface를 허용하며 UI projection은 USB 상태를 우선
 - `HidDevice.FromIdAsync(..., FileAccessMode.Read)`만 사용
 - Output/Feature/vendor command 금지
 - raw report마다 UI event를 발행하지 않음

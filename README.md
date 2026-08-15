@@ -163,7 +163,7 @@ The application mailbox now has a single-reader coordinator with multi-producer 
 
 ## Update 26 — Gate 6 DualSense Parser
 
-The Production pure parser now recognizes the POC-verified 78-byte Bluetooth and 64-byte USB report layouts, normalizes valid battery/charging status into the Domain model, and rejects invalid shapes/status codes without overwriting prior state. The v1 Provider remains Bluetooth-only; no HID device is opened in this increment.
+The Production pure parser recognizes the POC-verified 78-byte Bluetooth and 64-byte USB report layouts, normalizes valid battery/charging status into the Domain model, and rejects invalid shapes/status codes without overwriting prior state. At this historical increment the Provider was Bluetooth-only; CHG-003 later added USB.
 
 ## Update 27 — Gate 6 Read-Only DualSense Provider
 
@@ -184,3 +184,7 @@ The WPF presentation project now contains a functional widget shell and revision
 ## Update 30 — Gate 6 Executable App Shell
 
 `DeviceBattery.App` now composes the Production DualSense Provider, coordinator, reducer, WPF widget, and WinForms tray icon. Widget X and tray Exit converge on one cleanup path; minimize hides the widget while the tray and Provider remain active.
+
+## Update 31 — CHG-003
+
+Requirements v1.3 adds DualSense USB, changes the widget to one compact indicator with USB priority, and moves Always On Top control exclusively to the tray menu. Read-only HID safety restrictions remain unchanged.

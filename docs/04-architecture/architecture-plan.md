@@ -25,7 +25,7 @@ RTM Design ID Draft, Open Decisions Review, Architecture Review.
 
 ## Gate 4 이관 조건
 
-- v1.0 DualSense Bluetooth-only
+- 최초 승인 범위는 DualSense Bluetooth-only였으며 CHG-003에서 Bluetooth+USB로 변경
 - 10% bucket estimated precision UI
 - timer/input callback 직렬화
 - polling 없는 event-first DualSense provider

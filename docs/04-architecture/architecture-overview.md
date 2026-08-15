@@ -2,7 +2,7 @@
 
 문서 버전: 0.1
 상태: APPROVED WITH CONDITIONS
-범위: v1.0 DualSense Bluetooth-only
+범위: v1.0 DualSense Bluetooth + USB
 
 ## 1. 기술 스택
 
@@ -19,7 +19,7 @@ WPF 선택과 배포 mode는 Gate 5에서 최종 승인한다.
 | Design ID | 구성요소 | 책임 |
 |---|---|---|
 | ARC-001 | Domain | DeviceKey, BatteryState, precision/charging/availability invariant |
-| ARC-002 | DualSense HID Provider | targeted BT discovery, read-only session, report parsing/liveness |
+| ARC-002 | DualSense HID Provider | targeted Bluetooth/USB discovery, read-only session, report parsing/liveness |
 | ARC-003 | State Coordinator | provider event 직렬화, immutable snapshot, UI state 결정 |
 | ARC-004 | Freshness Policy | stale/unknown/offline 후보 시간 정책 |
 | ARC-005 | Identity Policy | provider-owned stable key와 reconnect correlation |

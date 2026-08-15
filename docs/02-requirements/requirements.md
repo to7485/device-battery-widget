@@ -6,9 +6,9 @@
 |---|---|
 | 프로젝트 | Device Battery Widget |
 | 문서명 | 요구사항 명세서 |
-| 문서 버전 | **1.2** |
+| 문서 버전 | **1.3** |
 | 상태 | **Approved / Baseline** |
-| 기준 | Gate 3 승인 + CHG-001 + CHG-002 승인 |
+| 기준 | Gate 3 승인 + CHG-001 + CHG-002 + CHG-003 승인 |
 | 최종 승인권자 | 발주자 |
 
 ---
@@ -20,6 +20,7 @@
 | v1.0 | Gate 3 요구사항 Baseline 승인 |
 | v1.1 | CHG-001 System Tray 기능 추가 반영 |
 | v1.2 | CHG-002 v1.0 지원 범위를 Sony DualSense Bluetooth 단일 장치로 축소 |
+| v1.3 | CHG-003 DualSense USB 지원, 단일 인디케이터, Tray-only Always On Top |
 
 ---
 
@@ -28,7 +29,7 @@
 ## FR-001 — 연결 장치 탐색
 - 우선순위: Must
 - Windows PC에 연결된 지원 대상 장치를 탐색한다.
-- v1.0 지원 장치: Sony DualSense Bluetooth (`VID 0x054C / PID 0x0CE6`)
+- v1.0 지원 장치: Sony DualSense Bluetooth/USB (`VID 0x054C / PID 0x0CE6`)
 - Mouse, Keyboard, Headset 및 기타 Game Controller는 후속 릴리스 확장 범위로 이관한다.
 - v1.0 범위 밖 장치는 Widget 장치 목록에 표시하지 않는다.
 
@@ -110,6 +111,8 @@
 
 ## UIR-001 — Widget 형태 표시
 - Must
+- 한 개의 간단한 배터리 인디케이터로 표시한다.
+- Bluetooth/USB가 함께 있으면 USB 상태를 우선 표시한다.
 
 ## UIR-002 — 장치 이름 표시
 - Must
@@ -132,6 +135,7 @@
 ## UIR-008 — Always On Top UI
 - Must
 - 기본값 OFF
+- Widget 내부에는 조작 UI를 두지 않고 Tray 메뉴에서만 변경한다.
 
 ## UIR-009 — Empty State
 - Must

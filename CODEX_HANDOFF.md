@@ -3,6 +3,7 @@
 ## 1. 프로젝트 개요
 
 프로젝트명: **Device Battery Widget**
+현재 Requirements Baseline: **v1.3 (CHG-003 Approved)**
 
 Windows PC에 현재 연결된 주변기기의 이름과 배터리 상태를 표시하는 가벼운 데스크톱 위젯을 개발한다. 단순 데모가 아니라 실제 배포 가능한 Windows 응용프로그램을 목표로 하며, 기획 → 요구사항 → 기술검증 → 설계 → 구현 → 테스트 → 배포까지 SI 프로젝트 방식으로 진행한다.
 
@@ -745,7 +746,7 @@ Requirement → Design → Implementation → Test Case → Result 관계를 유
 
 # Codex 과거 첫 프롬프트 — CHG-002로 대체됨
 
-> 아래 프롬프트는 Receiver POC 시작 당시의 기록이며 현재 작업 지시가 아니다. 최신 범위는 DualSense Bluetooth-only v1.0이다.
+> 아래 프롬프트는 Receiver POC 시작 당시의 기록이며 현재 작업 지시가 아니다. 최신 범위는 CHG-003의 DualSense Bluetooth+USB v1.0이다.
 
 ```text
 이 저장소는 Windows용 Device Battery Widget 프로젝트다.
@@ -806,7 +807,7 @@ DeviceInformation.GetAqsFilterFromDeviceClass(DeviceClass.All)
 ```text
 승인된 Domain/Provider contract와 state lifecycle을 Production project로 구현하는 것.
 Domain/Application foundation 다음으로 single-reader state reducer와 deterministic specs를
-구현했다. Channel coordinator와 순수 DualSense report parser를 검증했고, Bluetooth 전용
+구현했다. Channel coordinator와 순수 DualSense report parser를 검증했고, Bluetooth+USB
 read-only Windows HID Provider와 WPF를 해당 contract 위에 단계적으로 추가한다.
 
 실장비 통합은 `tools/DeviceBattery.ProductionSmoke`로 원본 HID ID를 출력하지 않고

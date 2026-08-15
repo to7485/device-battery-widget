@@ -23,7 +23,7 @@
 
 ## Windows Integration
 
-- Bluetooth DualSense targeted discovery/read-only open
+- Bluetooth/USB DualSense targeted discovery/read-only open
 - OFF/ON 3회
 - sleep/resume
 - USB interface가 v1 provider에 포함되지 않음
