@@ -8,7 +8,7 @@ if (!TryReadInt(options, "pid", out int pid) || pid <= 0)
 }
 
 string stage = options.GetValueOrDefault("stage", "UNSPECIFIED");
-int durationSeconds = ReadInt(options, "duration", 300, 10, 86400);
+int durationSeconds = ReadInt(options, "duration", 300, 10, 259200);
 int intervalSeconds = ReadInt(options, "interval", 1, 1, 60);
 string outputDirectory = options.GetValueOrDefault(
     "output",

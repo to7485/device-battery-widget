@@ -11,6 +11,7 @@ Gate 4 POC-E01~E03/E08를 위한 read-only process resource sampler다.
 - Thread Count
 
 대상 프로세스를 실행하거나 종료하지 않으며 state를 변경하지 않는다.
+`--duration`은 최대 259200초(72시간)까지 허용한다.
 
 ```powershell
 dotnet run -c Release --project .\DeviceBattery.Poc.ResourceSampler.csproj -- `
