@@ -196,3 +196,7 @@ Requirements v1.4 keeps the last validated charging state while the USB endpoint
 ## Update 33 — CHG-005
 
 Requirements v1.5 reduces indicator typography to avoid clipped labels and hides the widget window from the Windows taskbar. Runtime presence and controls remain available through the tray icon.
+
+## Update 34 — DualSense Visual Candidate
+
+The first visual candidate uses a DualSense-inspired white shell, dark center surfaces, PlayStation blue accents, and green charging feedback. It remains a review candidate until owner visual approval.
