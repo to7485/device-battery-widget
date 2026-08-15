@@ -59,6 +59,7 @@
 | DEC-048 | CHG-005 | compact typography와 ShowInTaskbar=False Tray-only presence로 Requirements v1.5 승인 | 확정 |
 | DEC-049 | Gate 6 UI | DualSense white/black/blue visual language와 green charging feedback를 1차 시안으로 구현 | 검토 중 |
 | DEC-050 | Gate 6 UI | 2차 시안에서 brand label 제거, 14px gauge, charging-only centered lightning 적용 | 검토 중 |
+| DEC-051 | Gate 6 UI | 3차 시안에서 360px 폭 유지, 기기명-게이지 수평 배치, 10px gap/상하 5px spacing 적용 | 검토 중 |
 
 ## 변경요청 현황
 

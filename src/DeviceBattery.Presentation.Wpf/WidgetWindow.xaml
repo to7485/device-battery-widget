@@ -34,12 +34,16 @@
             <ItemsControl ItemsSource="{Binding Devices}"><ItemsControl.ItemTemplate><DataTemplate><Grid>
                 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
                 <DockPanel LastChildFill="False"><Button Content="×" DockPanel.Dock="Right" Style="{StaticResource CloseButton}" Margin="8,-3,-3,0" Click="OnCloseClick" ToolTip="종료"/></DockPanel>
-                <DockPanel Grid.Row="1" Margin="0,5,0,0" LastChildFill="True"><TextBlock Text="{Binding BatteryText}" DockPanel.Dock="Right" FontSize="17" FontWeight="Bold" Foreground="#101522" Margin="9,0,0,0"/><TextBlock Text="{Binding DisplayName}" FontSize="12" FontWeight="SemiBold" Foreground="#202738" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/></DockPanel>
-                <Grid Grid.Row="2" Margin="0,9,0,7">
-                    <ProgressBar Value="{Binding GaugePercent, Mode=OneWay}" Style="{StaticResource DualSenseGauge}"/>
-                    <TextBlock Text="⚡" FontSize="10" FontWeight="Bold" Foreground="#17633C"
-                               HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False"
-                               Visibility="{Binding IsCharging, Converter={StaticResource BoolVisibility}}"/>
+                <TextBlock Grid.Row="1" Text="{Binding BatteryText}" HorizontalAlignment="Right" Margin="0,3,0,0" FontSize="17" FontWeight="Bold" Foreground="#101522"/>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="10"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding DisplayName}" FontSize="12" FontWeight="SemiBold" Foreground="#202738" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" MaxWidth="170"/>
+                    <Grid Grid.Column="2" Margin="0,5">
+                        <ProgressBar Value="{Binding GaugePercent, Mode=OneWay}" Style="{StaticResource DualSenseGauge}"/>
+                        <TextBlock Text="⚡" FontSize="10" FontWeight="Bold" Foreground="#17633C"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False"
+                                   Visibility="{Binding IsCharging, Converter={StaticResource BoolVisibility}}"/>
+                    </Grid>
                 </Grid>
                 <TextBlock Grid.Row="3" Text="{Binding StatusText}" FontSize="10"><TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Foreground" Value="#667085"/><Style.Triggers><DataTrigger Binding="{Binding IsCharging}" Value="True"><Setter Property="Foreground" Value="#23965A"/><Setter Property="FontWeight" Value="SemiBold"/></DataTrigger></Style.Triggers></Style></TextBlock.Style></TextBlock>
             </Grid></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>

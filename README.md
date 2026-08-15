@@ -202,3 +202,5 @@ Requirements v1.5 reduces indicator typography to avoid clipped labels and hides
 The first visual candidate uses a DualSense-inspired white shell, dark center surfaces, PlayStation blue accents, and green charging feedback. It remains a review candidate until owner visual approval.
 
 The second visual iteration removes the brand label, increases the gauge thickness, and overlays a centered lightning symbol only while charging.
+
+The third visual iteration keeps the 360px shell width, places the device name to the left of the gauge with a 10px gap, and adds 5px vertical gauge spacing.
