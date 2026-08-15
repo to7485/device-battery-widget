@@ -60,3 +60,9 @@ BatteryProvider
   ├─ HidBatteryProvider (fallback)
   └─ Receiver/VendorBatteryProvider
 ```
+
+## 5. B03-1 실측 결과 (2026-08-15)
+
+Bluetooth DualSense (VID `054C`, PID `0CE6`)는 RawGameController/Gamepad 양쪽에서 정상 식별되었으나 `TryGetBatteryReport()`가 모두 `null`을 반환했다.
+
+따라서 B03-1은 `NEED ALTERNATIVE`로 종료하고 B03-2 HID Input Report fallback으로 진행한다.

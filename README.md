@@ -56,3 +56,15 @@ dotnet run --project .\DeviceBattery.Poc.GameControllerBatteryProbe.csproj
 ```
 
 DualSense를 Bluetooth로 연결한 상태에서 전체 출력을 저장합니다.
+
+## Update 08 — POC-B03-2 DualSense HID Battery
+
+Validated B03-1 result: Bluetooth DualSense is visible through `Windows.Gaming.Input`, but both RawGameController and Gamepad `TryGetBatteryReport()` returned `null`.
+
+Added:
+
+- `poc/DeviceBattery.Poc.DualSenseHidBatteryProbe`
+- `docs/03-poc/dualsense-hid-battery-poc-plan.md`
+- `docs/03-poc/poc-status-update-07.md`
+
+The new probe opens the DualSense HID collection read-only and parses the battery/charging status from incoming full HID reports using the upstream `hid-playstation` report layout as technical evidence.
