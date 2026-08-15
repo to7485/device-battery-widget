@@ -14,6 +14,7 @@ public partial class App : System.Windows.Application
     private readonly DeviceStateReducer reducer = new();
     private readonly WidgetViewModel viewModel = new();
     private readonly JsonWidgetSettingsStore settingsStore = new();
+    private readonly IAutoStartService autoStartService = new RegistryRunAutoStartService(Environment.ProcessPath ?? throw new InvalidOperationException("Executable path is unavailable."));
     private DeviceStateCoordinator? coordinator;
     private IBatteryProvider[] providers = [];
     private WidgetWindow? window;
@@ -39,6 +40,8 @@ public partial class App : System.Windows.Application
             ShowWidget,
             ToggleTopmost,
             ToggleDeviceVisibility,
+            GetAutoStart,
+            ToggleAutoStart,
             () => _ = ShutdownAsync("Tray Exit"));
 
         coordinator = new DeviceStateCoordinator(
@@ -59,6 +62,7 @@ public partial class App : System.Windows.Application
 
         viewModel.PropertyChanged += OnViewModelPropertyChanged;
         tray.SetTopmost(viewModel.IsTopmost);
+        tray.SetAutoStart(GetAutoStart());
         window.Show();
 
         if (TryGetSmokeDuration(e.Args, out TimeSpan duration))
@@ -154,6 +158,31 @@ public partial class App : System.Windows.Application
     }
 
     private void ToggleTopmost() => viewModel.IsTopmost = !viewModel.IsTopmost;
+
+    private bool GetAutoStart()
+    {
+        try { return autoStartService.IsEnabled(); }
+        catch (Exception error) when (error is UnauthorizedAccessException or System.Security.SecurityException or IOException)
+        {
+            System.Diagnostics.Trace.WriteLine($"Auto-start read failed: {error.GetType().Name}");
+            return false;
+        }
+    }
+
+    private void ToggleAutoStart()
+    {
+        try
+        {
+            bool enabled = !autoStartService.IsEnabled();
+            autoStartService.SetEnabled(enabled);
+            tray?.SetAutoStart(enabled);
+        }
+        catch (Exception error) when (error is UnauthorizedAccessException or System.Security.SecurityException or IOException)
+        {
+            System.Diagnostics.Trace.WriteLine($"Auto-start update failed: {error.GetType().Name}");
+            tray?.SetAutoStart(GetAutoStart());
+        }
+    }
 
     private void ToggleDeviceVisibility(string key)
     {

@@ -843,3 +843,7 @@ Gate 6 구현은 승인된 Architecture와 ADR 범위 안에서 단계별로 진
 FR-011/FR-016 장치 표시 관리는 트레이 하위 메뉴, 다중 연속 선택, 로컬 설정 영속화까지
 실장비 확인을 완료해 PASS다. Provider 감시는 숨김 상태에서도 계속되며 Xbox BLE/WGI 중복 중재는
 위젯과 트레이 장치 목록에 동일하게 적용한다.
+
+FR-015 Windows 로그인 자동실행은 unpackaged HKCU Run adapter로 구현했다. 기본 OFF이며 사용자가
+트레이에서 명시적으로 선택할 때 앱 전용 값만 생성/삭제한다. ON/OFF와 메뉴 상태 갱신을 실장비에서
+확인해 PASS로 기록했다.

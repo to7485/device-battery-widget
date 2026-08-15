@@ -23,7 +23,7 @@
 | FR-012 | Widget 위치 저장/복원 | Must | ARC-006, ARC-008 | JsonWidgetSettingsStore + WindowPositionPolicy | SPEC-WPF + manual restart TBD | In Implementation |
 | FR-013 | Always On Top 저장/복원, 기본 OFF | Must | ARC-006, ARC-008 | JsonWidgetSettingsStore + tray projection | SPEC-WPF + manual restart TBD | In Implementation |
 | FR-014 | 동일 모델 장치 개별 식별 | Must | ARC-005 | DualSenseDeviceIdentity provider-owned hash key | SPEC-DS-PARSER | In Implementation |
-| FR-015 | Windows 로그인 자동 실행, 기본 OFF | Should | ARC-008, ARC-010 | TBD | TBD | Architecture Draft |
+| FR-015 | Windows 로그인 자동 실행, 기본 OFF | Should | ARC-008, ARC-010 | RegistryRunAutoStartService + tray toggle | SPEC-AUTOSTART + G6-AUTOSTART-01 | Implemented / Integration PASS |
 | FR-016 | 숨긴 장치 목록/숨김 해제 | Must | ARC-006, ARC-008 | tray device visibility submenu | SPEC-WPF + G6-VISIBILITY-01 | Implemented / Integration PASS |
 | FR-017 | System Tray 제공 | Must | ARC-007 | TrayIconController | G6-APP-SMOKE-01 + manual lifecycle TBD | In Implementation |
 | UIR-001 | 장치별 인디케이터 표시 | Must | ARC-006 | approved frameless visual + DualSense USB priority + BLE/WGI arbitration | SPEC-WPF + G6-CHG006-007-01 + owner visual approval | Implemented / Integration PASS |

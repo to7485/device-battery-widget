@@ -12,6 +12,7 @@ var specs = new (string Name, Action Run)[]
     ("Gaming Input battery maps capacity and status", () => { Equal(true, GamingInputBatteryMapper.TryCreate(100, 1000, BatteryStatus.Discharging, now, GamingInputBatteryProvider.Id, out BatteryState battery)); Equal(10, battery.Percent); Equal(ChargingState.NotCharging, battery.Charging); Equal(BatteryPrecision.GranularLevel, battery.Precision); }),
     ("Gaming Input battery rejects missing capacity", () => Equal(false, GamingInputBatteryMapper.TryCreate(null, 1000, BatteryStatus.Discharging, now, GamingInputBatteryProvider.Id, out _))),
     ("Gaming Input battery rejects unknown status", () => Equal(false, GamingInputBatteryMapper.TryCreate(100, 1000, BatteryStatus.NotPresent, now, GamingInputBatteryProvider.Id, out _))),
+    ("Auto-start command quotes executable path", () => Equal("\"C:\\Program Files\\Device Battery Widget\\DeviceBatteryWidget.exe\" --autostart", RegistryRunAutoStartService.FormatCommand(@"C:\Program Files\Device Battery Widget\DeviceBatteryWidget.exe"))),
     ("Tested WinRT Bluetooth layout uses offset 54", () =>
     {
         byte[] report = Report(78, 54, 0x01, 0x01);

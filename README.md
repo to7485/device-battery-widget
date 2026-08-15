@@ -226,3 +226,7 @@ Requirements v1.7 adds a Production provider for Xbox controllers that expose a 
 ## Update 37 — Device Visibility Management
 
 The tray `장치 표시` submenu now controls each known indicator without stopping provider monitoring. Hidden keys persist in the existing local settings file, BLE/WGI Xbox arbitration is shared by the widget and tray catalog, and the submenu remains open for consecutive multi-device changes.
+
+## Update 38 — Windows Login Auto-start
+
+The tray now controls an unpackaged current-user auto-start registration. It is OFF by default, uses only the app-owned `DeviceBatteryWidget` value under HKCU Run, quotes the executable path, and re-reads external state when the tray opens. Settings-style menu actions remain open for consecutive changes.
