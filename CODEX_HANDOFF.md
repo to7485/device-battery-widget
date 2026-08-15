@@ -3,7 +3,7 @@
 ## 1. 프로젝트 개요
 
 프로젝트명: **Device Battery Widget**
-현재 Requirements Baseline: **v1.4 (CHG-004 Approved)**
+현재 Requirements Baseline: **v1.5 (CHG-005 Approved)**
 
 Windows PC에 현재 연결된 주변기기의 이름과 배터리 상태를 표시하는 가벼운 데스크톱 위젯을 개발한다. 단순 데모가 아니라 실제 배포 가능한 Windows 응용프로그램을 목표로 하며, 기획 → 요구사항 → 기술검증 → 설계 → 구현 → 테스트 → 배포까지 SI 프로젝트 방식으로 진행한다.
 

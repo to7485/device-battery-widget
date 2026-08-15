@@ -21,3 +21,8 @@
 - 실행/자동 종료 smoke는 PASS
 - Tray 메뉴 Show/Topmost/Exit 및 minimize/hide 수동 동작 검증은 다음 실사용 확인 대상
 - 최종 visual style은 아직 승인 전 baseline
+
+## CHG-005 회귀
+
+compact typography와 `ShowInTaskbar=False` 적용 후 Release build 및 5초 App smoke가 exit
+code 0으로 완료됐다. Taskbar 비표시와 글자 잘림 여부는 실행 화면 수동 확인 대상으로 남긴다.

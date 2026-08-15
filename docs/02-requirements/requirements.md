@@ -6,9 +6,9 @@
 |---|---|
 | 프로젝트 | Device Battery Widget |
 | 문서명 | 요구사항 명세서 |
-| 문서 버전 | **1.4** |
+| 문서 버전 | **1.5** |
 | 상태 | **Approved / Baseline** |
-| 기준 | Gate 3 승인 + CHG-001 + CHG-002 + CHG-003 + CHG-004 승인 |
+| 기준 | Gate 3 승인 + CHG-001 + CHG-002 + CHG-003 + CHG-004 + CHG-005 승인 |
 | 최종 승인권자 | 발주자 |
 
 ---
@@ -22,6 +22,7 @@
 | v1.2 | CHG-002 v1.0 지원 범위를 Sony DualSense Bluetooth 단일 장치로 축소 |
 | v1.3 | CHG-003 DualSense USB 지원, 단일 인디케이터, Tray-only Always On Top |
 | v1.4 | CHG-004 USB 충전 표시 유지 및 frameless indicator |
+| v1.5 | CHG-005 compact typography 및 taskbar 숨김/Tray-only presence |
 
 ---
 
@@ -115,6 +116,7 @@
 - 한 개의 간단한 배터리 인디케이터로 표시한다.
 - Bluetooth/USB가 함께 있으면 USB 상태를 우선 표시한다.
 - Windows title bar가 없는 frameless 형태로 표시한다.
+- 작은 글꼴로 장치명과 상태 문자열의 잘림을 최소화한다.
 
 ## UIR-002 — 장치 이름 표시
 - Must
@@ -159,6 +161,8 @@
   - Always On Top ON/OFF
   - 숨긴 장치 관리
   - Windows 로그인 자동 실행 ON/OFF
+
+Widget window는 taskbar에 표시하지 않으며 실행 중 presence는 Tray icon으로 제공한다.
   - 종료
 
 ---

@@ -192,3 +192,7 @@ Requirements v1.3 adds DualSense USB, changes the widget to one compact indicato
 ## Update 32 — CHG-004
 
 Requirements v1.4 keeps the last validated charging state while the USB endpoint remains connected, retains freshness timeouts for Bluetooth, and removes the Windows title bar for a frameless indicator.
+
+## Update 33 — CHG-005
+
+Requirements v1.5 reduces indicator typography to avoid clipped labels and hides the widget window from the Windows taskbar. Runtime presence and controls remain available through the tray icon.
