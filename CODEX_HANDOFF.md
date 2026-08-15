@@ -549,6 +549,9 @@ POC-B06 Event-first / Poll Fallback Policy
 
 POC-C06 DualSense Sleep / Resume
 → PASS (기존 HID session 자동 복구 약 20초; R/restart 불필요; cleanup PASS)
+
+POC-D01~D05 System Tray / Lifecycle
+→ PASS (tray/menu/hide/restore/X exit/tray exit/cleanup; ghost icon 없음)
 ```
 
 ---

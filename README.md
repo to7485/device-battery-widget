@@ -120,3 +120,7 @@ Added `poc/DeviceBattery.Poc.EventFirstPolicy`. The deterministic policy matrix 
 The approved sleep/resume hardware test reuses the completed read-only `DeviceBattery.Poc.DualSenseLifecycleProbe`. It first checks automatic event recovery after Windows resume and uses the existing `R` read-only reopen only as a fallback. No new device command path was introduced.
 
 Hardware result: `PASS`. After Windows resume, the existing Bluetooth HID session recovered automatically in about 20 seconds without `R`, watcher recreation, or application restart. Final Available state and cleanup were verified.
+
+## Update 16 — POC-D System Tray / Lifecycle
+
+Added `poc/DeviceBattery.Poc.SystemTrayLifecycle`. Hardware testing passed tray display, context menu, minimize/hide, double-click and menu restore, Always On Top, Widget X exit, tray-menu exit, explicit cleanup, and absence of a ghost icon. Final result: `PASS`.

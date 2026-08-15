@@ -21,11 +21,11 @@
 | POC-TC-014 | C04 | Polling | Fallback 가능 | NOT TESTED |
 | POC-TC-015 | C05 | Safety Polling | 필요 여부 판단 | NOT TESTED |
 | POC-TC-016 | C06 | Sleep/Resume | 복귀 후 재조회 | NOT TESTED |
-| POC-TC-017 | D01 | Tray Icon | Tray 표시 | NOT TESTED |
-| POC-TC-018 | D02 | Tray Menu | Context Menu 동작 | NOT TESTED |
-| POC-TC-019 | D03 | Hide/Restore | Tray에서 Widget 복원 | NOT TESTED |
-| POC-TC-020 | D04 | X 종료 | Application 전체 종료 | NOT TESTED |
-| POC-TC-021 | D05 | Tray 정리 | Ghost Icon/Leak 없음 | NOT TESTED |
+| POC-TC-017 | D01 | Tray Icon | Tray 표시 | PASS |
+| POC-TC-018 | D02 | Tray Menu | Context Menu 동작 | PASS |
+| POC-TC-019 | D03 | Hide/Restore | Tray에서 Widget 복원 | PASS |
+| POC-TC-020 | D04 | X 종료 | Application 전체 종료 | PASS |
+| POC-TC-021 | D05 | Tray 정리 | Ghost Icon/Leak 없음 | PASS |
 | POC-TC-022 | E01 | Idle CPU | 5분 평균 측정값 확보 | NOT TESTED |
 | POC-TC-023 | E02 | Memory | Working Set/Private Memory 확보 | NOT TESTED |
 | POC-TC-024 | E03 | Handle/Thread | 지속 증가 여부 확인 | NOT TESTED |
