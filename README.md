@@ -176,3 +176,7 @@ A time-bounded console host connects the Production Provider, coordinator, and r
 The first 15-second real-device run completed with `Unknown → Available 15% / NotCharging`, `Processed=2`, `Faulted=0`, and cleanup complete. The current integration verdict is `PASS WITH LIMITATION` pending Production OFF/ON, Dormant, and sleep/resume scenarios.
 
 The 10-second Unknown and 30-second Dormant boundaries are also isolated in a monotonic `TimeProvider` freshness policy with deterministic boundary/recovery specs. Physical OFF/ON evidence remains a separate integration item.
+
+## Update 29 — Gate 6 WPF Presentation Foundation
+
+The WPF presentation project now contains a functional widget shell and revision-aware ViewModels for empty, waiting, available, estimated, charging, unknown, dormant, and removed states. Final styling, tray lifecycle, settings, and Production app composition remain subsequent increments.

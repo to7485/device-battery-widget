@@ -26,18 +26,18 @@
 | FR-015 | Windows 로그인 자동 실행, 기본 OFF | Should | ARC-008, ARC-010 | TBD | TBD | Architecture Draft |
 | FR-016 | 숨긴 장치 목록/숨김 해제 | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
 | FR-017 | System Tray 제공 | Must | ARC-007 | TBD | TBD | Architecture Draft |
-| UIR-001 | Widget 형태 표시 | Must | ARC-006 | TBD | TBD | Architecture Draft |
-| UIR-002 | 장치 이름 표시 | Must | ARC-006 | TBD | TBD | Architecture Draft |
-| UIR-003 | Battery Gauge | Must | ARC-006 | TBD | TBD | Architecture Draft |
-| UIR-004 | Battery % 표시 | Must | ARC-006 | TBD | TBD | Architecture Draft |
-| UIR-005 | 충전 아이콘 | Must | ARC-006 | TBD | TBD | Architecture Draft |
-| UIR-006 | 충전 중 연두색 Gauge | Must | ARC-006 | TBD | TBD | Architecture Draft |
-| UIR-007 | Widget Drag | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
-| UIR-008 | Always On Top UI | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
-| UIR-009 | Empty State | Must | ARC-006 | TBD | TBD | Architecture Draft |
-| UIR-010 | 조회 중 상태 | Should | ARC-006 | TBD | TBD | Architecture Draft |
+| UIR-001 | Widget 형태 표시 | Must | ARC-006 | WidgetWindow baseline shell | build + SPEC-WPF | In Implementation |
+| UIR-002 | 장치 이름 표시 | Must | ARC-006 | DeviceCardViewModel/WidgetWindow | SPEC-WPF | In Implementation |
+| UIR-003 | Battery Gauge | Must | ARC-006 | DeviceCardViewModel/ProgressBar | SPEC-WPF | In Implementation |
+| UIR-004 | Battery % 표시 | Must | ARC-006 | estimated-aware BatteryText | SPEC-WPF | In Implementation |
+| UIR-005 | 충전 아이콘 | Must | ARC-006 | charging status projection | SPEC-WPF | In Implementation |
+| UIR-006 | 충전 중 연두색 Gauge | Must | ARC-006 | WidgetWindow gauge baseline | visual verification TBD | In Implementation |
+| UIR-007 | Widget Drag | Must | ARC-006, ARC-008 | WidgetWindow DragMove | manual UI verification TBD | In Implementation |
+| UIR-008 | Always On Top UI | Must | ARC-006, ARC-008 | IsTopmost binding, default OFF | SPEC-WPF | In Implementation |
+| UIR-009 | Empty State | Must | ARC-006 | WidgetViewModel IsEmpty | SPEC-WPF | In Implementation |
+| UIR-010 | 조회 중 상태 | Should | ARC-006 | waiting projection | SPEC-WPF | In Implementation |
 | UIR-011 | Battery 미지원 장치 표시 | Deferred | TBD | TBD | TBD | vNext / CHG-002 |
-| UIR-012 | Battery Unknown 표시 | Must | ARC-001, ARC-006 | TBD | TBD | Architecture Draft |
+| UIR-012 | Battery Unknown 표시 | Must | ARC-001, ARC-006 | stale-clearing DeviceCardViewModel | SPEC-WPF | In Implementation |
 | UIR-013 | System Tray Context Menu | Must | ARC-007 | TBD | TBD | Architecture Draft |
 | NFR-PERF-001 | 유휴 CPU 목표 | Must | ARC-002~004, ARC-009 | TBD | TBD | Architecture Draft |
 | NFR-PERF-002 | 작업 중 CPU 목표 | Must | ARC-002~004, ARC-009 | TBD | TBD | Architecture Draft |

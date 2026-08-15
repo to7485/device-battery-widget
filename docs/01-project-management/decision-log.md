@@ -52,6 +52,7 @@
 | DEC-041 | Gate 6 | Production Provider는 targeted selector + Bluetooth endpoint filter + FileAccessMode.Read만 사용 | 확정 |
 | DEC-042 | Gate 6 | 실제 UI 연결 전 제한 시간 smoke host로 Production Provider→Coordinator→Reducer 통합 경로 검증 | 확정 |
 | DEC-043 | Gate 6 | 10초 Unknown/30초 Dormant 판단을 monotonic TimeProvider 기반 독립 freshness policy로 분리 | 확정 |
+| DEC-044 | Gate 6 | WPF shell은 revision-aware ViewModel projection부터 구현하고 최종 visual style은 기능 연결 후 승인 | 확정 |
 
 ## 변경요청 현황
 

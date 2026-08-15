@@ -818,6 +818,8 @@ Provider → Coordinator → Reducer 경로와 종료 cleanup을 먼저 확인�
 
 10초 Unknown/30초 Dormant 경계는 `ReportFreshnessTracker`와 수동 monotonic time 사양으로
 자동 검증한다. 물리 OFF/ON 및 sleep/resume 증거는 자동 사양과 구분해 추가한다.
+WPF Presentation은 기능 중심 shell과 revision-aware ViewModel projection부터 구현한다.
+최종 visual style은 Provider/App/Tray 연결 후 사용자 확인을 받아 확정한다.
 Mouse/Keyboard/Headset/Receiver 지원은 vNext로 유지한다.
 ```
 

@@ -1,0 +1,33 @@
+<Window x:Class="DeviceBattery.Presentation.Wpf.WidgetWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Device Battery Widget" Width="360" Height="230" MinWidth="320" MinHeight="190" WindowStartupLocation="CenterScreen"
+        Topmost="{Binding IsTopmost}" Background="#171A20" Foreground="#F3F5F7">
+    <Window.Resources><BooleanToVisibilityConverter x:Key="BoolVisibility" /></Window.Resources>
+    <Grid Margin="18">
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+        <DockPanel Margin="0,0,0,14">
+            <TextBlock Text="DEVICE BATTERY" FontSize="13" FontWeight="SemiBold" Foreground="#AAB2C0"/>
+            <CheckBox Content="항상 위" IsChecked="{Binding IsTopmost}" DockPanel.Dock="Right" HorizontalAlignment="Right" Foreground="#D8DDE6"/>
+        </DockPanel>
+        <Grid Grid.Row="1">
+            <Border Background="#222730" CornerRadius="12" Padding="20" Visibility="{Binding IsEmpty, Converter={StaticResource BoolVisibility}}">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="연결된 DualSense가 없습니다" FontSize="15" FontWeight="SemiBold"/>
+                    <TextBlock Text="Bluetooth 연결을 확인해 주세요" Margin="0,7,0,0" Foreground="#929BAB"/>
+                </StackPanel>
+            </Border>
+            <ItemsControl ItemsSource="{Binding Devices}"><ItemsControl.ItemTemplate><DataTemplate>
+                <Border Background="#222730" CornerRadius="12" Padding="18"><Grid>
+                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                    <DockPanel><TextBlock Text="{Binding DisplayName}" FontSize="16" FontWeight="SemiBold"/><TextBlock Text="{Binding BatteryText}" DockPanel.Dock="Right" FontSize="18" FontWeight="Bold" HorizontalAlignment="Right"/></DockPanel>
+                    <ProgressBar Grid.Row="1" Margin="0,16,0,10" Height="8" Maximum="100" Value="{Binding GaugePercent}" Background="#343A45">
+                        <ProgressBar.Style><Style TargetType="ProgressBar">
+                            <Setter Property="Foreground" Value="#70A7FF"/>
+                            <Style.Triggers><DataTrigger Binding="{Binding IsCharging}" Value="True"><Setter Property="Foreground" Value="#7CD992"/></DataTrigger></Style.Triggers>
+                        </Style></ProgressBar.Style>
+                    </ProgressBar>
+                    <TextBlock Grid.Row="2" Text="{Binding StatusText}" Foreground="#AAB2C0"/>
+                </Grid></Border>
+            </DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
+        </Grid>
+    </Grid>
+</Window>
