@@ -234,3 +234,7 @@ The tray now controls an unpackaged current-user auto-start registration. It is 
 ## Update 39 — Sleep / Resume Recovery
 
 The app now observes Windows resume, gives normal event-driven recovery a 30-second priority window, and then requests one read-only refresh from each provider. Real-device sleep/resume recovered the connected indicators and battery values automatically without duplicate rows.
+
+## Update 40 — Bounded Local Diagnostics
+
+Minimal UTC daily diagnostics are written under the current user's local application data with seven-day and 10 MiB retention bounds. Records contain lifecycle, normalized battery state, exception fingerprints, and provider-owned short hashes only; raw HID reports, MAC addresses, and complete Windows device IDs are prohibited.

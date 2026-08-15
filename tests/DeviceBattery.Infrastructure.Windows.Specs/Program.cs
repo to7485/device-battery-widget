@@ -13,6 +13,22 @@ var specs = new (string Name, Action Run)[]
     ("Gaming Input battery rejects missing capacity", () => Equal(false, GamingInputBatteryMapper.TryCreate(null, 1000, BatteryStatus.Discharging, now, GamingInputBatteryProvider.Id, out _))),
     ("Gaming Input battery rejects unknown status", () => Equal(false, GamingInputBatteryMapper.TryCreate(100, 1000, BatteryStatus.NotPresent, now, GamingInputBatteryProvider.Id, out _))),
     ("Auto-start command quotes executable path", () => Equal("\"C:\\Program Files\\Device Battery Widget\\DeviceBatteryWidget.exe\" --autostart", RegistryRunAutoStartService.FormatCommand(@"C:\Program Files\Device Battery Widget\DeviceBatteryWidget.exe"))),
+    ("Diagnostic log prunes expired files", () =>
+    {
+        string directory = Path.Combine(Path.GetTempPath(), $"DeviceBatterySpecs-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            string expired = Path.Combine(directory, "device-battery-20200101.log");
+            File.WriteAllText(expired, "expired");
+            File.SetLastWriteTimeUtc(expired, DateTime.UtcNow.AddDays(-8));
+            using var listener = new BoundedFileTraceListener(directory, TimeSpan.FromDays(7), 1024);
+            listener.WriteLine("APP_START");
+            Equal(false, File.Exists(expired));
+            Equal(1, Directory.GetFiles(directory, "device-battery-*.log").Length);
+        }
+        finally { Directory.Delete(directory, recursive: true); }
+    }),
     ("Tested WinRT Bluetooth layout uses offset 54", () =>
     {
         byte[] report = Report(78, 54, 0x01, 0x01);

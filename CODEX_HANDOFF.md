@@ -850,3 +850,7 @@ FR-015 Windows 로그인 자동실행은 unpackaged HKCU Run adapter로 구현�
 
 FR-010 절전/복귀는 Windows Resume 후 30초간 기존 이벤트 복구를 우선하고 이후 Provider별
 read-only refresh를 1회 수행한다. 실장비 절전/복귀에서 장치와 배터리 표시가 자동 복구되어 PASS다.
+
+ADR-010 최소 로컬 진단은 `%LocalAppData%/DeviceBatteryWidget/logs`에 UTC 일별 파일로 기록하며
+7일/총 10 MiB 제한을 적용한다. 실제 로그에서 raw HID, MAC, 전체 DeviceInformation ID가 없고
+short-hash DeviceKey와 정규화 상태만 기록됨을 확인해 PASS다.

@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Threading;
@@ -25,6 +26,7 @@ public partial class App : System.Windows.Application
     private Task[] providerTasks = [];
     private CancellationTokenSource? resumeRefreshCancellation;
     private Task resumeRefreshTask = Task.CompletedTask;
+    private BoundedFileTraceListener? traceListener;
     private int shutdownStarted;
     private bool allowWindowClose;
     private bool windowPlacementRestored;
@@ -32,6 +34,18 @@ public partial class App : System.Windows.Application
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
+
+        try
+        {
+            traceListener = new BoundedFileTraceListener();
+            Trace.Listeners.Add(traceListener);
+            Trace.WriteLine("APP_START");
+        }
+        catch (Exception error) when (error is IOException or UnauthorizedAccessException)
+        {
+            traceListener = null;
+            Trace.WriteLine($"Diagnostics initialization failed: {error.GetType().Name}");
+        }
 
         WidgetSettings settings = settingsStore.Load();
         viewModel.IsTopmost = settings.IsTopmost;
@@ -54,6 +68,7 @@ public partial class App : System.Windows.Application
             {
                 viewModel.Apply(result);
                 tray?.SetDevices(viewModel.GetDeviceCatalog());
+                LogReduction(result);
             }).Task),
             (_, error) =>
             {
@@ -140,6 +155,13 @@ public partial class App : System.Windows.Application
         }
 
         lifetime.Dispose();
+        Trace.WriteLine("APP_STOP");
+        if (traceListener is not null)
+        {
+            Trace.Listeners.Remove(traceListener);
+            traceListener.Dispose();
+            traceListener = null;
+        }
         Shutdown();
     }
 
@@ -271,5 +293,16 @@ public partial class App : System.Windows.Application
             throw new ArgumentException("--smoke-seconds must be between 3 and 600.");
         duration = TimeSpan.FromSeconds(seconds);
         return true;
+    }
+
+    private static void LogReduction(ReductionResult result)
+    {
+        if (result.Snapshot is { } snapshot)
+        {
+            Trace.WriteLine($"STATE outcome={result.Outcome} device={snapshot.Key} availability={snapshot.Battery.Availability} percent={snapshot.Battery.Percent?.ToString() ?? "null"} charging={snapshot.Battery.Charging}");
+            return;
+        }
+        if (result.RemovedKey is { } removedKey)
+            Trace.WriteLine($"STATE outcome={result.Outcome} device={removedKey}");
     }
 }
