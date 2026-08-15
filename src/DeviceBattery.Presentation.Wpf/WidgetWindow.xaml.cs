@@ -11,6 +11,4 @@ public partial class WidgetWindow : Window
         base.OnMouseLeftButtonDown(e);
         if (e.ButtonState == MouseButtonState.Pressed) DragMove();
     }
-
-    private void OnCloseClick(object sender, RoutedEventArgs e) => Close();
 }

@@ -112,7 +112,7 @@ public partial class App : System.Windows.Application
         if (allowWindowClose)
             return;
         e.Cancel = true;
-        _ = ShutdownAsync("Widget X");
+        window?.Hide();
     }
 
     private void OnWindowStateChanged(object? sender, EventArgs e)
