@@ -164,3 +164,7 @@ The application mailbox now has a single-reader coordinator with multi-producer 
 ## Update 26 — Gate 6 DualSense Parser
 
 The Production pure parser now recognizes the POC-verified 78-byte Bluetooth and 64-byte USB report layouts, normalizes valid battery/charging status into the Domain model, and rejects invalid shapes/status codes without overwriting prior state. The v1 Provider remains Bluetooth-only; no HID device is opened in this increment.
+
+## Update 27 — Gate 6 Read-Only DualSense Provider
+
+The Windows provider now uses the targeted DualSense gamepad selector, accepts Bluetooth HID endpoints only, opens with `FileAccessMode.Read`, coalesces unchanged reports, and emits semantic discovery/battery/freshness/offline/removal events. Output, Feature, vendor commands, and `DeviceClass.All` are not used.

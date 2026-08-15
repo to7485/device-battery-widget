@@ -71,6 +71,22 @@ var specs = new (string Name, Action Run)[]
     {
         Equal(false, parser.TryParse(0x01, new byte[62], now, out _));
         Equal(false, parser.TryParse(0x02, new byte[78], now, out _));
+    }),
+    ("Bluetooth endpoint filter excludes USB", () =>
+    {
+        const string bluetooth = @"\\?\HID#{00001124-0000-1000-8000-00805f9b34fb}_VID&0002054C_PID&0CE6#device";
+        const string usb = @"\\?\HID#VID_054C&PID_0CE6&MI_03#device";
+        Equal(true, DualSenseDeviceIdentity.IsBluetoothEndpoint(bluetooth));
+        Equal(false, DualSenseDeviceIdentity.IsBluetoothEndpoint(usb));
+    }),
+    ("Stable key is deterministic and does not expose device ID", () =>
+    {
+        const string id = @"\\?\HID#{00001124-0000-1000-8000-00805f9b34fb}_VID&0002054C_PID&0CE6#device";
+        DeviceKey first = DualSenseDeviceIdentity.CreateKey(id);
+        DeviceKey second = DualSenseDeviceIdentity.CreateKey(id.ToLowerInvariant());
+        Equal(first, second);
+        Equal(DualSenseHidBatteryParser.ProviderId, first.ProviderId);
+        Equal(false, first.StableId.Contains("HID", StringComparison.OrdinalIgnoreCase));
     })
 };
 
