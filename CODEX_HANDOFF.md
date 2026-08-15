@@ -862,3 +862,7 @@ NFR-STAB-004 자원 정리는 8초 Production timed smoke가 exit code 0, 잔존
 현재 다중 Provider Production 5분/300샘플 결과는 CPU 평균 0.358%, 최대 1.679%, Working Set
 138.16 MiB(Delta -0.98), Private 71.43 MiB(Delta -2.16), Handles 767(Delta -62), Threads
 16(Delta -17)이다. CPU와 단기 안정성은 PASS지만 Working Set 100 MiB 목표는 FAIL이며 최적화가 필요하다.
+
+60초 단계별 분리 측정은 shell 108.78 MiB, DualSense 추가 20.54 MiB, BLE 추가 5.61 MiB,
+WGI 추가 1.11 MiB로 나타났다. 전체는 136.04 MiB로 재현됐다. NFR-PERF-003 해결은 WPF/tray/HID
+구조 변경 또는 실측 기반 요구사항 변경 승인이 필요하며 강제 Working Set trim은 사용하지 않는다.

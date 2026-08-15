@@ -246,3 +246,7 @@ An eight-second Release smoke exited normally with code 0, left no process behin
 ## Update 42 — Production 5-minute Performance
 
 The current multi-provider Release app completed 300 read-only samples with 0.358% average CPU, 1.679% maximum CPU, and decreasing Private Memory/handle/thread counts. Working Set ended at 138.16 MiB, so CPU and short-run stability pass while NFR-PERF-003 fails its 100 MiB target and remains an explicit optimization item.
+
+## Update 43 — Memory Attribution
+
+Diagnostic-only Production runs measured 108.78 MiB for the WPF/tray shell, then incremental Working Set costs of approximately 20.54 MiB for DualSense HID, 5.61 MiB for BLE, and 1.11 MiB for WGI. The full result reproduced at 136.04 MiB. NFR-PERF-003 therefore needs an explicit shell/HID technology or requirement decision; forced working-set trimming is not accepted as an optimization.

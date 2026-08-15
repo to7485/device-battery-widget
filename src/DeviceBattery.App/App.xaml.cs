@@ -75,7 +75,8 @@ public partial class App : System.Windows.Application
                 System.Diagnostics.Trace.WriteLine($"Coordinator event error: {error.GetType().Name}");
                 return ValueTask.CompletedTask;
             });
-        providers = [new DualSenseHidProvider(), new BleGattBatteryProvider(), new GamingInputBatteryProvider()];
+        providers = CreateProviders(e.Args);
+        Trace.WriteLine($"PROVIDERS mode={GetOption(e.Args, "--providers") ?? "all"} count={providers.Length}");
         SystemEvents.PowerModeChanged += OnPowerModeChanged;
         coordinatorTask = coordinator.RunAsync();
         providerTasks = providers.Select(activeProvider => RunProviderAsync(activeProvider, coordinator)).ToArray();
@@ -287,12 +288,34 @@ public partial class App : System.Windows.Application
     private static bool TryGetSmokeDuration(string[] args, out TimeSpan duration)
     {
         duration = default;
-        if (args.Length != 2 || !string.Equals(args[0], "--smoke-seconds", StringComparison.OrdinalIgnoreCase))
+        string? value = GetOption(args, "--smoke-seconds");
+        if (value is null)
             return false;
-        if (!int.TryParse(args[1], out int seconds) || seconds is < 3 or > 600)
+        if (!int.TryParse(value, out int seconds) || seconds is < 3 or > 600)
             throw new ArgumentException("--smoke-seconds must be between 3 and 600.");
         duration = TimeSpan.FromSeconds(seconds);
         return true;
+    }
+
+    private static IBatteryProvider[] CreateProviders(string[] args)
+    {
+        string selection = (GetOption(args, "--providers") ?? "all").Trim().ToLowerInvariant();
+        return selection switch
+        {
+            "none" => [],
+            "dualsense" => [new DualSenseHidProvider()],
+            "dualsense+ble" => [new DualSenseHidProvider(), new BleGattBatteryProvider()],
+            "all" => [new DualSenseHidProvider(), new BleGattBatteryProvider(), new GamingInputBatteryProvider()],
+            _ => throw new ArgumentException("--providers must be one of: none, dualsense, dualsense+ble, all.")
+        };
+    }
+
+    private static string? GetOption(string[] args, string name)
+    {
+        for (int index = 0; index < args.Length - 1; index++)
+            if (string.Equals(args[index], name, StringComparison.OrdinalIgnoreCase))
+                return args[index + 1];
+        return null;
     }
 
     private static void LogReduction(ReductionResult result)
