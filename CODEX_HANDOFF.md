@@ -854,3 +854,7 @@ read-only refresh를 1회 수행한다. 실장비 절전/복귀에서 장치와 
 ADR-010 최소 로컬 진단은 `%LocalAppData%/DeviceBatteryWidget/logs`에 UTC 일별 파일로 기록하며
 7일/총 10 MiB 제한을 적용한다. 실제 로그에서 raw HID, MAC, 전체 DeviceInformation ID가 없고
 short-hash DeviceKey와 정규화 상태만 기록됨을 확인해 PASS다.
+
+NFR-STAB-004 자원 정리는 8초 Production timed smoke가 exit code 0, 잔존 프로세스 없음,
+`APP_STOP` 기록으로 PASS다. 별도 4초 단일 샘플 Working Set은 약 143 MiB로 100 MiB 목표를
+넘었으므로 NFR-PERF-003은 5분 Production 측정 전까지 판정하지 않는다.

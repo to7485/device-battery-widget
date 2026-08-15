@@ -47,7 +47,7 @@
 | NFR-STAB-001 | Memory Leak 방지 | Must | ARC-007, ARC-009 | TBD | TBD | Architecture Draft |
 | NFR-STAB-002 | 24시간 안정성 | Must | ARC-009 | TBD | TBD | Architecture Draft |
 | NFR-STAB-003 | 72시간 Soak Test | Must | ARC-009, ARC-010 | TBD | TBD | Architecture Draft |
-| NFR-STAB-004 | Resource 정리 | Must | ARC-002, ARC-007, ARC-009 | TBD | TBD | Architecture Draft |
+| NFR-STAB-004 | Resource 정리 | Must | ARC-002, ARC-007, ARC-009 | App.ShutdownAsync ordered cancellation/drain/disposal | G6-CLEANUP-01 | Implemented / Integration PASS |
 | NFR-STAB-005 | 예외 격리 | Must | ARC-002, ARC-003, ARC-009 | DeviceStateCoordinator | SPEC-COORD | In Implementation |
 | NFR-USAB-001 | 사용자 개입 최소화 | Must | ARC-002~008 | TBD | TBD | Architecture Draft |
 | NFR-MAINT-001 | 장치 유형 확장성 | Must | ARC-001~005 | TBD | TBD | Architecture Draft |

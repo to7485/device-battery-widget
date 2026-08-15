@@ -238,3 +238,7 @@ The app now observes Windows resume, gives normal event-driven recovery a 30-sec
 ## Update 40 — Bounded Local Diagnostics
 
 Minimal UTC daily diagnostics are written under the current user's local application data with seven-day and 10 MiB retention bounds. Records contain lifecycle, normalized battery state, exception fingerprints, and provider-owned short hashes only; raw HID reports, MAC addresses, and complete Windows device IDs are prohibited.
+
+## Update 41 — Production Cleanup Smoke
+
+An eight-second Release smoke exited normally with code 0, left no process behind, and wrote `APP_STOP` after the ordered provider/coordinator/tray/settings/log cleanup path. A separate four-second resource sample exceeded the 100 MiB Working Set target, so cleanup is PASS while Production performance remains pending a five-minute measurement.
