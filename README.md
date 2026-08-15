@@ -212,3 +212,5 @@ The fifth visual iteration removes the in-window close control, routes user exit
 The sixth visual iteration adds a static green `● 충전` label beside the device name while charging. It uses no animation and retains the green charging gauge.
 
 The seventh visual iteration shortens the battery gauge and gives the device name and charging label a flexible text area so the charging text remains visible.
+
+The owner approved the seventh visual iteration as the Gate 6 visual baseline. The next increment persists widget position and Always On Top under the current user's local application data and clamps restored coordinates to a visible monitor working area.

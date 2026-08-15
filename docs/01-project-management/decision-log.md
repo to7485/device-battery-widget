@@ -57,13 +57,14 @@
 | DEC-046 | CHG-003 | DualSense USB 지원, 단일 compact indicator, Tray-only Topmost로 Requirements v1.3 승인 | 확정 |
 | DEC-047 | CHG-004 | USB 연결 중 valid charging 유지, Bluetooth freshness 유지, frameless indicator로 Requirements v1.4 승인 | 확정 |
 | DEC-048 | CHG-005 | compact typography와 ShowInTaskbar=False Tray-only presence로 Requirements v1.5 승인 | 확정 |
-| DEC-049 | Gate 6 UI | DualSense white/black/blue visual language와 green charging feedback를 1차 시안으로 구현 | 검토 중 |
-| DEC-050 | Gate 6 UI | 2차 시안에서 brand label 제거, 14px gauge, charging-only centered lightning 적용 | 검토 중 |
-| DEC-051 | Gate 6 UI | 3차 시안에서 360px 폭 유지, 기기명-게이지 수평 배치, 10px gap/상하 5px spacing 적용 | 검토 중 |
-| DEC-052 | Gate 6 UI | 4차 시안에서 배터리 형태 게이지와 중앙 잔량 표시를 적용하고 번개 및 별도 충전 문구 제거 | 검토 중 |
-| DEC-053 | Gate 6 UI | 5차 시안에서 창 내부 종료 UI 제거, 사용자 종료를 Tray Exit로 한정, 기기 항목 수에 따른 높이 자동 확장 적용 | 검토 중 |
-| DEC-054 | Gate 6 UI | 6차 시안에서 animation 없이 충전 중에만 기기명 옆 고정형 초록색 `● 충전` 표시 적용 | 검토 중 |
-| DEC-055 | Gate 6 UI | 7차 시안에서 gauge 폭을 축소하고 기기명 가변 영역과 충전 표시 고정 영역을 분리하여 text clipping 방지 | 검토 중 |
+| DEC-049 | Gate 6 UI | DualSense white/black/blue visual language와 green charging feedback를 1차 시안으로 구현 | 확정 |
+| DEC-050 | Gate 6 UI | 2차 시안에서 brand label 제거, 14px gauge, charging-only centered lightning 적용 | 확정 |
+| DEC-051 | Gate 6 UI | 3차 시안에서 360px 폭 유지, 기기명-게이지 수평 배치, 10px gap/상하 5px spacing 적용 | 확정 |
+| DEC-052 | Gate 6 UI | 4차 시안에서 배터리 형태 게이지와 중앙 잔량 표시를 적용하고 번개 및 별도 충전 문구 제거 | 확정 |
+| DEC-053 | Gate 6 UI | 5차 시안에서 창 내부 종료 UI 제거, 사용자 종료를 Tray Exit로 한정, 기기 항목 수에 따른 높이 자동 확장 적용 | 확정 |
+| DEC-054 | Gate 6 UI | 6차 시안에서 animation 없이 충전 중에만 기기명 옆 고정형 초록색 `● 충전` 표시 적용 | 확정 |
+| DEC-055 | Gate 6 UI | 7차 시안에서 gauge 폭을 축소하고 기기명 가변 영역과 충전 표시 고정 영역을 분리하여 text clipping 방지 | 확정 |
+| DEC-056 | Gate 6 | 승인된 UI 시안을 visual baseline으로 확정하고 위치/Topmost 설정 영속화 구현으로 진행 | 확정 |
 
 ## 변경요청 현황
 

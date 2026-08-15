@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Threading;
 using DeviceBattery.Application;
@@ -12,6 +13,7 @@ public partial class App : System.Windows.Application
     private readonly CancellationTokenSource lifetime = new();
     private readonly DeviceStateReducer reducer = new();
     private readonly WidgetViewModel viewModel = new();
+    private readonly JsonWidgetSettingsStore settingsStore = new();
     private DeviceStateCoordinator? coordinator;
     private DualSenseHidProvider? provider;
     private WidgetWindow? window;
@@ -20,12 +22,16 @@ public partial class App : System.Windows.Application
     private Task? providerTask;
     private int shutdownStarted;
     private bool allowWindowClose;
+    private bool windowPlacementRestored;
 
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
 
+        WidgetSettings settings = settingsStore.Load();
+        viewModel.IsTopmost = settings.IsTopmost;
         window = new WidgetWindow { DataContext = viewModel };
+        window.ContentRendered += (_, _) => RestoreWindowPlacement(settings);
         window.Closing += OnWindowClosing;
         window.StateChanged += OnWindowStateChanged;
         tray = new TrayIconController(
@@ -96,6 +102,7 @@ public partial class App : System.Windows.Application
         viewModel.PropertyChanged -= OnViewModelPropertyChanged;
         if (window is not null)
         {
+            SaveSettings();
             window.Closing -= OnWindowClosing;
             window.StateChanged -= OnWindowStateChanged;
             allowWindowClose = true;
@@ -124,7 +131,10 @@ public partial class App : System.Windows.Application
     private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == nameof(WidgetViewModel.IsTopmost))
+        {
             tray?.SetTopmost(viewModel.IsTopmost);
+            SaveSettings();
+        }
     }
 
     private void ShowWidget()
@@ -137,6 +147,30 @@ public partial class App : System.Windows.Application
     }
 
     private void ToggleTopmost() => viewModel.IsTopmost = !viewModel.IsTopmost;
+
+    private void RestoreWindowPlacement(WidgetSettings settings)
+    {
+        if (window is null || windowPlacementRestored) return;
+        windowPlacementRestored = true;
+        var areas = System.Windows.Forms.Screen.AllScreens
+            .Select(screen => new Rect(screen.WorkingArea.X, screen.WorkingArea.Y, screen.WorkingArea.Width, screen.WorkingArea.Height))
+            .ToArray();
+        System.Windows.Point position = WindowPositionPolicy.Restore(
+            settings.Left,
+            settings.Top,
+            new System.Windows.Size(window.ActualWidth, window.ActualHeight),
+            areas);
+        window.Left = position.X;
+        window.Top = position.Y;
+    }
+
+    private void SaveSettings()
+    {
+        if (window is null || !windowPlacementRestored) return;
+        try { settingsStore.Save(new(window.Left, window.Top, viewModel.IsTopmost)); }
+        catch (IOException error) { System.Diagnostics.Trace.WriteLine($"Settings save failed: {error.GetType().Name}"); }
+        catch (UnauthorizedAccessException error) { System.Diagnostics.Trace.WriteLine($"Settings save failed: {error.GetType().Name}"); }
+    }
 
     private static bool TryGetSmokeDuration(string[] args, out TimeSpan duration)
     {

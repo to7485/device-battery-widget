@@ -20,13 +20,13 @@
 | FR-009 | 장치 해제 즉시 제거 | Must | ARC-003, ARC-004 | DeviceStateReducer | SPEC-APP | In Implementation |
 | FR-010 | 절전 복귀 처리 | Must | ARC-002, ARC-004 | TBD | TBD | Architecture Draft |
 | FR-011 | 개별 장치 숨김/영속화 | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
-| FR-012 | Widget 위치 저장/복원 | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
-| FR-013 | Always On Top 저장/복원, 기본 OFF | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
+| FR-012 | Widget 위치 저장/복원 | Must | ARC-006, ARC-008 | JsonWidgetSettingsStore + WindowPositionPolicy | SPEC-WPF + manual restart TBD | In Implementation |
+| FR-013 | Always On Top 저장/복원, 기본 OFF | Must | ARC-006, ARC-008 | JsonWidgetSettingsStore + tray projection | SPEC-WPF + manual restart TBD | In Implementation |
 | FR-014 | 동일 모델 장치 개별 식별 | Must | ARC-005 | DualSenseDeviceIdentity provider-owned hash key | SPEC-DS-PARSER | In Implementation |
 | FR-015 | Windows 로그인 자동 실행, 기본 OFF | Should | ARC-008, ARC-010 | TBD | TBD | Architecture Draft |
 | FR-016 | 숨긴 장치 목록/숨김 해제 | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
 | FR-017 | System Tray 제공 | Must | ARC-007 | TrayIconController | G6-APP-SMOKE-01 + manual lifecycle TBD | In Implementation |
-| UIR-001 | 단일 인디케이터 표시 | Must | ARC-006 | frameless compact typography + USB priority | build + SPEC-WPF + visual TBD | In Implementation |
+| UIR-001 | 단일 인디케이터 표시 | Must | ARC-006 | approved frameless DualSense visual + USB priority | build + SPEC-WPF + owner visual approval | Implemented |
 | UIR-002 | 장치 이름 표시 | Must | ARC-006 | DeviceCardViewModel/WidgetWindow | SPEC-WPF | In Implementation |
 | UIR-003 | Battery Gauge | Must | ARC-006 | DeviceCardViewModel/ProgressBar | SPEC-WPF | In Implementation |
 | UIR-004 | Battery % 표시 | Must | ARC-006 | estimated-aware BatteryText | SPEC-WPF | In Implementation |
