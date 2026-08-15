@@ -102,3 +102,11 @@ B04-1 is frozen as `PASS WITH LIMITATION`; B04-2 is approved to begin with passi
 ## Update 11 — CHG-002 / v1.0 DualSense-only scope
 
 The approved v1.0 device scope is now Sony DualSense over Bluetooth (`054C:0CE6`) only. Mouse, keyboard, headset, other controllers, and receiver battery work are deferred to a later release. Existing BLE and receiver POC evidence remains preserved; B04-2 is stopped without sending vendor commands.
+
+## Update 12 — POC-B05 Normalized BatteryState
+
+Added `poc/DeviceBattery.Poc.NormalizedBatteryState` for the DualSense-only v1.0 scope. All 8 deterministic normalization/state-transition cases passed, including stale-percent removal on read failure and recovery from Unknown. B05 is `PASS WITH LIMITATION` pending real-hardware lifecycle/timeout integration tests.
+
+## Update 13 — DualSense Lifecycle / Timeout Probe
+
+Added `poc/DeviceBattery.Poc.DualSenseLifecycleProbe`. Read-only hardware testing passed USB charging transitions, Bluetooth timeout/recovery across three cycles, stale-percent removal, and cleanup. Final result is `PASS WITH LIMITATION`: paired Bluetooth did not emit Removed/Added, the 10-second timeout is POC-only, and Production state delivery must serialize timer/input callbacks.

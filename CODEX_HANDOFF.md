@@ -539,7 +539,10 @@ POC-B04-2 Passive Battery Correlation
 → DEFERRED TO VNEXT / CHG-002
 
 POC-B05 Normalized BatteryState
-→ PENDING APPROVAL (DualSense-only scope)
+→ PASS WITH LIMITATION (8/8 deterministic cases; lifecycle/timeout pending)
+
+POC-B05-1 DualSense Lifecycle / Timeout
+→ PASS WITH LIMITATION (USB charging PASS; Bluetooth timeout/recovery 3회 PASS; cleanup PASS; callback 직렬화 필요)
 ```
 
 ---
@@ -782,7 +785,7 @@ DeviceInformation.GetAqsFilterFromDeviceClass(DeviceClass.All)
 
 ```text
 검증된 DualSense Bluetooth HID battery/charging 경로를 기준으로
-v1.0 범위의 Gate 4 잔여 항목과 Normalized BatteryState 설계를 준비하는 것.
+v1.0 범위의 Gate 4 실장비 lifecycle/timeout 잔여 항목을 검증하는 것.
 Mouse/Keyboard/Headset/Receiver 지원은 vNext로 이관한다.
 ```
 

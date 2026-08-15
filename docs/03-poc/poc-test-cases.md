@@ -34,6 +34,16 @@
 | POC-TC-027 | E06 | Runtime/Deploy | 배포 특성 확인 | NOT TESTED |
 | POC-TC-028 | E07 | 기술 적합성 | 채택/조건부/대체 권고 | NOT TESTED |
 | **POC-TC-029** | **E08** | **기능별 Resource 증가량** | **기능 추가 단계별 CPU/Memory/Handle/Thread 변화량 확보** | **NOT TESTED** |
+| POC-TC-030 | B05 | DualSense 상태 정규화 | bucket/charging code를 BatteryState로 변환 | PASS |
+| POC-TC-031 | B05 | Stale percent 제거 | 일시 실패 시 Percent=null, Availability=Unknown | PASS |
+| POC-TC-032 | B05 | Unknown 복구 | 정상 report 재수신 시 Available 복귀 | PASS |
+| POC-TC-033 | B05 | Unsupported 구분 | Unsupported와 일시 실패 Unknown 구분 | PASS |
+| POC-TC-034 | B05-1 | DualSense OFF/ON lifecycle | OFF/ON 3회에서 remove/add/open/report recovery 확인 | PASS WITH LIMITATION (동일 session recovery; Removed/Added 미발생) |
+| POC-TC-035 | B05-1 | Report timeout | 10초 미수신 시 stale percent 제거와 Unknown 전환 | PASS |
+| POC-TC-036 | B05-1 | Cleanup | Q 종료 시 watcher/timer/handler/HID handle 정리 | PASS |
+| POC-TC-037 | B05-1 | DualSense USB charging transition | 64-byte report에서 NotCharging -> Charging 전환 | PASS |
+| POC-TC-038 | B05-1 | Bluetooth report recovery | 동일 HID session에서 Unknown -> Available 복구 | PASS (3회) |
+| POC-TC-039 | B05-1 | Timer/input concurrency | 동시 callback의 상태 및 UI 전달 순서 확인 | PASS WITH LIMITATION (직렬화 필요) |
 
 ## Evidence
 - Console Log

@@ -68,6 +68,10 @@ Provider가 달라도 애플리케이션 Core에는 동일 모델로 전달한�
 - LastUpdatedAt
 - IsEventDriven
 
+실행 결과(2026-08-15): deterministic normalization/state-transition `8/8 PASS`.
+
+판정: **PASS WITH LIMITATION** — 모델 변환은 PASS, 실장비 lifecycle/timeout 통합 검증은 잔여 항목.
+
 ## B06 — Event-first / Poll fallback
 
 - BLE Notify/Indicate 또는 Provider 이벤트가 있으면 event-first
