@@ -1,26 +1,26 @@
 # Gate 4 POC 테스트 케이스
 
 - 문서 버전: 0.2
-- 기준: Requirements v1.1
+- 기준: Requirements Baseline v1.2 / CHG-002 DualSense-only v1.0
 
 | TC ID | POC | 검증 목적 | 성공 기준 | 결과 |
 |---|---|---|---|---|
-| POC-TC-001 | A01 | 초기 장치 Enumeration | Device ID/Name 확보 | NOT TESTED |
-| POC-TC-002 | A02 | Device Added | 재시작 없이 연결 감지 | NOT TESTED |
-| POC-TC-003 | A03 | Device Removed | 재시작 없이 해제 감지 | NOT TESTED |
-| POC-TC-004 | A04 | Friendly Name | 사용자 식별 가능한 이름 확보 가능성 판단 | NOT TESTED |
-| POC-TC-005 | A05 | 동일 모델 구분 | 두 장치 Identifier 구분 | NOT TESTED |
-| POC-TC-006 | A06 | 재연결 Identity | 동일 물리 장치 추적 가능성 판단 | NOT TESTED |
-| POC-TC-007 | B01 | Battery % | 지원 장치에서 0~100 확보 | NOT TESTED |
-| POC-TC-008 | B02 | Unsupported | 미지원과 오류 구분 | NOT TESTED |
-| POC-TC-009 | B03 | Unknown | 조회 실패 시 Unknown 처리 가능 | NOT TESTED |
-| POC-TC-010 | B04 | Charging | Charging 상태 판단 | NOT TESTED |
-| POC-TC-011 | C01 | Battery Event | Event 수신 여부 | NOT TESTED |
-| POC-TC-012 | C02 | Event Latency | 지연시간 확보 | NOT TESTED |
-| POC-TC-013 | C03 | Event 누락 | 발생/수신 비교 | NOT TESTED |
-| POC-TC-014 | C04 | Polling | Fallback 가능 | NOT TESTED |
-| POC-TC-015 | C05 | Safety Polling | 필요 여부 판단 | NOT TESTED |
-| POC-TC-016 | C06 | Sleep/Resume | 복귀 후 재조회 | NOT TESTED |
+| POC-TC-001 | A01 | 초기 장치 Enumeration | Device ID/Name 확보 | PASS |
+| POC-TC-002 | A02 | Device Added | 재시작 없이 연결 감지 | PASS WITH LIMITATION (UPDATED/InterfaceEnabled 포함) |
+| POC-TC-003 | A03 | Device Removed | 재시작 없이 해제 감지 | PASS WITH LIMITATION (paired BT endpoint 유지 가능) |
+| POC-TC-004 | A04 | Friendly Name | 사용자 식별 가능한 이름 확보 가능성 판단 | PASS WITH LIMITATION (장치별 편차) |
+| POC-TC-005 | A05 | 동일 모델 구분 | 두 장치 Identifier 구분 | NEED PROVIDER FALLBACK (ContainerId 단독 불가) |
+| POC-TC-006 | A06 | 재연결 Identity | 동일 물리 장치 추적 가능성 판단 | PASS WITH LIMITATION |
+| POC-TC-007 | B01 | Battery % | 지원 장치에서 0~100 확보 | PASS WITH LIMITATION (DualSense 10% bucket 대표값) |
+| POC-TC-008 | B02 | Unsupported | 미지원과 오류 구분 | PASS |
+| POC-TC-009 | B03 | Unknown | 조회 실패 시 Unknown 처리 가능 | PASS |
+| POC-TC-010 | B04 | Charging | Charging 상태 판단 | PASS |
+| POC-TC-011 | C01 | Battery Event | Event 수신 여부 | PASS |
+| POC-TC-012 | C02 | Event Latency | 지연시간 확보 | PASS WITH LIMITATION (report transition 약 220 ms; 물리 입력 timestamp 비동기) |
+| POC-TC-013 | C03 | Event 누락 | 발생/수신 비교 | PASS (136,859 transitions, modulo-16 sequence 100%, missing 0) |
+| POC-TC-014 | C04 | Polling | Fallback 가능 | NOT REQUIRED (v1 DualSense reliable read endpoint 없음) |
+| POC-TC-015 | C05 | Safety Polling | 필요 여부 판단 | PASS (event-only, device read 0회) |
+| POC-TC-016 | C06 | Sleep/Resume | 복귀 후 재조회 | PASS (약 20초 자동 복구) |
 | POC-TC-017 | D01 | Tray Icon | Tray 표시 | PASS |
 | POC-TC-018 | D02 | Tray Menu | Context Menu 동작 | PASS |
 | POC-TC-019 | D03 | Hide/Restore | Tray에서 Widget 복원 | PASS |
@@ -32,7 +32,7 @@
 | POC-TC-025 | E04 | Startup | 시작시간 측정 | PASS (FDD 68.8 ms, SCD 67.5 ms; 각 10/10) |
 | POC-TC-026 | E05 | OS | Win10/11 차이 기록 | PASS WITH LIMITATION (Win10 22H2만 확인) |
 | POC-TC-027 | E06 | Runtime/Deploy | 배포 특성 확인 | PASS WITH LIMITATION (FDD/SCD win-x64; packaging pending) |
-| POC-TC-028 | E07 | 기술 적합성 | 채택/조건부/대체 권고 | NOT TESTED |
+| POC-TC-028 | E07 | 기술 적합성 | 채택/조건부/대체 권고 | CONDITIONAL ADOPTION RECOMMENDED |
 | **POC-TC-029** | **E08** | **기능별 Resource 증가량** | **기능 추가 단계별 CPU/Memory/Handle/Thread 변화량 확보** | **PASS WITH LIMITATION (별도 POC 간 1차 비교; 동일-host pending)** |
 | POC-TC-030 | B05 | DualSense 상태 정규화 | bucket/charging code를 BatteryState로 변환 | PASS |
 | POC-TC-031 | B05 | Stale percent 제거 | 일시 실패 시 Percent=null, Availability=Unknown | PASS |

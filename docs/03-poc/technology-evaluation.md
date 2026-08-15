@@ -9,17 +9,19 @@
 
 | 평가 항목 | 가중치(초안) | 결과 | 비고 |
 |---|---:|---|---|
-| Device API 접근성 | 20 | TBD | |
-| Battery/Charging | 20 | TBD | |
-| Event 처리 | 15 | TBD | |
-| Device Identity | 10 | TBD | |
-| CPU/Memory | 10 | TBD | |
-| Resource 관리 | 10 | TBD | |
-| Tray/Desktop | 5 | TBD | |
-| 배포 | 5 | TBD | |
-| 확장성 | 5 | TBD | |
+| Device API 접근성 | 20 | 조건부 적합 | targeted HID read-only 성공; DeviceClass.All 금지 |
+| Battery/Charging | 20 | 조건부 적합 | DualSense bucket/charging 성공; exact 1% 아님 |
+| Event 처리 | 15 | 조건부 적합 | event-first/recovery/sleep 성공; 직렬화 필요 |
+| Device Identity | 10 | 조건부 적합 | provider fallback 필요 |
+| CPU/Memory | 10 | 적합 | 5분 목표 통과 |
+| Resource 관리 | 10 | 조건부 적합 | cleanup 통과; 장시간 soak 필요 |
+| Tray/Desktop | 5 | 적합 | NotifyIcon lifecycle PASS |
+| 배포 | 5 | 조건부 적합 | FDD/SCD 실행 성공; packaging/Win11 필요 |
+| 확장성 | 5 | 적합 | provider/parser/normalized state 경계 검증 |
 
 ## 최종 권고
 - [ ] 채택
-- [ ] 조건부 채택
+- [x] 조건부 채택
 - [ ] 대체 기술 검토
+
+조건부 채택은 Gate 4 승인 제안이며 Architecture/Production 구현 승인이 아니다.

@@ -59,10 +59,13 @@
 |---|---|---:|---:|---:|---:|---:|
 | PERF-BASE | 최소 Desktop App | TBD | TBD | TBD | TBD | TBD |
 | PERF-DEVICE | + DeviceWatcher | TBD | TBD | TBD | TBD | TBD |
-| PERF-BATTERY | + Battery Monitor | TBD | TBD | TBD | TBD | TBD |
+| PERF-BATTERY | DualSense Bluetooth Monitor POC | 0.144% avg | 46.43 MiB | 12.74 MiB | 293 | 10 |
 | PERF-EVENT | + Battery Event | TBD | TBD | TBD | TBD | TBD |
-| PERF-TRAY | + System Tray | TBD | TBD | TBD | TBD | TBD |
+| PERF-TRAY | System Tray POC | 0.001% avg | 42.16 MiB | 10.57 MiB | 296 | 8 |
 | PERF-IDLE | 전체 POC 유휴 | TBD | TBD | TBD | TBD | TBD |
+
+`PERF-BATTERY`와 `PERF-TRAY`는 서로 다른 executable의 절대 5분 측정값이다.
+동일 host에 기능을 누적한 정밀 increment 측정은 Production 후보 통합 POC 이후 수행한다.
 
 ## 판단 원칙
 - Self-contained 여부 자체를 Runtime Memory 증가 원인으로 단정하지 않는다.
@@ -91,10 +94,13 @@
 
 아직 기술 스택 승인 상태가 아니다.
 
-## 현재 실행 대상
-1. POC-A01 — 초기 Enumeration
-2. POC-A02 — Added
-3. POC-A03 — Removed
-4. POC-A04 — Name / ID 확인
+## 현재 상태
 
-이 결과를 확보한 뒤 A05/A06 Identity 검증으로 진행한다.
+- A Device/Identity: PASS WITH LIMITATION
+- B Battery/Charging: PASS WITH LIMITATION
+- C Event/Polling: PASS WITH LIMITATION
+- D Tray/Lifecycle: PASS
+- E Performance/Technology: PASS WITH LIMITATION
+
+E07 종합 기술평가 결과는 `조건부 채택 권고`다. Gate 4 결과서는
+`APPROVE WITH CONDITIONS` 제안 상태이며 발주자 승인 전까지 Gate 4는 `IN PROGRESS`다.

@@ -550,6 +550,9 @@ POC-B06 Event-first / Poll Fallback Policy
 POC-C06 DualSense Sleep / Resume
 → PASS (기존 HID session 자동 복구 약 20초; R/restart 불필요; cleanup PASS)
 
+POC-C03 DualSense Event Continuity
+→ PASS (288.675초, 136,859 transitions, modulo-16 sequence 100%, missing/duplicate 0)
+
 POC-D01~D05 System Tray / Lifecycle
 → PASS (tray/menu/hide/restore/X exit/tray exit/cleanup; ghost icon 없음)
 
@@ -796,12 +799,12 @@ DeviceInformation.GetAqsFilterFromDeviceClass(DeviceClass.All)
 
 ---
 
-## 33. 현재 최우선 목표 — CHG-002 반영
+## 33. 현재 최우선 목표 — Gate 4 승인 검토
 
 ```text
-검증된 DualSense Bluetooth HID battery/charging 경로를 기준으로
-v1.0 범위의 Gate 4 실장비 lifecycle/timeout 잔여 항목을 검증하는 것.
-Mouse/Keyboard/Headset/Receiver 지원은 vNext로 이관한다.
+Gate 4 결과서의 `APPROVE WITH CONDITIONS` 제안을 발주자가 검토하는 것.
+승인 전 Gate 5, Architecture 확정 또는 Production 구현을 시작하지 않는다.
+Mouse/Keyboard/Headset/Receiver 지원은 vNext로 유지한다.
 ```
 
 Gate 4를 끝내기 전 UI 완성, Production Architecture 확정, Installer 제작 등으로 넘어가지 않는다.

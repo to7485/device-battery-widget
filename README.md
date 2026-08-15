@@ -132,3 +132,11 @@ Added `poc/DeviceBattery.Poc.ResourceSampler`. Five-minute Release measurements 
 ## Update 18 — POC-E04/E06 Startup and Deployment
 
 Added `poc/DeviceBattery.Poc.StartupSampler`. On Windows 10 22H2, framework-dependent and self-contained win-x64 tray publishes both reached a visible window in 10/10 runs, averaging 68.8 ms and 67.5 ms. Publish sizes were 0.18 MiB and 117.08 MiB. Result: `PASS WITH LIMITATION` pending Windows 11 and installer/portable packaging validation.
+
+## Update 19 — Gate 4 Technical Evaluation Draft
+
+The Gate 4 result and technology evaluation are reconciled against hardware evidence. The recommendation is `APPROVE WITH CONDITIONS` and conditional adoption of C#/.NET 10, targeted read-only HID, normalized BatteryState, event-first monitoring, and NotifyIcon tray integration. Gate 4 remains `IN PROGRESS` until explicit owner approval; Production implementation has not started.
+
+## Update 20 — POC-C03 Event Continuity
+
+Added `poc/DeviceBattery.Poc.DualSenseEventContinuityProbe`. Passive Bluetooth HID testing identified the WinRT continuity counter as offset 7 bits 2–5. Across 288.675 seconds and 136,859 transitions, the modulo-16 sequence was 100% continuous with zero duplicates, gaps, estimated missing reports, or unsupported shapes. Result: `PASS`.
