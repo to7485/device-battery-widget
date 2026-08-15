@@ -208,3 +208,5 @@ The third visual iteration keeps the 360px shell width, places the device name t
 The fourth visual iteration shapes the gauge as a battery, centers the percentage inside it, and removes the lightning and separate charging label. Charging continues to use the established green gauge color.
 
 The fifth visual iteration removes the in-window close control, routes user exit exclusively through the tray menu, and lets the shell height grow with the number of projected device items.
+
+The sixth visual iteration adds a static green `● 충전` label beside the device name while charging. It uses no animation and retains the green charging gauge.
