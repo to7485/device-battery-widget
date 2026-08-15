@@ -34,3 +34,25 @@ dotnet run
 ```
 
 이 POC는 표준 BLE Battery Service `0x180F`와 Battery Level `0x2A19`를 읽고 Notify/Indicate 가능 여부를 확인합니다.
+
+## Update 06 — POC-B02 PASS / POC-B03 Windows.Gaming.Input Battery Probe
+
+AULA F87Pro Bluetooth에서 BLE GATT `0x180F -> 0x2A19` 배터리 100% Read와 Notify 구독이 재연결 후에도 재현되어 POC-B02를 PASS로 기록했습니다.
+
+DualSense Bluetooth는 표준 BLE Battery Service 검색에 나타나지 않았습니다. Raw HID 역분석을 바로 시작하지 않고, 먼저 Microsoft 공개 API인 `Windows.Gaming.Input.RawGameController/Gamepad.TryGetBatteryReport()`를 검증합니다.
+
+새 프로젝트:
+
+```text
+poc/DeviceBattery.Poc.GameControllerBatteryProbe
+```
+
+실행:
+
+```powershell
+cd D:\github\device-battery-widget\poc\DeviceBattery.Poc.GameControllerBatteryProbe
+dotnet clean
+dotnet run --project .\DeviceBattery.Poc.GameControllerBatteryProbe.csproj
+```
+
+DualSense를 Bluetooth로 연결한 상태에서 전체 출력을 저장합니다.

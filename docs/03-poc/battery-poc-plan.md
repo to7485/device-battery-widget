@@ -16,23 +16,30 @@
 
 표준 Bluetooth Battery Service `0x180F`와 Battery Level `0x2A19`를 직접 조회한다.
 
-검증:
-- 서비스 열거
-- Battery Level uncached read
-- 0~100% 파싱
-- Notify/Indicate 지원 여부
-- ValueChanged 이벤트
-- cleanup
+실측 결과(AULA F87Pro Bluetooth):
+- Battery Service 발견: PASS
+- Battery Level 발견: PASS
+- Uncached Read: `100%` PASS
+- `Read, Notify`: 확인
+- Notify Subscribe: PASS
+- 전원 OFF/ON 재연결 후 재조회: PASS
+- 실제 ValueChanged 발생 관찰: POC-C로 이관
 
-대표 테스트 장치로 AULA F87Pro Bluetooth를 사용하되, 구현은 AULA 전용이 아니라 표준 BLE Provider로 작성한다.
+판정: **PASS**
 
-## B03 — HID Battery / Power Provider
+DualSense Bluetooth는 `0x180F` 검색에 나타나지 않았으므로 다른 Provider로 이관한다.
 
-USB/HID 또는 Bluetooth HID 장치에서 다음을 조사한다.
+## B03 — Game Controller / HID Battery Provider
 
-- Windows HID/Device property에 Battery/Power 관련 표준 속성이 있는지
-- HID Feature/Input Report에 Battery Level이 있는지
-- DualSense 등 HID 기반 장치를 대표 샘플로 검증
+DualSense Bluetooth를 대표 샘플로 사용한다.
+
+먼저 공개 Windows API를 우선한다.
+
+1. `Windows.Gaming.Input.RawGameController.TryGetBatteryReport()`
+2. `Windows.Gaming.Input.Gamepad.TryGetBatteryReport()`
+3. 위 API가 제품 요구사항에 충분하지 않을 때만 Raw HID Input/Feature Report fallback
+
+Raw HID 단계에서도 undocumented byte offset을 사전 가정하지 않고 실제 evidence를 먼저 수집한다.
 
 ## B04 — 2.4GHz Receiver / Vendor Provider
 
