@@ -17,7 +17,7 @@
 | FR-006 | Polling Fallback | Must | ARC-002, ARC-004 | BLE notify 미지원 및 WGI BatteryReport 30초 polling | SPEC-WGI + 실장비 변화 TBD | In Implementation |
 | FR-007 | 시작 시 즉시 조회 | Must | ARC-002, ARC-003 | watcher enumeration + read-only open | G6-SMOKE-01 | Implemented / Integration PASS |
 | FR-008 | 신규 장치 즉시 조회 | Must | ARC-002, ARC-003 | watcher Added + read-only open | 실장비 통합 TBD | In Implementation |
-| FR-009 | 장치 해제 즉시 제거 | Must | ARC-003, ARC-004 | DeviceStateReducer | SPEC-APP | In Implementation |
+| FR-009 | 장치 해제 즉시 제거 | Must | ARC-003, ARC-004 | DeviceStateReducer + provider removal events | SPEC-APP + G6-CHG006-007-01 Xbox OFF | Implemented / Integration PASS WITH LIMITATION |
 | FR-010 | 절전 복귀 처리 | Must | ARC-002, ARC-004 | TBD | TBD | Architecture Draft |
 | FR-011 | 개별 장치 숨김/영속화 | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
 | FR-012 | Widget 위치 저장/복원 | Must | ARC-006, ARC-008 | JsonWidgetSettingsStore + WindowPositionPolicy | SPEC-WPF + manual restart TBD | In Implementation |
