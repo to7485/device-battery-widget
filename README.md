@@ -180,3 +180,7 @@ The 10-second Unknown and 30-second Dormant boundaries are also isolated in a mo
 ## Update 29 — Gate 6 WPF Presentation Foundation
 
 The WPF presentation project now contains a functional widget shell and revision-aware ViewModels for empty, waiting, available, estimated, charging, unknown, dormant, and removed states. Final styling, tray lifecycle, settings, and Production app composition remain subsequent increments.
+
+## Update 30 — Gate 6 Executable App Shell
+
+`DeviceBattery.App` now composes the Production DualSense Provider, coordinator, reducer, WPF widget, and WinForms tray icon. Widget X and tray Exit converge on one cleanup path; minimize hides the widget while the tray and Provider remain active.

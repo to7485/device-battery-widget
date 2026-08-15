@@ -3,6 +3,7 @@
   <Project Path="src/DeviceBattery.Application/DeviceBattery.Application.csproj" />
   <Project Path="src/DeviceBattery.Infrastructure.Windows/DeviceBattery.Infrastructure.Windows.csproj" />
   <Project Path="src/DeviceBattery.Presentation.Wpf/DeviceBattery.Presentation.Wpf.csproj" />
+  <Project Path="src/DeviceBattery.App/DeviceBattery.App.csproj" />
   <Project Path="tests/DeviceBattery.Domain.Specs/DeviceBattery.Domain.Specs.csproj" />
   <Project Path="tests/DeviceBattery.Application.Specs/DeviceBattery.Application.Specs.csproj" />
   <Project Path="tests/DeviceBattery.Coordinator.Specs/DeviceBattery.Coordinator.Specs.csproj" />

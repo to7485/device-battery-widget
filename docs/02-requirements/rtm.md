@@ -25,7 +25,7 @@
 | FR-014 | 동일 모델 장치 개별 식별 | Must | ARC-005 | DualSenseDeviceIdentity provider-owned hash key | SPEC-DS-PARSER | In Implementation |
 | FR-015 | Windows 로그인 자동 실행, 기본 OFF | Should | ARC-008, ARC-010 | TBD | TBD | Architecture Draft |
 | FR-016 | 숨긴 장치 목록/숨김 해제 | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
-| FR-017 | System Tray 제공 | Must | ARC-007 | TBD | TBD | Architecture Draft |
+| FR-017 | System Tray 제공 | Must | ARC-007 | TrayIconController | G6-APP-SMOKE-01 + manual lifecycle TBD | In Implementation |
 | UIR-001 | Widget 형태 표시 | Must | ARC-006 | WidgetWindow baseline shell | build + SPEC-WPF | In Implementation |
 | UIR-002 | 장치 이름 표시 | Must | ARC-006 | DeviceCardViewModel/WidgetWindow | SPEC-WPF | In Implementation |
 | UIR-003 | Battery Gauge | Must | ARC-006 | DeviceCardViewModel/ProgressBar | SPEC-WPF | In Implementation |
@@ -38,7 +38,7 @@
 | UIR-010 | 조회 중 상태 | Should | ARC-006 | waiting projection | SPEC-WPF | In Implementation |
 | UIR-011 | Battery 미지원 장치 표시 | Deferred | TBD | TBD | TBD | vNext / CHG-002 |
 | UIR-012 | Battery Unknown 표시 | Must | ARC-001, ARC-006 | stale-clearing DeviceCardViewModel | SPEC-WPF | In Implementation |
-| UIR-013 | System Tray Context Menu | Must | ARC-007 | TBD | TBD | Architecture Draft |
+| UIR-013 | System Tray Context Menu | Must | ARC-007 | Show/Topmost/Exit menu baseline | G6-APP-SMOKE-01 + manual verification TBD | In Implementation |
 | NFR-PERF-001 | 유휴 CPU 목표 | Must | ARC-002~004, ARC-009 | TBD | TBD | Architecture Draft |
 | NFR-PERF-002 | 작업 중 CPU 목표 | Must | ARC-002~004, ARC-009 | TBD | TBD | Architecture Draft |
 | NFR-PERF-003 | Memory 목표 | Must | ARC-007, ARC-009 | TBD | TBD | Architecture Draft |
@@ -64,4 +64,4 @@
 | OR-002 | Release Build | Must | ARC-010 | TBD | TBD | Architecture Draft |
 | OR-003 | Version 관리 | Must | ARC-010 | TBD | TBD | Architecture Draft |
 | OR-004 | Installer/Portable 검토 | Should | ARC-010 | TBD | TBD | Architecture Draft |
-| OR-005 | Widget Close 시 Application 종료 | Must | ARC-007 | TBD | TBD | Architecture Draft |
+| OR-005 | Widget Close 시 Application 종료 | Must | ARC-007 | App single ShutdownAsync path | G6-APP-SMOKE-01 + manual X verification TBD | In Implementation |

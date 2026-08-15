@@ -19,7 +19,7 @@
                 <Border Background="#222730" CornerRadius="12" Padding="18"><Grid>
                     <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
                     <DockPanel><TextBlock Text="{Binding DisplayName}" FontSize="16" FontWeight="SemiBold"/><TextBlock Text="{Binding BatteryText}" DockPanel.Dock="Right" FontSize="18" FontWeight="Bold" HorizontalAlignment="Right"/></DockPanel>
-                    <ProgressBar Grid.Row="1" Margin="0,16,0,10" Height="8" Maximum="100" Value="{Binding GaugePercent}" Background="#343A45">
+                    <ProgressBar Grid.Row="1" Margin="0,16,0,10" Height="8" Maximum="100" Value="{Binding GaugePercent, Mode=OneWay}" Background="#343A45">
                         <ProgressBar.Style><Style TargetType="ProgressBar">
                             <Setter Property="Foreground" Value="#70A7FF"/>
                             <Style.Triggers><DataTrigger Binding="{Binding IsCharging}" Value="True"><Setter Property="Foreground" Value="#7CD992"/></DataTrigger></Style.Triggers>

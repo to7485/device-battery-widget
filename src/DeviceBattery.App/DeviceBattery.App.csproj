@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>DeviceBatteryWidget</AssemblyName>
+    <RootNamespace>DeviceBattery.App</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeviceBattery.Application\DeviceBattery.Application.csproj" />
+    <ProjectReference Include="..\DeviceBattery.Infrastructure.Windows\DeviceBattery.Infrastructure.Windows.csproj" />
+    <ProjectReference Include="..\DeviceBattery.Presentation.Wpf\DeviceBattery.Presentation.Wpf.csproj" />
+  </ItemGroup>
+</Project>
