@@ -21,8 +21,8 @@
 
 ## Result
 
-**PASS WITH LIMITATION**
+**PASS**
 
 - Initial discovery, battery projection, provider arbitration, and dynamic widget sizing passed on real devices.
-- Xbox removal on power OFF passed. Xbox power ON re-registration and the AULA power OFF/ON lifecycle still require explicit retesting.
+- Xbox and AULA both passed automatic row removal on power OFF and automatic re-registration with battery display on power ON.
 - Windows.Gaming.Input battery precision is device/transport dependent. When a valid BLE Battery Level is available for the same displayed device, BLE is the authoritative UI source.

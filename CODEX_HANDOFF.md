@@ -829,7 +829,8 @@ Mouse/Keyboard/Headset/Receiver 지원은 vNext로 유지한다.
 
 CHG-006 승인으로 표준 BLE Battery Service를 제공하는 장치는 예외적으로 현재 Production 범위에 포함한다.
 `BleGattBatteryProvider`는 Notify/Indicate 우선, 미지원 시 30초 uncached read fallback을 사용하며
-vendor-specific characteristic/command는 사용하지 않는다. AULA F87Pro 실장비 통합 재검증이 다음 승인 증거다.
+vendor-specific characteristic/command는 사용하지 않는다. AULA F87Pro와 Xbox 실장비에서 초기 표시,
+전원 OFF 자동 제거, 전원 ON 자동 재등록을 확인해 CHG-006/CHG-007 다중 Provider smoke를 PASS로 닫았다.
 
 CHG-007 승인으로 Xbox는 `GamingInputBatteryProvider`가 Gamepad 연결 이벤트와 30초 BatteryReport 조회로 담당한다.
 DualSense는 중복 방지를 위해 이 Provider에서 제외한다. Xbox 10% 실측은 단계형일 수 있어 estimated granular precision으로 표시한다.
