@@ -555,6 +555,9 @@ POC-D01~D05 System Tray / Lifecycle
 
 POC-E01~E03/E08 Resource / Performance
 → PASS WITH LIMITATION (Tray CPU 0.001%/WS 42.16 MiB; BT Battery CPU 0.144%/WS 46.43 MiB; 5분 baseline만 완료)
+
+POC-E04/E06 Startup / Runtime Deployment
+→ PASS WITH LIMITATION (FDD 68.8 ms, SCD 67.5 ms; 각 10/10; Win10만 검증, packaging pending)
 ```
 
 ---

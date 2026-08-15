@@ -29,9 +29,9 @@
 | POC-TC-022 | E01 | Idle CPU | 5분 평균 측정값 확보 | PASS (Tray 0.001%, BT Battery 0.144%) |
 | POC-TC-023 | E02 | Memory | Working Set/Private Memory 확보 | PASS (최대 46.43/12.74 MiB) |
 | POC-TC-024 | E03 | Handle/Thread | 지속 증가 여부 확인 | PASS (5분 지속 증가 없음) |
-| POC-TC-025 | E04 | Startup | 시작시간 측정 | NOT TESTED |
-| POC-TC-026 | E05 | OS | Win10/11 차이 기록 | NOT TESTED |
-| POC-TC-027 | E06 | Runtime/Deploy | 배포 특성 확인 | NOT TESTED |
+| POC-TC-025 | E04 | Startup | 시작시간 측정 | PASS (FDD 68.8 ms, SCD 67.5 ms; 각 10/10) |
+| POC-TC-026 | E05 | OS | Win10/11 차이 기록 | PASS WITH LIMITATION (Win10 22H2만 확인) |
+| POC-TC-027 | E06 | Runtime/Deploy | 배포 특성 확인 | PASS WITH LIMITATION (FDD/SCD win-x64; packaging pending) |
 | POC-TC-028 | E07 | 기술 적합성 | 채택/조건부/대체 권고 | NOT TESTED |
 | **POC-TC-029** | **E08** | **기능별 Resource 증가량** | **기능 추가 단계별 CPU/Memory/Handle/Thread 변화량 확보** | **PASS WITH LIMITATION (별도 POC 간 1차 비교; 동일-host pending)** |
 | POC-TC-030 | B05 | DualSense 상태 정규화 | bucket/charging code를 BatteryState로 변환 | PASS |

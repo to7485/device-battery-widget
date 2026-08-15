@@ -128,3 +128,7 @@ Added `poc/DeviceBattery.Poc.SystemTrayLifecycle`. Hardware testing passed tray 
 ## Update 17 — POC-E Resource Baselines
 
 Added `poc/DeviceBattery.Poc.ResourceSampler`. Five-minute Release measurements passed the idle targets: Tray averaged 0.001% CPU with 42.16 MiB Working Set; Bluetooth-only DualSense monitoring averaged 0.144% CPU with 46.43 MiB Working Set. Neither run showed Handle/Thread growth. Overall result is `PASS WITH LIMITATION` because long soak, startup, OS, deployment, and same-host incremental measurements remain.
+
+## Update 18 — POC-E04/E06 Startup and Deployment
+
+Added `poc/DeviceBattery.Poc.StartupSampler`. On Windows 10 22H2, framework-dependent and self-contained win-x64 tray publishes both reached a visible window in 10/10 runs, averaging 68.8 ms and 67.5 ms. Publish sizes were 0.18 MiB and 117.08 MiB. Result: `PASS WITH LIMITATION` pending Windows 11 and installer/portable packaging validation.
