@@ -543,6 +543,12 @@ POC-B05 Normalized BatteryState
 
 POC-B05-1 DualSense Lifecycle / Timeout
 → PASS WITH LIMITATION (USB charging PASS; Bluetooth timeout/recovery 3회 PASS; cleanup PASS; callback 직렬화 필요)
+
+POC-B06 Event-first / Poll Fallback Policy
+→ PASS WITH LIMITATION (8/8 deterministic; DualSense device polling 없음; Production timeout/직렬화 pending)
+
+POC-C06 DualSense Sleep / Resume
+→ PASS (기존 HID session 자동 복구 약 20초; R/restart 불필요; cleanup PASS)
 ```
 
 ---

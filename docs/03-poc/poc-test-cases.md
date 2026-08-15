@@ -44,6 +44,14 @@
 | POC-TC-037 | B05-1 | DualSense USB charging transition | 64-byte report에서 NotCharging -> Charging 전환 | PASS |
 | POC-TC-038 | B05-1 | Bluetooth report recovery | 동일 HID session에서 Unknown -> Available 복구 | PASS (3회) |
 | POC-TC-039 | B05-1 | Timer/input concurrency | 동시 callback의 상태 및 UI 전달 순서 확인 | PASS WITH LIMITATION (직렬화 필요) |
+| POC-TC-040 | B06 | Event-first selection | DualSense HID provider가 event-only 선택 | PASS |
+| POC-TC-041 | B06 | No device polling | DualSense timer device-read 호출 0회 | PASS |
+| POC-TC-042 | B06 | Poll fallback guard | reliable read endpoint가 있을 때만 polling 허용 | PASS |
+| POC-TC-043 | B06 | Freshness recovery | timeout stale 제거 후 event로 Available 복구 | PASS |
+| POC-TC-044 | C06 | Sleep entry | Available 상태에서 Windows 절전 진입 | PASS |
+| POC-TC-045 | C06 | Automatic resume recovery | resume 후 30초 내 자동 Available 복구 | PASS (약 20초) |
+| POC-TC-046 | C06 | Read-only reopen fallback | 자동 복구 실패 시 R reopen 결과 | NOT REQUIRED (자동 복구 성공) |
+| POC-TC-047 | C06 | Resume cleanup | resume 검증 후 watcher/timer/HID 정리 | PASS |
 
 ## Evidence
 - Console Log

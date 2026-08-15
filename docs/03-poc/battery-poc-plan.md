@@ -79,6 +79,11 @@ Provider가 달라도 애플리케이션 Core에는 동일 모델로 전달한�
 - 일시 조회 실패 시 stale %를 유지하지 않고 Unknown
 - Generic Receiver 연결 상태를 실제 Peripheral battery/online 상태로 대체하지 않음
 
+실행 결과(2026-08-15): deterministic policy matrix `8/8 PASS`.
+
+판정: **PASS WITH LIMITATION** — DualSense는 event-only, timer device-read 0회로 검증됐다.
+Production timeout과 callback 직렬화 정책은 후속 설계에서 확정한다.
+
 ## 2026-08-15 status addendum
 
 - B01 Windows.Devices.Power peripheral battery: FAIL / NEED ALTERNATIVE

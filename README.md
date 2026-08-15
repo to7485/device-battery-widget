@@ -110,3 +110,13 @@ Added `poc/DeviceBattery.Poc.NormalizedBatteryState` for the DualSense-only v1.0
 ## Update 13 — DualSense Lifecycle / Timeout Probe
 
 Added `poc/DeviceBattery.Poc.DualSenseLifecycleProbe`. Read-only hardware testing passed USB charging transitions, Bluetooth timeout/recovery across three cycles, stale-percent removal, and cleanup. Final result is `PASS WITH LIMITATION`: paired Bluetooth did not emit Removed/Added, the 10-second timeout is POC-only, and Production state delivery must serialize timer/input callbacks.
+
+## Update 14 — POC-B06 Event-first Policy
+
+Added `poc/DeviceBattery.Poc.EventFirstPolicy`. The deterministic policy matrix passed 8/8: DualSense selects event-only monitoring, freshness timers perform zero device reads, stale percentage is cleared on timeout, and polling is permitted only for providers with a reliable read endpoint. Result: `PASS WITH LIMITATION` pending Production timeout and callback-serialization design.
+
+## Update 15 — POC-C06 Sleep / Resume Ready
+
+The approved sleep/resume hardware test reuses the completed read-only `DeviceBattery.Poc.DualSenseLifecycleProbe`. It first checks automatic event recovery after Windows resume and uses the existing `R` read-only reopen only as a fallback. No new device command path was introduced.
+
+Hardware result: `PASS`. After Windows resume, the existing Bluetooth HID session recovered automatically in about 20 seconds without `R`, watcher recreation, or application restart. Final Available state and cleanup were verified.
