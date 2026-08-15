@@ -33,3 +33,17 @@ DeviceKey는 원본 Windows HID ID 대신 Provider 소유 SHA-256 축약 key로 
 
 - PASS 근거: Production Provider → Coordinator → Reducer 실제 장비 경로와 cleanup 성공
 - 남은 제한: OFF/ON, 10초 Unknown, 30초 Dormant, sleep/resume는 Production host에서 추가 검증 필요
+
+## Freshness 정책 회귀
+
+Provider 내부 시간 판단을 `ReportFreshnessTracker`로 분리하고 monotonic manual time으로
+다음 경계를 자동 검증했다.
+
+- 9.999초: 상태 유지
+- 정확히 10초: `FreshnessExpired` 1회
+- 정확히 30초: `DeviceOffline` 1회
+- 만료 후 valid report: recovery 및 기준 시각 reset
+
+분리 후 5초 실장비 회귀에서도 `Available 15% / NotCharging`, `Faulted=0`, cleanup 완료를
+재확인했다. 90초 관찰 중에는 컨트롤러가 계속 report를 보내 물리 OFF 전이는 재현되지
+않았으며 PASS 증거로 계산하지 않는다.

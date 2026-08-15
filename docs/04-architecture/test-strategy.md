@@ -10,7 +10,7 @@
 - BatteryState invariant
 - state reducer의 모든 전이
 - older session generation 폐기
-- FakeTimeProvider 기반 10초/30초 경계
+- monotonic manual TimeProvider 기반 10초/30초 경계 (`SPEC-DS-FRESHNESS`)
 - settings schema migration/atomic save
 
 ## Concurrency

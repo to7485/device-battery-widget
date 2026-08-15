@@ -179,6 +179,8 @@ public sealed class DualSenseHidProvider : IBatteryProvider
                 registration,
                 parser,
                 timeProvider,
+                unknownAfter,
+                dormantAfter,
                 TryPublish);
             if (!registration.TryAttach(session))
             {
@@ -200,10 +202,9 @@ public sealed class DualSenseHidProvider : IBatteryProvider
         {
             while (await timer.WaitForNextTickAsync(cancellationToken).ConfigureAwait(false))
             {
-                long now = timeProvider.GetTimestamp();
                 DateTimeOffset occurredAt = timeProvider.GetUtcNow();
                 foreach (Registration registration in registrations.Values)
-                    registration.Session?.EvaluateFreshness(now, occurredAt, unknownAfter, dormantAfter);
+                    registration.Session?.EvaluateFreshness(occurredAt);
             }
         }
         catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
@@ -274,12 +275,11 @@ public sealed class DualSenseHidProvider : IBatteryProvider
         private readonly Registration registration;
         private readonly IHidBatteryParser parser;
         private readonly TimeProvider timeProvider;
+        private readonly ReportFreshnessTracker freshness;
+        private readonly TimeSpan unknownAfter;
         private readonly Func<ProviderEvent, bool> publish;
-        private long lastValidTimestamp;
         private byte lastStatus;
         private bool hasStatus;
-        private bool freshnessExpired;
-        private bool dormant;
         private bool disposed;
 
         public Session(
@@ -287,23 +287,22 @@ public sealed class DualSenseHidProvider : IBatteryProvider
             Registration registration,
             IHidBatteryParser parser,
             TimeProvider timeProvider,
+            TimeSpan unknownAfter,
+            TimeSpan dormantAfter,
             Func<ProviderEvent, bool> publish)
         {
             this.device = device;
             this.registration = registration;
             this.parser = parser;
             this.timeProvider = timeProvider;
+            this.unknownAfter = unknownAfter;
+            freshness = new(timeProvider, unknownAfter, dormantAfter);
             this.publish = publish;
-            lastValidTimestamp = timeProvider.GetTimestamp();
         }
 
         public void Start() => device.InputReportReceived += OnInputReportReceived;
 
-        public void EvaluateFreshness(
-            long now,
-            DateTimeOffset occurredAt,
-            TimeSpan unknownAfter,
-            TimeSpan dormantAfter)
+        public void EvaluateFreshness(DateTimeOffset occurredAt)
         {
             ProviderEvent? first = null;
             ProviderEvent? second = null;
@@ -312,10 +311,9 @@ public sealed class DualSenseHidProvider : IBatteryProvider
                 if (disposed)
                     return;
 
-                TimeSpan elapsed = timeProvider.GetElapsedTime(lastValidTimestamp, now);
-                if (!freshnessExpired && elapsed >= unknownAfter)
+                FreshnessEvaluation evaluation = freshness.Evaluate();
+                if (evaluation.ExpiredNow)
                 {
-                    freshnessExpired = true;
                     first = new FreshnessExpired(
                         registration.Key,
                         registration.Generation,
@@ -323,9 +321,8 @@ public sealed class DualSenseHidProvider : IBatteryProvider
                         occurredAt,
                         $"No valid DualSense report for {unknownAfter.TotalSeconds:0} seconds");
                 }
-                if (!dormant && elapsed >= dormantAfter)
+                if (evaluation.DormantNow)
                 {
-                    dormant = true;
                     second = new DeviceOffline(
                         registration.Key,
                         registration.Generation,
@@ -367,11 +364,8 @@ public sealed class DualSenseHidProvider : IBatteryProvider
                     if (disposed)
                         return;
 
-                    lastValidTimestamp = timeProvider.GetTimestamp();
-                    bool recovered = freshnessExpired || dormant || !hasStatus;
+                    bool recovered = freshness.MarkValidReport();
                     bool changed = hasStatus && lastStatus != observation.RawStatusByte;
-                    freshnessExpired = false;
-                    dormant = false;
                     lastStatus = observation.RawStatusByte;
                     hasStatus = true;
 

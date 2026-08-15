@@ -174,3 +174,5 @@ The Windows provider now uses the targeted DualSense gamepad selector, accepts B
 A time-bounded console host connects the Production Provider, coordinator, and reducer for real-device verification. It prints hashed keys and normalized state only, then cancels the Provider, drains the mailbox, and reports cleanup.
 
 The first 15-second real-device run completed with `Unknown → Available 15% / NotCharging`, `Processed=2`, `Faulted=0`, and cleanup complete. The current integration verdict is `PASS WITH LIMITATION` pending Production OFF/ON, Dormant, and sleep/resume scenarios.
+
+The 10-second Unknown and 30-second Dormant boundaries are also isolated in a monotonic `TimeProvider` freshness policy with deterministic boundary/recovery specs. Physical OFF/ON evidence remains a separate integration item.

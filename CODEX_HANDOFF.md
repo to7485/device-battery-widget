@@ -815,6 +815,9 @@ Provider → Coordinator → Reducer 경로와 종료 cleanup을 먼저 확인�
 2026-08-15 첫 15초 Production smoke에서 `Unknown → Available 15% / NotCharging`,
 `Processed=2`, `Faulted=0`, cleanup 완료를 확인했다. 판정은 추가 lifecycle 시나리오가
 남아 `PASS WITH LIMITATION`이다.
+
+10초 Unknown/30초 Dormant 경계는 `ReportFreshnessTracker`와 수동 monotonic time 사양으로
+자동 검증한다. 물리 OFF/ON 및 sleep/resume 증거는 자동 사양과 구분해 추가한다.
 Mouse/Keyboard/Headset/Receiver 지원은 vNext로 유지한다.
 ```
 

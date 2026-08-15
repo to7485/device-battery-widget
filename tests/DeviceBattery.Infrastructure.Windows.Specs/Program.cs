@@ -87,6 +87,42 @@ var specs = new (string Name, Action Run)[]
         Equal(first, second);
         Equal(DualSenseHidBatteryParser.ProviderId, first.ProviderId);
         Equal(false, first.StableId.Contains("HID", StringComparison.OrdinalIgnoreCase));
+    }),
+    ("Freshness remains active before 10 seconds", () =>
+    {
+        var time = new ManualTimeProvider();
+        var tracker = new ReportFreshnessTracker(time, TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(30));
+        tracker.MarkValidReport();
+        time.Advance(TimeSpan.FromMilliseconds(9999));
+        Equal(new FreshnessEvaluation(false, false), tracker.Evaluate());
+    }),
+    ("Freshness expires exactly at 10 seconds once", () =>
+    {
+        var time = new ManualTimeProvider();
+        var tracker = new ReportFreshnessTracker(time, TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(30));
+        tracker.MarkValidReport();
+        time.Advance(TimeSpan.FromSeconds(10));
+        Equal(new FreshnessEvaluation(true, false), tracker.Evaluate());
+        Equal(new FreshnessEvaluation(false, false), tracker.Evaluate());
+    }),
+    ("Freshness becomes dormant exactly at 30 seconds", () =>
+    {
+        var time = new ManualTimeProvider();
+        var tracker = new ReportFreshnessTracker(time, TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(30));
+        tracker.MarkValidReport();
+        time.Advance(TimeSpan.FromSeconds(30));
+        Equal(new FreshnessEvaluation(true, true), tracker.Evaluate());
+    }),
+    ("Valid report after expiry is recovery and resets clock", () =>
+    {
+        var time = new ManualTimeProvider();
+        var tracker = new ReportFreshnessTracker(time, TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(30));
+        Equal(true, tracker.MarkValidReport());
+        time.Advance(TimeSpan.FromSeconds(10));
+        tracker.Evaluate();
+        Equal(true, tracker.MarkValidReport());
+        time.Advance(TimeSpan.FromSeconds(9));
+        Equal(new FreshnessEvaluation(false, false), tracker.Evaluate());
     })
 };
 
@@ -121,4 +157,14 @@ static void Equal<T>(T expected, T actual)
 {
     if (!EqualityComparer<T>.Default.Equals(expected, actual))
         throw new InvalidOperationException($"Expected {expected}, actual {actual}.");
+}
+
+sealed class ManualTimeProvider : TimeProvider
+{
+    private long timestamp;
+
+    public override long TimestampFrequency => 1_000;
+    public override long GetTimestamp() => timestamp;
+    public void Advance(TimeSpan duration) =>
+        timestamp = checked(timestamp + (long)(duration.TotalSeconds * TimestampFrequency));
 }

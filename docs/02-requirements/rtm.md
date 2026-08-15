@@ -11,7 +11,7 @@
 |---|---|---|---|---|---|---|
 | FR-001 | DualSense Bluetooth 탐색 | Must | ARC-002 | DualSenseHidProvider targeted watcher/BT filter | SPEC-DS-PARSER + G6-SMOKE-01 | Implemented / Integration PASS |
 | FR-002 | 장치 이름 획득 | Must | ARC-002, ARC-006 | DualSenseHidProvider DeviceDiscovered | G6-SMOKE-01 | Implemented / Integration PASS |
-| FR-003 | Battery 상태 조회 | Must | ARC-001~004 | Domain BatteryState, DualSenseHidBatteryParser, reducer/coordinator | SPEC-DOM, SPEC-APP, SPEC-COORD, SPEC-DS-PARSER | In Implementation |
+| FR-003 | Battery 상태 조회 | Must | ARC-001~004 | Domain BatteryState, DualSenseHidBatteryParser, reducer/coordinator, ReportFreshnessTracker | SPEC-DOM, SPEC-APP, SPEC-COORD, SPEC-DS-PARSER, SPEC-DS-FRESHNESS | In Implementation |
 | FR-004 | 충전 상태 조회 | Must | ARC-001~003 | Domain BatteryState, DualSenseHidBatteryParser | SPEC-DOM, SPEC-DS-PARSER | In Implementation |
 | FR-005 | Event 기반 Battery 갱신 | Must | ARC-002, ARC-003 | ProviderEvent, DeviceStateCoordinator | SPEC-APP, SPEC-COORD | In Implementation |
 | FR-006 | Polling Fallback | Must | ARC-002, ARC-004 | TBD | TBD | Architecture Draft |

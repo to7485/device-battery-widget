@@ -51,6 +51,7 @@
 | DEC-040 | Gate 6 | Production DualSense parser는 실측 78-byte BT 길이를 ID보다 우선하고 invalid status를 상태 변경 없이 거부 | 확정 |
 | DEC-041 | Gate 6 | Production Provider는 targeted selector + Bluetooth endpoint filter + FileAccessMode.Read만 사용 | 확정 |
 | DEC-042 | Gate 6 | 실제 UI 연결 전 제한 시간 smoke host로 Production Provider→Coordinator→Reducer 통합 경로 검증 | 확정 |
+| DEC-043 | Gate 6 | 10초 Unknown/30초 Dormant 판단을 monotonic TimeProvider 기반 독립 freshness policy로 분리 | 확정 |
 
 ## 변경요청 현황
 
