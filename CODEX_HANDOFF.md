@@ -847,3 +847,6 @@ FR-011/FR-016 장치 표시 관리는 트레이 하위 메뉴, 다중 연속 선
 FR-015 Windows 로그인 자동실행은 unpackaged HKCU Run adapter로 구현했다. 기본 OFF이며 사용자가
 트레이에서 명시적으로 선택할 때 앱 전용 값만 생성/삭제한다. ON/OFF와 메뉴 상태 갱신을 실장비에서
 확인해 PASS로 기록했다.
+
+FR-010 절전/복귀는 Windows Resume 후 30초간 기존 이벤트 복구를 우선하고 이후 Provider별
+read-only refresh를 1회 수행한다. 실장비 절전/복귀에서 장치와 배터리 표시가 자동 복구되어 PASS다.

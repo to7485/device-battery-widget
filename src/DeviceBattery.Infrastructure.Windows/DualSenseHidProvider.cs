@@ -9,7 +9,7 @@ using Windows.Storage.Streams;
 
 namespace DeviceBattery.Infrastructure.Windows;
 
-public sealed class DualSenseHidProvider : IBatteryProvider
+public sealed class DualSenseHidProvider : IBatteryProvider, IRefreshableBatteryProvider
 {
     private const ushort GenericDesktopUsagePage = 0x0001;
     private const ushort GamepadUsageId = 0x0005;
@@ -50,6 +50,21 @@ public sealed class DualSenseHidProvider : IBatteryProvider
     }
 
     public string ProviderId => DualSenseHidBatteryParser.ProviderId;
+
+    public async ValueTask RefreshAsync(CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        DeviceInformationCollection devices = await DeviceInformation.FindAllAsync(CreateSelector());
+        foreach (DeviceInformation information in devices)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (!DualSenseDeviceIdentity.IsSupportedEndpoint(information.Id)) continue;
+            if (registrations.TryGetValue(information.Id, out Registration? registration))
+                await ReopenReadOnlyAsync(information, registration).ConfigureAwait(false);
+            else
+                await OpenReadOnlyAsync(information).ConfigureAwait(false);
+        }
+    }
 
     public async Task RunAsync(
         ChannelWriter<ProviderEvent> events,
@@ -96,16 +111,17 @@ public sealed class DualSenseHidProvider : IBatteryProvider
 
     private void StartWatcher()
     {
-        string selector = HidDevice.GetDeviceSelector(
-            GenericDesktopUsagePage,
-            GamepadUsageId,
-            SonyVendorId,
-            DualSenseProductId);
-        watcher = DeviceInformation.CreateWatcher(selector);
+        watcher = DeviceInformation.CreateWatcher(CreateSelector());
         watcher.Added += OnDeviceAdded;
         watcher.Removed += OnDeviceRemoved;
         watcher.Start();
     }
+
+    private static string CreateSelector() => HidDevice.GetDeviceSelector(
+            GenericDesktopUsagePage,
+            GamepadUsageId,
+            SonyVendorId,
+            DualSenseProductId);
 
     private void StopWatcher()
     {
@@ -193,6 +209,28 @@ public sealed class DualSenseHidProvider : IBatteryProvider
         catch (Exception ex)
         {
             PublishFault(registration, $"HID_OPEN_{ex.GetType().Name}", "Read-only HID open failed.");
+        }
+    }
+
+    private async Task ReopenReadOnlyAsync(DeviceInformation information, Registration registration)
+    {
+        registration.DisposeSession();
+        try
+        {
+            HidDevice? device = await HidDevice.FromIdAsync(information.Id, FileAccessMode.Read);
+            if (device is null || registration.IsRemoved || !registrations.TryGetValue(information.Id, out Registration? current) || current != registration)
+            {
+                device?.Dispose();
+                return;
+            }
+            var session = new Session(device, registration, parser, timeProvider, unknownAfter, dormantAfter,
+                DualSenseDeviceIdentity.UsesReportFreshnessTimeout(information.Id), TryPublish);
+            if (!registration.TryAttach(session)) { session.Dispose(); return; }
+            session.Start();
+        }
+        catch (Exception ex)
+        {
+            PublishFault(registration, $"HID_REOPEN_{ex.GetType().Name}", "Read-only HID reopen after resume failed.");
         }
     }
 

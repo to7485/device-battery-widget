@@ -18,7 +18,7 @@
 | FR-007 | 시작 시 즉시 조회 | Must | ARC-002, ARC-003 | watcher enumeration + read-only open | G6-SMOKE-01 | Implemented / Integration PASS |
 | FR-008 | 신규 장치 즉시 조회 | Must | ARC-002, ARC-003 | watcher Added + read-only open | G6-CHG006-007-01 Xbox/AULA ON | Implemented / Integration PASS |
 | FR-009 | 장치 해제 즉시 제거 | Must | ARC-003, ARC-004 | DeviceStateReducer + provider removal events | SPEC-APP + G6-CHG006-007-01 Xbox/AULA OFF | Implemented / Integration PASS |
-| FR-010 | 절전 복귀 처리 | Must | ARC-002, ARC-004 | TBD | TBD | Architecture Draft |
+| FR-010 | 절전 복귀 처리 | Must | ARC-002, ARC-004 | PowerMode resume + delayed IRefreshableBatteryProvider read-only refresh | G6-SLEEP-RESUME-01 | Implemented / Integration PASS |
 | FR-011 | 개별 장치 숨김/영속화 | Must | ARC-006, ARC-008 | WidgetViewModel hidden projection + JsonWidgetSettingsStore | SPEC-WPF + G6-VISIBILITY-01 | Implemented / Integration PASS |
 | FR-012 | Widget 위치 저장/복원 | Must | ARC-006, ARC-008 | JsonWidgetSettingsStore + WindowPositionPolicy | SPEC-WPF + manual restart TBD | In Implementation |
 | FR-013 | Always On Top 저장/복원, 기본 OFF | Must | ARC-006, ARC-008 | JsonWidgetSettingsStore + tray projection | SPEC-WPF + manual restart TBD | In Implementation |

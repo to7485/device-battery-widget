@@ -11,7 +11,7 @@ using Windows.Storage.Streams;
 
 namespace DeviceBattery.Infrastructure.Windows;
 
-public sealed class BleGattBatteryProvider : IBatteryProvider
+public sealed class BleGattBatteryProvider : IBatteryProvider, IRefreshableBatteryProvider
 {
     public const string Id = "BleGattBattery";
     private readonly TimeProvider timeProvider;
@@ -33,6 +33,25 @@ public sealed class BleGattBatteryProvider : IBatteryProvider
     }
 
     public string ProviderId => Id;
+
+    public async ValueTask RefreshAsync(CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        foreach (Registration registration in registrations.Values)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            Session? session = registration.Session;
+            if (session is not null) await session.RefreshAsync().ConfigureAwait(false);
+        }
+
+        string selector = GattDeviceService.GetDeviceSelectorFromUuid(GattServiceUuids.Battery);
+        DeviceInformationCollection devices = await DeviceInformation.FindAllAsync(selector);
+        foreach (DeviceInformation information in devices)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (!registrations.ContainsKey(information.Id)) await OpenAsync(information).ConfigureAwait(false);
+        }
+    }
 
     public async Task RunAsync(ChannelWriter<ProviderEvent> events, CancellationToken cancellationToken)
     {
@@ -158,6 +177,7 @@ public sealed class BleGattBatteryProvider : IBatteryProvider
         public DeviceKey Key { get; } = key;
         public int Generation { get; } = generation;
         public bool IsRemoved => Volatile.Read(ref removed) != 0;
+        public Session? Session => Volatile.Read(ref session);
         public long NextSequence() => Interlocked.Increment(ref sequence);
         public void MarkRemoved() => Interlocked.Exchange(ref removed, 1);
         public bool TryAttach(Session value) => !IsRemoved && Interlocked.CompareExchange(ref session, value, null) is null;
@@ -230,6 +250,8 @@ public sealed class BleGattBatteryProvider : IBatteryProvider
                 pollingTask = PollAsync(pollingCancellation.Token);
             }
         }
+
+        public Task RefreshAsync() => ReadAndPublishAsync(true);
 
         private async Task PollAsync(CancellationToken cancellationToken)
         {

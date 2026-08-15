@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Threading;
+using Microsoft.Win32;
 using DeviceBattery.Application;
 using DeviceBattery.Infrastructure.Windows;
 using DeviceBattery.Presentation.Wpf;
@@ -15,12 +16,15 @@ public partial class App : System.Windows.Application
     private readonly WidgetViewModel viewModel = new();
     private readonly JsonWidgetSettingsStore settingsStore = new();
     private readonly IAutoStartService autoStartService = new RegistryRunAutoStartService(Environment.ProcessPath ?? throw new InvalidOperationException("Executable path is unavailable."));
+    private readonly object resumeSync = new();
     private DeviceStateCoordinator? coordinator;
     private IBatteryProvider[] providers = [];
     private WidgetWindow? window;
     private TrayIconController? tray;
     private Task? coordinatorTask;
     private Task[] providerTasks = [];
+    private CancellationTokenSource? resumeRefreshCancellation;
+    private Task resumeRefreshTask = Task.CompletedTask;
     private int shutdownStarted;
     private bool allowWindowClose;
     private bool windowPlacementRestored;
@@ -57,6 +61,7 @@ public partial class App : System.Windows.Application
                 return ValueTask.CompletedTask;
             });
         providers = [new DualSenseHidProvider(), new BleGattBatteryProvider(), new GamingInputBatteryProvider()];
+        SystemEvents.PowerModeChanged += OnPowerModeChanged;
         coordinatorTask = coordinator.RunAsync();
         providerTasks = providers.Select(activeProvider => RunProviderAsync(activeProvider, coordinator)).ToArray();
 
@@ -97,6 +102,19 @@ public partial class App : System.Windows.Application
             return;
 
         lifetime.Cancel();
+        SystemEvents.PowerModeChanged -= OnPowerModeChanged;
+        CancellationTokenSource? refreshCancellation;
+        Task refreshTask;
+        lock (resumeSync)
+        {
+            refreshCancellation = resumeRefreshCancellation;
+            refreshTask = resumeRefreshTask;
+            resumeRefreshCancellation = null;
+            resumeRefreshTask = Task.CompletedTask;
+        }
+        refreshCancellation?.Cancel();
+        await refreshTask;
+        refreshCancellation?.Dispose();
 
         if (providerTasks.Length > 0)
             await Task.WhenAll(providerTasks);
@@ -158,6 +176,36 @@ public partial class App : System.Windows.Application
     }
 
     private void ToggleTopmost() => viewModel.IsTopmost = !viewModel.IsTopmost;
+
+    private void OnPowerModeChanged(object sender, PowerModeChangedEventArgs e)
+    {
+        if (e.Mode != PowerModes.Resume || lifetime.IsCancellationRequested) return;
+        lock (resumeSync)
+        {
+            resumeRefreshCancellation?.Cancel();
+            resumeRefreshCancellation?.Dispose();
+            resumeRefreshCancellation = CancellationTokenSource.CreateLinkedTokenSource(lifetime.Token);
+            resumeRefreshTask = RefreshProvidersAfterResumeAsync(resumeRefreshCancellation.Token);
+        }
+    }
+
+    private async Task RefreshProvidersAfterResumeAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            await Task.Delay(TimeSpan.FromSeconds(30), cancellationToken);
+            foreach (IRefreshableBatteryProvider provider in providers.OfType<IRefreshableBatteryProvider>())
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                try { await provider.RefreshAsync(cancellationToken); }
+                catch (Exception error) when (error is not OperationCanceledException)
+                {
+                    System.Diagnostics.Trace.WriteLine($"Resume refresh failed for {((IBatteryProvider)provider).ProviderId}: {error.GetType().Name}");
+                }
+            }
+        }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested) { }
+    }
 
     private bool GetAutoStart()
     {

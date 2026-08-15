@@ -230,3 +230,7 @@ The tray `장치 표시` submenu now controls each known indicator without stopp
 ## Update 38 — Windows Login Auto-start
 
 The tray now controls an unpackaged current-user auto-start registration. It is OFF by default, uses only the app-owned `DeviceBatteryWidget` value under HKCU Run, quotes the executable path, and re-reads external state when the tray opens. Settings-style menu actions remain open for consecutive changes.
+
+## Update 39 — Sleep / Resume Recovery
+
+The app now observes Windows resume, gives normal event-driven recovery a 30-second priority window, and then requests one read-only refresh from each provider. Real-device sleep/resume recovered the connected indicators and battery values automatically without duplicate rows.

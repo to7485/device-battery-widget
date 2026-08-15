@@ -9,7 +9,7 @@ using Windows.Gaming.Input;
 
 namespace DeviceBattery.Infrastructure.Windows;
 
-public sealed class GamingInputBatteryProvider : IBatteryProvider
+public sealed class GamingInputBatteryProvider : IBatteryProvider, IRefreshableBatteryProvider
 {
     public const string Id = "WindowsGamingInputBattery";
     private readonly TimeProvider timeProvider;
@@ -28,6 +28,18 @@ public sealed class GamingInputBatteryProvider : IBatteryProvider
     }
 
     public string ProviderId => Id;
+
+    public ValueTask RefreshAsync(CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        foreach (Gamepad gamepad in Gamepad.Gamepads)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (!registrations.TryGetValue(gamepad, out Registration? registration)) Add(gamepad);
+            else ReadAndPublish(gamepad, registration);
+        }
+        return ValueTask.CompletedTask;
+    }
 
     public async Task RunAsync(ChannelWriter<ProviderEvent> events, CancellationToken cancellationToken)
     {
