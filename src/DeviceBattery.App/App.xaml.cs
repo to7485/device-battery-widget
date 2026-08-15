@@ -15,11 +15,11 @@ public partial class App : System.Windows.Application
     private readonly WidgetViewModel viewModel = new();
     private readonly JsonWidgetSettingsStore settingsStore = new();
     private DeviceStateCoordinator? coordinator;
-    private DualSenseHidProvider? provider;
+    private IBatteryProvider[] providers = [];
     private WidgetWindow? window;
     private TrayIconController? tray;
     private Task? coordinatorTask;
-    private Task? providerTask;
+    private Task[] providerTasks = [];
     private int shutdownStarted;
     private bool allowWindowClose;
     private bool windowPlacementRestored;
@@ -47,9 +47,9 @@ public partial class App : System.Windows.Application
                 System.Diagnostics.Trace.WriteLine($"Coordinator event error: {error.GetType().Name}");
                 return ValueTask.CompletedTask;
             });
-        provider = new DualSenseHidProvider();
+        providers = [new DualSenseHidProvider(), new BleGattBatteryProvider(), new GamingInputBatteryProvider()];
         coordinatorTask = coordinator.RunAsync();
-        providerTask = RunProviderAsync(provider, coordinator);
+        providerTasks = providers.Select(activeProvider => RunProviderAsync(activeProvider, coordinator)).ToArray();
 
         viewModel.PropertyChanged += OnViewModelPropertyChanged;
         tray.SetTopmost(viewModel.IsTopmost);
@@ -67,7 +67,7 @@ public partial class App : System.Windows.Application
         }
     }
 
-    private async Task RunProviderAsync(DualSenseHidProvider activeProvider, DeviceStateCoordinator activeCoordinator)
+    private async Task RunProviderAsync(IBatteryProvider activeProvider, DeviceStateCoordinator activeCoordinator)
     {
         try
         {
@@ -76,7 +76,7 @@ public partial class App : System.Windows.Application
         catch (Exception ex)
         {
             System.Diagnostics.Trace.WriteLine($"Provider stopped: {ex.GetType().Name}");
-            await Dispatcher.InvokeAsync(() => _ = ShutdownAsync("Provider Failure"));
+            System.Diagnostics.Trace.WriteLine($"Provider {activeProvider.ProviderId} isolated after failure.");
         }
     }
 
@@ -88,13 +88,14 @@ public partial class App : System.Windows.Application
 
         lifetime.Cancel();
 
-        if (providerTask is not null)
-            await providerTask;
+        if (providerTasks.Length > 0)
+            await Task.WhenAll(providerTasks);
         coordinator?.Complete();
         if (coordinatorTask is not null)
             await coordinatorTask;
-        if (provider is not null)
-            await provider.DisposeAsync();
+        foreach (IBatteryProvider activeProvider in providers)
+            await activeProvider.DisposeAsync();
+        providers = [];
 
         tray?.Dispose();
         tray = null;

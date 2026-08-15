@@ -13,6 +13,12 @@ var specs = new (string Name, Action Run)[]
         Equal(BatteryAvailability.Available, state.Availability);
         Equal(false, state.IsEstimated);
     }),
+    ("Available permits unknown charging for standard battery level", () =>
+    {
+        BatteryState state = BatteryState.Available(73, ChargingState.Unknown, BatteryPrecision.ExactPercent, now, "BleGattBattery");
+        Equal(BatteryAvailability.Available, state.Availability);
+        Equal(ChargingState.Unknown, state.Charging);
+    }),
     ("Bucket state is estimated below full", () =>
     {
         BatteryState state = BatteryState.Available(15, ChargingState.NotCharging, BatteryPrecision.TenPercentBucket, now, "DualSenseHid");
@@ -20,6 +26,8 @@ var specs = new (string Name, Action Run)[]
     }),
     ("Bucket full is not estimated", () =>
         Equal(false, BatteryState.Available(100, ChargingState.Charging, BatteryPrecision.TenPercentBucket, now, "DualSenseHid").IsEstimated)),
+    ("Granular game-controller level is estimated", () =>
+        Equal(true, BatteryState.Available(40, ChargingState.NotCharging, BatteryPrecision.GranularLevel, now, "WindowsGamingInputBattery").IsEstimated)),
     ("Available rejects invalid percent", () =>
         Throws<ArgumentOutOfRangeException>(() => BatteryState.Available(101, ChargingState.NotCharging, BatteryPrecision.ExactPercent, now, "Test"))),
     ("Unknown clears stale values", () =>

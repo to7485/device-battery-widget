@@ -1,10 +1,17 @@
 using DeviceBattery.Domain;
 using DeviceBattery.Infrastructure.Windows;
+using Windows.System.Power;
 
 DateTimeOffset now = new(2026, 8, 15, 0, 0, 0, TimeSpan.Zero);
 var parser = new DualSenseHidBatteryParser();
 var specs = new (string Name, Action Run)[]
 {
+    ("BLE battery level accepts exact percent", () => { Equal(true, BleBatteryLevelParser.TryParse([73], out int percent)); Equal(73, percent); }),
+    ("BLE battery level rejects empty value", () => Equal(false, BleBatteryLevelParser.TryParse([], out _))),
+    ("BLE battery level rejects value above 100", () => Equal(false, BleBatteryLevelParser.TryParse([101], out _))),
+    ("Gaming Input battery maps capacity and status", () => { Equal(true, GamingInputBatteryMapper.TryCreate(100, 1000, BatteryStatus.Discharging, now, GamingInputBatteryProvider.Id, out BatteryState battery)); Equal(10, battery.Percent); Equal(ChargingState.NotCharging, battery.Charging); Equal(BatteryPrecision.GranularLevel, battery.Precision); }),
+    ("Gaming Input battery rejects missing capacity", () => Equal(false, GamingInputBatteryMapper.TryCreate(null, 1000, BatteryStatus.Discharging, now, GamingInputBatteryProvider.Id, out _))),
+    ("Gaming Input battery rejects unknown status", () => Equal(false, GamingInputBatteryMapper.TryCreate(100, 1000, BatteryStatus.NotPresent, now, GamingInputBatteryProvider.Id, out _))),
     ("Tested WinRT Bluetooth layout uses offset 54", () =>
     {
         byte[] report = Report(78, 54, 0x01, 0x01);

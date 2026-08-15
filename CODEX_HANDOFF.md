@@ -3,12 +3,14 @@
 ## 1. 프로젝트 개요
 
 프로젝트명: **Device Battery Widget**
-현재 Requirements Baseline: **v1.5 (CHG-005 Approved)**
+현재 Requirements Baseline: **v1.7 (CHG-007 Approved)**
 
 Windows PC에 현재 연결된 주변기기의 이름과 배터리 상태를 표시하는 가벼운 데스크톱 위젯을 개발한다. 단순 데모가 아니라 실제 배포 가능한 Windows 응용프로그램을 목표로 하며, 기획 → 요구사항 → 기술검증 → 설계 → 구현 → 테스트 → 배포까지 SI 프로젝트 방식으로 진행한다.
 
-CHG-002 승인에 따른 v1.0 지원 장치:
-- Sony DualSense Bluetooth (`VID 0x054C / PID 0x0CE6`) only
+현재 Production 지원 범위:
+- Sony DualSense Bluetooth/USB (`VID 0x054C / PID 0x0CE6`)
+- 표준 BLE GATT Battery Service `0x180F`, Battery Level `0x2A19` 장치 (AULA F87Pro 대표 검증)
+- 유효한 Windows.Gaming.Input BatteryReport를 제공하는 Xbox 컨트롤러 (`0x045E/0x0B13` 실측)
 
 후속 릴리스 확장 대상:
 - Mouse
@@ -824,6 +826,13 @@ WPF Presentation은 기능 중심 shell과 revision-aware ViewModel projection�
 실행 가능한 `DeviceBattery.App`에서 Production pipeline, WPF widget, NotifyIcon tray를 조립한다.
 Mouse/Keyboard/Headset/Receiver 지원은 vNext로 유지한다.
 ```
+
+CHG-006 승인으로 표준 BLE Battery Service를 제공하는 장치는 예외적으로 현재 Production 범위에 포함한다.
+`BleGattBatteryProvider`는 Notify/Indicate 우선, 미지원 시 30초 uncached read fallback을 사용하며
+vendor-specific characteristic/command는 사용하지 않는다. AULA F87Pro 실장비 통합 재검증이 다음 승인 증거다.
+
+CHG-007 승인으로 Xbox는 `GamingInputBatteryProvider`가 Gamepad 연결 이벤트와 30초 BatteryReport 조회로 담당한다.
+DualSense는 중복 방지를 위해 이 Provider에서 제외한다. Xbox 10% 실측은 단계형일 수 있어 estimated granular precision으로 표시한다.
 
 Gate 5 Architecture는 `APPROVED WITH CONDITIONS`다. ADR-001~010은 `Accepted`다.
 

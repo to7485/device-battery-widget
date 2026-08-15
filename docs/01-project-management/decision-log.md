@@ -65,6 +65,12 @@
 | DEC-054 | Gate 6 UI | 6차 시안에서 animation 없이 충전 중에만 기기명 옆 고정형 초록색 `● 충전` 표시 적용 | 확정 |
 | DEC-055 | Gate 6 UI | 7차 시안에서 gauge 폭을 축소하고 기기명 가변 영역과 충전 표시 고정 영역을 분리하여 text clipping 방지 | 확정 |
 | DEC-056 | Gate 6 | 승인된 UI 시안을 visual baseline으로 확정하고 위치/Topmost 설정 영속화 구현으로 진행 | 확정 |
+| DEC-057 | CHG-006 | 표준 BLE GATT Battery Provider와 장치별 indicator를 Requirements v1.6 Production 범위로 승인 | 확정 |
+| DEC-058 | Gate 6 UI | 일반 battery gauge 색상을 owner 지정 blue `#4F71E0`으로 조정 | 확정 |
+| DEC-059 | Gate 6 UI | battery Available 상태의 gauge 중앙 잔량 text를 white로 표시 | 확정 |
+| DEC-060 | POC-B03 | Xbox 0x045E/0x0B13 Windows.Gaming.Input BatteryReport 10%/Discharging 실측을 PASS WITH LIMITATION으로 기록 | 확정 |
+| DEC-061 | CHG-007 | Xbox Windows.Gaming.Input BatteryReport Provider를 Requirements v1.7 Production 범위로 승인 | 확정 |
+| DEC-062 | Gate 6 | Xbox가 BLE와 WGI에서 중복 검출되면 실측 정상값인 BLE를 우선하고 WGI를 fallback으로 projection | 확정 |
 
 ## 변경요청 현황
 
@@ -72,6 +78,8 @@
 |---|---|---|
 | CHG-001 | System Tray 기능 추가 | **Approved** |
 | CHG-002 | v1.0 DualSense 단일 장치 범위 | **Approved** |
+| CHG-006 | 표준 BLE GATT Battery Production 지원 | **Approved** |
+| CHG-007 | Xbox Windows.Gaming.Input Battery Production 지원 | **Approved** |
 
 ## Gate 현황
 

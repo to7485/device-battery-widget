@@ -2,7 +2,7 @@ namespace DeviceBattery.Domain;
 
 public enum BatteryAvailability { Available, Unsupported, Unknown }
 public enum ChargingState { Charging, NotCharging, Unknown }
-public enum BatteryPrecision { ExactPercent, TenPercentBucket, Unknown }
+public enum BatteryPrecision { ExactPercent, TenPercentBucket, GranularLevel, Unknown }
 
 public sealed record BatteryState
 {
@@ -44,12 +44,10 @@ public sealed record BatteryState
     {
         if (percent is < 0 or > 100)
             throw new ArgumentOutOfRangeException(nameof(percent));
-        if (charging == ChargingState.Unknown)
-            throw new ArgumentException("Available state requires a known charging state.", nameof(charging));
         if (precision == BatteryPrecision.Unknown)
             throw new ArgumentException("Available state requires known precision.", nameof(precision));
 
-        bool estimated = precision == BatteryPrecision.TenPercentBucket && percent < 100;
+        bool estimated = precision is BatteryPrecision.TenPercentBucket or BatteryPrecision.GranularLevel && percent < 100;
         return new(
             BatteryAvailability.Available,
             percent,

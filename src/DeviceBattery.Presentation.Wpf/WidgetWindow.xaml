@@ -5,7 +5,7 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolVisibility" />
         <Style x:Key="DualSenseGauge" TargetType="ProgressBar">
-            <Setter Property="Height" Value="18"/><Setter Property="Maximum" Value="100"/><Setter Property="Foreground" Value="#2864F0"/>
+            <Setter Property="Height" Value="18"/><Setter Property="Maximum" Value="100"/><Setter Property="Foreground" Value="#4F71E0"/>
             <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ProgressBar"><Grid>
                 <Border Background="#DCE2EC" CornerRadius="4"/>
                 <Border x:Name="PART_Track" Background="Transparent" CornerRadius="4"><Border x:Name="PART_Indicator" HorizontalAlignment="Left" Background="{TemplateBinding Foreground}" CornerRadius="4"/></Border>
@@ -38,7 +38,9 @@
                             <Grid>
                                 <ProgressBar Value="{Binding GaugePercent, Mode=OneWay}" Style="{StaticResource DualSenseGauge}"/>
                                 <TextBlock Text="{Binding BatteryText}" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           FontSize="11" FontWeight="Bold" Foreground="#101522" IsHitTestVisible="False"/>
+                                           FontSize="11" FontWeight="Bold" IsHitTestVisible="False">
+                                    <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Foreground" Value="#101522"/><Style.Triggers><DataTrigger Binding="{Binding IsAvailable}" Value="True"><Setter Property="Foreground" Value="#FFFFFF"/></DataTrigger><DataTrigger Binding="{Binding IsCharging}" Value="True"><Setter Property="Foreground" Value="#101522"/></DataTrigger></Style.Triggers></Style></TextBlock.Style>
+                                </TextBlock>
                             </Grid>
                         </Border>
                         <Border Width="5" Height="11" HorizontalAlignment="Right" VerticalAlignment="Center"

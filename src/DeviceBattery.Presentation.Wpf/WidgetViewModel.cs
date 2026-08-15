@@ -22,29 +22,41 @@ public sealed class WidgetViewModel : ObservableObject
         if (!snapshot.IsVisible) { Remove(snapshot.Key); return; }
         if (cards.TryGetValue(snapshot.Key, out DeviceCardViewModel? card)) card.Apply(snapshot);
         else { card = new(snapshot); cards.Add(snapshot.Key, card); }
-        ShowBestCard(card);
+        RebuildProjection();
     }
 
     private void Remove(DeviceKey key)
     {
         if (!cards.Remove(key, out DeviceCardViewModel? card)) return;
-        Devices.Remove(card);
-        if (Devices.Count == 0 && cards.Count > 0)
-            Devices.Add(cards.Values.OrderByDescending(Priority).First());
-        RaiseCollectionState();
+        RebuildProjection();
     }
 
-    private void ShowBestCard(DeviceCardViewModel candidate)
+    private void RebuildProjection()
     {
-        DeviceCardViewModel? current = Devices.FirstOrDefault();
-        if (current == candidate) return;
-        if (current is not null && Priority(current) > Priority(candidate)) return;
+        DeviceCardViewModel? dualSense = cards.Values
+            .Where(card => card.Key.ProviderId == "DualSenseHid")
+            .OrderByDescending(Priority)
+            .FirstOrDefault();
+        HashSet<string> bleNames = cards.Values
+            .Where(card => card.Key.ProviderId == BleGattBatteryProviderId)
+            .Select(card => card.DisplayName)
+            .ToHashSet(StringComparer.CurrentCultureIgnoreCase);
+        IEnumerable<DeviceCardViewModel> projected = cards.Values
+            .Where(card => card.Key.ProviderId != "DualSenseHid")
+            .Where(card => card.Key.ProviderId != GamingInputBatteryProviderId || !bleNames.Contains(card.DisplayName))
+            .OrderBy(card => card.DisplayName, StringComparer.CurrentCultureIgnoreCase);
+        if (dualSense is not null) projected = projected.Prepend(dualSense);
+        DeviceCardViewModel[] result = projected.ToArray();
+
+        if (Devices.SequenceEqual(result)) return;
         Devices.Clear();
-        Devices.Add(candidate);
+        foreach (DeviceCardViewModel card in result) Devices.Add(card);
         RaiseCollectionState();
     }
 
     private static int Priority(DeviceCardViewModel card) =>
         card.Key.StableId.StartsWith("USB-", StringComparison.Ordinal) ? 2 : 1;
+    private const string BleGattBatteryProviderId = "BleGattBattery";
+    private const string GamingInputBatteryProviderId = "WindowsGamingInputBattery";
     private void RaiseCollectionState() { RaisePropertyChanged(nameof(HasDevices)); RaisePropertyChanged(nameof(IsEmpty)); }
 }

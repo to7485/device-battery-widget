@@ -1,20 +1,20 @@
 # 요구사항 추적 매트릭스 (RTM)
 
 - 프로젝트: Device Battery Widget
-- 문서 버전: **1.5**
-- Requirements Baseline: **v1.5**
+- 문서 버전: **1.7**
+- Requirements Baseline: **v1.7**
 - 상태: Approved
 
 > Gate 5에서 승인된 ARC ID를 매핑했다. Gate 6에서 구현된 항목부터 구현 대상과 자동 사양 ID를 연결하며, TBD는 아직 Production 미착수 상태를 의미한다.
 
 | 요구사항 ID | 요구사항 요약 | 우선순위 | 설계 ID | 구현 대상 | 테스트 ID | 상태 |
 |---|---|---|---|---|---|---|
-| FR-001 | DualSense Bluetooth/USB 탐색 | Must | ARC-002 | targeted watcher/transport filter | SPEC-DS-PARSER + G6-CHG003-USB-01 | Implemented / Integration PASS |
+| FR-001 | DualSense, 표준 BLE Battery, Xbox WGI Battery 탐색 | Must | ARC-002 | targeted HID + Battery Service watcher + Gamepad events | SPEC-DS/BLE/WGI + G6-CHG006-007-01 | Implemented / Integration PASS WITH LIMITATION |
 | FR-002 | 장치 이름 획득 | Must | ARC-002, ARC-006 | DualSenseHidProvider DeviceDiscovered | G6-SMOKE-01 | Implemented / Integration PASS |
 | FR-003 | Battery 상태 조회 | Must | ARC-001~004 | BatteryState, parser, reducer/coordinator, transport freshness | SPEC-DOM/APP/COORD/DS + G6-CHG003-USB-01 | Implemented / Integration PASS |
-| FR-004 | 충전 상태 조회 | Must | ARC-001~003 | Domain BatteryState, DualSenseHidBatteryParser | SPEC-DOM, SPEC-DS-PARSER | In Implementation |
+| FR-004 | 충전 상태 조회 | Must | ARC-001~003 | DualSense charging parse; BLE Battery Level은 Unknown 유지 | SPEC-DOM, SPEC-DS-PARSER | Implemented |
 | FR-005 | Event 기반 Battery 갱신 | Must | ARC-002, ARC-003 | ProviderEvent, DeviceStateCoordinator | SPEC-APP, SPEC-COORD | In Implementation |
-| FR-006 | Polling Fallback | Must | ARC-002, ARC-004 | TBD | TBD | Architecture Draft |
+| FR-006 | Polling Fallback | Must | ARC-002, ARC-004 | BLE notify 미지원 및 WGI BatteryReport 30초 polling | SPEC-WGI + 실장비 변화 TBD | In Implementation |
 | FR-007 | 시작 시 즉시 조회 | Must | ARC-002, ARC-003 | watcher enumeration + read-only open | G6-SMOKE-01 | Implemented / Integration PASS |
 | FR-008 | 신규 장치 즉시 조회 | Must | ARC-002, ARC-003 | watcher Added + read-only open | 실장비 통합 TBD | In Implementation |
 | FR-009 | 장치 해제 즉시 제거 | Must | ARC-003, ARC-004 | DeviceStateReducer | SPEC-APP | In Implementation |
@@ -26,7 +26,7 @@
 | FR-015 | Windows 로그인 자동 실행, 기본 OFF | Should | ARC-008, ARC-010 | TBD | TBD | Architecture Draft |
 | FR-016 | 숨긴 장치 목록/숨김 해제 | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
 | FR-017 | System Tray 제공 | Must | ARC-007 | TrayIconController | G6-APP-SMOKE-01 + manual lifecycle TBD | In Implementation |
-| UIR-001 | 단일 인디케이터 표시 | Must | ARC-006 | approved frameless DualSense visual + USB priority | build + SPEC-WPF + owner visual approval | Implemented |
+| UIR-001 | 장치별 인디케이터 표시 | Must | ARC-006 | approved frameless visual + DualSense USB priority + BLE/WGI arbitration | SPEC-WPF + G6-CHG006-007-01 + owner visual approval | Implemented / Integration PASS |
 | UIR-002 | 장치 이름 표시 | Must | ARC-006 | DeviceCardViewModel/WidgetWindow | SPEC-WPF | In Implementation |
 | UIR-003 | Battery Gauge | Must | ARC-006 | DeviceCardViewModel/ProgressBar | SPEC-WPF | In Implementation |
 | UIR-004 | Battery % 표시 | Must | ARC-006 | estimated-aware BatteryText | SPEC-WPF | In Implementation |

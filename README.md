@@ -214,3 +214,11 @@ The sixth visual iteration adds a static green `● 충전` label beside the dev
 The seventh visual iteration shortens the battery gauge and gives the device name and charging label a flexible text area so the charging text remains visible.
 
 The owner approved the seventh visual iteration as the Gate 6 visual baseline. The next increment persists widget position and Always On Top under the current user's local application data and clamps restored coordinates to a visible monitor working area.
+
+## Update 35 — CHG-006 Standard BLE Battery
+
+Requirements v1.6 adds a Production provider for the Bluetooth SIG Battery Service (`0x180F`) and Battery Level (`0x2A19`). It uses exact percent with unknown charging, prefers Notify/Indicate, falls back to a 30-second uncached read only when notifications are unavailable, and projects BLE devices beside the preferred DualSense endpoint.
+
+## Update 36 — CHG-007 Xbox Battery
+
+Requirements v1.7 adds a Production provider for Xbox controllers that expose a valid `Windows.Gaming.Input` BatteryReport. It uses Gamepad lifecycle events, polls only the battery report every 30 seconds, excludes DualSense to avoid duplicate ownership, and marks potentially granular percentages as estimated.

@@ -35,3 +35,17 @@ BatteryReport는 반환되지만 capacity가 `N/A`여서 정확한 %를 계산�
 - 또는 배터리 정보가 제품 요구사항에 충분하지 않음
 
 그 경우 POC-B03b에서 Raw HID Input/Feature Report 경로를 별도로 검증한다. 이 단계에서는 DualSense 프로토콜의 특정 바이트 offset을 미리 가정하지 않는다.
+
+## Xbox Wireless Controller 실장비 결과 — 2026-08-16
+
+```text
+VID/PID                           = 0x045E/0x0B13
+IsWireless                       = True
+TryGetBatteryReport              = report returned
+Status                           = Discharging
+FullChargeCapacityInMilliwattHours = 1000
+RemainingCapacityInMilliwattHours  = 100
+CalculatedPercent                = 10%
+```
+
+RawGameController와 Gamepad 양쪽에서 같은 결과를 확인했다. 공개 read-only API로 배터리와 방전 상태를 얻을 수 있으므로 Xbox 경로는 `PASS WITH LIMITATION`이다. 현재 10% 값이 실제 연속 정밀도인지 granular mapping인지 배터리 변화 상관관계를 추가 확인해야 한다.
