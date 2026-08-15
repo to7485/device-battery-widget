@@ -47,6 +47,7 @@
 | DEC-036 | Gate 5 | WPF+NotifyIcon, 10초 Unknown/30초 Dormant, SCD win-x64 기본 정책 채택 | 확정 |
 | DEC-037 | Gate 6 | Domain/Application foundation부터 Production 구현 시작 | 확정 |
 | DEC-038 | Gate 6 | Provider semantic event를 순수 single-reader reducer에서 세대/순번 검증 후 상태로 반영 | 확정 |
+| DEC-039 | Gate 6 | multi-producer Channel을 single-reader coordinator가 drain하며 개별 event 오류를 격리 | 확정 |
 
 ## 변경요청 현황
 

@@ -1,6 +1,6 @@
 # Domain / Provider Contracts 초안
 
-상태: Gate 5 REVIEW DRAFT
+상태: APPROVED WITH CONDITIONS
 관련 설계: ARC-001~005, ARC-009
 
 ## 1. Domain Model

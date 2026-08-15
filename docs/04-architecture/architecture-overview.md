@@ -1,7 +1,7 @@
 # Device Battery Widget — Architecture Overview 초안
 
 문서 버전: 0.1
-상태: Gate 5 REVIEW DRAFT
+상태: APPROVED WITH CONDITIONS
 범위: v1.0 DualSense Bluetooth-only
 
 ## 1. 기술 스택

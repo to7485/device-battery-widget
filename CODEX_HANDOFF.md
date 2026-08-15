@@ -806,7 +806,8 @@ DeviceInformation.GetAqsFilterFromDeviceClass(DeviceClass.All)
 ```text
 승인된 Domain/Provider contract와 state lifecycle을 Production project로 구현하는 것.
 Domain/Application foundation 다음으로 single-reader state reducer와 deterministic specs를
-구현하고, Windows HID와 WPF는 해당 contract 위에 단계적으로 추가한다.
+구현했다. Channel coordinator까지 검증한 뒤 Windows HID와 WPF를 해당 contract 위에
+단계적으로 추가한다.
 Mouse/Keyboard/Headset/Receiver 지원은 vNext로 유지한다.
 ```
 

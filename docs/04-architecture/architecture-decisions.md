@@ -1,6 +1,6 @@
 # Architecture Decision Draft
 
-상태: Gate 5 REVIEW DRAFT
+상태: APPROVED WITH CONDITIONS
 
 | ADR | 결정 후보 | 상태 |
 |---|---|---|

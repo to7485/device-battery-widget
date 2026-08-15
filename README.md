@@ -156,3 +156,7 @@ Gate 5 is `APPROVED WITH CONDITIONS`, ADR-001~010 are Accepted, and Gate 6 Produ
 ## Update 24 — Gate 6 State Reducer
 
 The platform-independent state reducer now serializes semantic provider events, rejects stale generations and out-of-order sequences, clears stale battery values, hides dormant devices, restores recovered devices, and removes Windows-removed devices. Windows HID access is not part of this increment.
+
+## Update 25 — Gate 6 Single-Reader Coordinator
+
+The application mailbox now has a single-reader coordinator with multi-producer writes, ordered drain-on-completion, per-event fault isolation, and late-write rejection. It feeds the deterministic reducer without introducing Windows HID or UI dependencies.
