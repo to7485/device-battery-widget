@@ -242,3 +242,7 @@ Minimal UTC daily diagnostics are written under the current user's local applica
 ## Update 41 — Production Cleanup Smoke
 
 An eight-second Release smoke exited normally with code 0, left no process behind, and wrote `APP_STOP` after the ordered provider/coordinator/tray/settings/log cleanup path. A separate four-second resource sample exceeded the 100 MiB Working Set target, so cleanup is PASS while Production performance remains pending a five-minute measurement.
+
+## Update 42 — Production 5-minute Performance
+
+The current multi-provider Release app completed 300 read-only samples with 0.358% average CPU, 1.679% maximum CPU, and decreasing Private Memory/handle/thread counts. Working Set ended at 138.16 MiB, so CPU and short-run stability pass while NFR-PERF-003 fails its 100 MiB target and remains an explicit optimization item.

@@ -76,6 +76,7 @@
 | DEC-065 | Gate 6 | 절전 복귀 후 기존 이벤트 복구를 30초 우선하고 Provider별 표준 read-only refresh를 1회 수행 | 확정 |
 | DEC-066 | Gate 6 | 기본 진단은 UTC 일별 파일, 7일/총 10 MiB 제한, short-hash DeviceKey와 정규화 상태만 기록 | 확정 |
 | DEC-067 | Gate 6 | Production 8초 timed smoke 정상 종료와 APP_STOP을 자원 정리 PASS로 기록하고 성능 수치는 별도 NFR 측정으로 분리 | 확정 |
+| DEC-068 | Gate 6 | 현재 Production 5분 CPU/단기 안정성은 PASS, Working Set 138.16 MiB는 NFR-PERF-003 FAIL로 기록하고 최적화 대상으로 유지 | 확정 |
 
 ## 변경요청 현황
 

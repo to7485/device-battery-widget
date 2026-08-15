@@ -39,9 +39,9 @@
 | UIR-011 | Battery 미지원 장치 표시 | Deferred | TBD | TBD | TBD | vNext / CHG-002 |
 | UIR-012 | Battery Unknown 표시 | Must | ARC-001, ARC-006 | stale-clearing DeviceCardViewModel | SPEC-WPF | In Implementation |
 | UIR-013 | Tray-only 실행 presence | Must | ARC-007 | ShowInTaskbar=False + Show/Topmost/Exit tray | App smoke + manual verification TBD | In Implementation |
-| NFR-PERF-001 | 유휴 CPU 목표 | Must | ARC-002~004, ARC-009 | TBD | TBD | Architecture Draft |
-| NFR-PERF-002 | 작업 중 CPU 목표 | Must | ARC-002~004, ARC-009 | TBD | TBD | Architecture Draft |
-| NFR-PERF-003 | Memory 목표 | Must | ARC-007, ARC-009 | TBD | TBD | Architecture Draft |
+| NFR-PERF-001 | 유휴 CPU 목표 | Must | ARC-002~004, ARC-009 | current multi-provider Production app | G6-PERF-05M-01 avg 0.358% | Integration PASS |
+| NFR-PERF-002 | 작업 중 CPU 목표 | Must | ARC-002~004, ARC-009 | current multi-provider Production app | G6-PERF-05M-01 max 1.679% | Integration PASS |
+| NFR-PERF-003 | Memory 목표 | Must | ARC-007, ARC-009 | current multi-provider Production app | G6-PERF-05M-01 Working Set 138.16 MiB | **Integration FAIL / Optimization Required** |
 | NFR-PERF-004 | Widget 표시 시간 | Must | ARC-006, ARC-007, ARC-009 | TBD | TBD | Architecture Draft |
 | NFR-PERF-005 | 최초 장치 정보 시간 | Must | ARC-002~004, ARC-009 | TBD | TBD | Architecture Draft |
 | NFR-STAB-001 | Memory Leak 방지 | Must | ARC-007, ARC-009 | TBD | TBD | Architecture Draft |

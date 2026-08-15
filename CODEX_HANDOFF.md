@@ -858,3 +858,7 @@ short-hash DeviceKey와 정규화 상태만 기록됨을 확인해 PASS다.
 NFR-STAB-004 자원 정리는 8초 Production timed smoke가 exit code 0, 잔존 프로세스 없음,
 `APP_STOP` 기록으로 PASS다. 별도 4초 단일 샘플 Working Set은 약 143 MiB로 100 MiB 목표를
 넘었으므로 NFR-PERF-003은 5분 Production 측정 전까지 판정하지 않는다.
+
+현재 다중 Provider Production 5분/300샘플 결과는 CPU 평균 0.358%, 최대 1.679%, Working Set
+138.16 MiB(Delta -0.98), Private 71.43 MiB(Delta -2.16), Handles 767(Delta -62), Threads
+16(Delta -17)이다. CPU와 단기 안정성은 PASS지만 Working Set 100 MiB 목표는 FAIL이며 최적화가 필요하다.
