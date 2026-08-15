@@ -1,7 +1,9 @@
 <Solution>
   <Project Path="src/DeviceBattery.Domain/DeviceBattery.Domain.csproj" />
   <Project Path="src/DeviceBattery.Application/DeviceBattery.Application.csproj" />
+  <Project Path="src/DeviceBattery.Infrastructure.Windows/DeviceBattery.Infrastructure.Windows.csproj" />
   <Project Path="tests/DeviceBattery.Domain.Specs/DeviceBattery.Domain.Specs.csproj" />
   <Project Path="tests/DeviceBattery.Application.Specs/DeviceBattery.Application.Specs.csproj" />
   <Project Path="tests/DeviceBattery.Coordinator.Specs/DeviceBattery.Coordinator.Specs.csproj" />
+  <Project Path="tests/DeviceBattery.Infrastructure.Windows.Specs/DeviceBattery.Infrastructure.Windows.Specs.csproj" />
 </Solution>

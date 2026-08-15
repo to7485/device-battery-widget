@@ -1,0 +1,108 @@
+using DeviceBattery.Domain;
+using DeviceBattery.Infrastructure.Windows;
+
+DateTimeOffset now = new(2026, 8, 15, 0, 0, 0, TimeSpan.Zero);
+var parser = new DualSenseHidBatteryParser();
+var specs = new (string Name, Action Run)[]
+{
+    ("Tested WinRT Bluetooth layout uses offset 54", () =>
+    {
+        byte[] report = Report(78, 54, 0x01, 0x01);
+        Equal(true, parser.TryParse(0x01, report, now, out BatteryObservation observation));
+        Equal(DualSenseReportLayout.BluetoothFullReport, observation.Layout);
+        Equal(54, observation.StatusOffset);
+        Equal(15, observation.Battery.Percent);
+        Equal(ChargingState.NotCharging, observation.Battery.Charging);
+    }),
+    ("Bluetooth length takes precedence over report ID", () =>
+    {
+        byte[] report = Report(78, 54, 0x11, 0x01);
+        Equal(true, parser.TryParse(0x01, report, now, out BatteryObservation observation));
+        Equal(ChargingState.Charging, observation.Battery.Charging);
+        Equal(15, observation.Battery.Percent);
+    }),
+    ("Canonical Bluetooth report ID parses", () =>
+    {
+        byte[] report = Report(78, 54, 0x00, 0x31);
+        Equal(true, parser.TryParse(0x31, report, now, out BatteryObservation observation));
+        Equal(5, observation.Battery.Percent);
+    }),
+    ("Bluetooth payload-only layout uses offset 53", () =>
+    {
+        byte[] report = Report(77, 53, 0x09);
+        Equal(true, parser.TryParse(0x31, report, now, out BatteryObservation observation));
+        Equal(DualSenseReportLayout.BluetoothPayload, observation.Layout);
+        Equal(95, observation.Battery.Percent);
+    }),
+    ("USB full layout uses offset 53", () =>
+    {
+        byte[] report = Report(64, 53, 0x11, 0x01);
+        Equal(true, parser.TryParse(0x01, report, now, out BatteryObservation observation));
+        Equal(DualSenseReportLayout.UsbFullReport, observation.Layout);
+        Equal(15, observation.Battery.Percent);
+        Equal(ChargingState.Charging, observation.Battery.Charging);
+    }),
+    ("USB payload-only layout uses offset 52", () =>
+    {
+        byte[] report = Report(63, 52, 0x02);
+        Equal(true, parser.TryParse(0x01, report, now, out BatteryObservation observation));
+        Equal(DualSenseReportLayout.UsbPayload, observation.Layout);
+        Equal(25, observation.Battery.Percent);
+    }),
+    ("Full code produces exact 100 percent", () =>
+    {
+        byte[] report = Report(78, 54, 0x2A, 0x01);
+        Equal(true, parser.TryParse(0x01, report, now, out BatteryObservation observation));
+        Equal(100, observation.Battery.Percent);
+        Equal(BatteryPrecision.ExactPercent, observation.Battery.Precision);
+        Equal(false, observation.Battery.IsEstimated);
+    }),
+    ("Invalid charging status is rejected", () =>
+    {
+        byte[] report = Report(78, 54, 0xDF, 0x01);
+        Equal(false, parser.TryParse(0x01, report, now, out _));
+    }),
+    ("Invalid bucket is rejected", () =>
+    {
+        byte[] report = Report(78, 54, 0x0B, 0x01);
+        Equal(false, parser.TryParse(0x01, report, now, out _));
+    }),
+    ("Short and unrelated reports are rejected", () =>
+    {
+        Equal(false, parser.TryParse(0x01, new byte[62], now, out _));
+        Equal(false, parser.TryParse(0x02, new byte[78], now, out _));
+    })
+};
+
+int passed = 0;
+foreach ((string name, Action run) in specs)
+{
+    try
+    {
+        run();
+        Console.WriteLine($"[PASS] {name}");
+        passed++;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"[FAIL] {name}: {ex.Message}");
+    }
+}
+
+Console.WriteLine($"RESULT = {(passed == specs.Length ? "PASS" : "FAIL")} ({passed}/{specs.Length})");
+return passed == specs.Length ? 0 : 1;
+
+static byte[] Report(int length, int statusOffset, byte status, byte? first = null)
+{
+    var report = new byte[length];
+    if (first.HasValue)
+        report[0] = first.Value;
+    report[statusOffset] = status;
+    return report;
+}
+
+static void Equal<T>(T expected, T actual)
+{
+    if (!EqualityComparer<T>.Default.Equals(expected, actual))
+        throw new InvalidOperationException($"Expected {expected}, actual {actual}.");
+}

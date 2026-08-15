@@ -48,6 +48,7 @@
 | DEC-037 | Gate 6 | Domain/Application foundation부터 Production 구현 시작 | 확정 |
 | DEC-038 | Gate 6 | Provider semantic event를 순수 single-reader reducer에서 세대/순번 검증 후 상태로 반영 | 확정 |
 | DEC-039 | Gate 6 | multi-producer Channel을 single-reader coordinator가 drain하며 개별 event 오류를 격리 | 확정 |
+| DEC-040 | Gate 6 | Production DualSense parser는 실측 78-byte BT 길이를 ID보다 우선하고 invalid status를 상태 변경 없이 거부 | 확정 |
 
 ## 변경요청 현황
 

@@ -5,19 +5,19 @@
 - Requirements Baseline: **v1.2**
 - 상태: Approved
 
-> Gate 5 Architecture Draft의 ARC ID를 매핑했다. 구현·테스트 칼럼의 TBD는 Production 미착수 상태를 의미한다.
+> Gate 5에서 승인된 ARC ID를 매핑했다. Gate 6에서 구현된 항목부터 구현 대상과 자동 사양 ID를 연결하며, TBD는 아직 Production 미착수 상태를 의미한다.
 
 | 요구사항 ID | 요구사항 요약 | 우선순위 | 설계 ID | 구현 대상 | 테스트 ID | 상태 |
 |---|---|---|---|---|---|---|
 | FR-001 | DualSense Bluetooth 탐색 | Must | ARC-002 | TBD | TBD | Architecture Draft |
 | FR-002 | 장치 이름 획득 | Must | ARC-002, ARC-006 | TBD | TBD | Architecture Draft |
-| FR-003 | Battery 상태 조회 | Must | ARC-001~004 | TBD | TBD | Architecture Draft |
-| FR-004 | 충전 상태 조회 | Must | ARC-001~003 | TBD | TBD | Architecture Draft |
-| FR-005 | Event 기반 Battery 갱신 | Must | ARC-002, ARC-003 | TBD | TBD | Architecture Draft |
+| FR-003 | Battery 상태 조회 | Must | ARC-001~004 | Domain BatteryState, DualSenseHidBatteryParser, reducer/coordinator | SPEC-DOM, SPEC-APP, SPEC-COORD, SPEC-DS-PARSER | In Implementation |
+| FR-004 | 충전 상태 조회 | Must | ARC-001~003 | Domain BatteryState, DualSenseHidBatteryParser | SPEC-DOM, SPEC-DS-PARSER | In Implementation |
+| FR-005 | Event 기반 Battery 갱신 | Must | ARC-002, ARC-003 | ProviderEvent, DeviceStateCoordinator | SPEC-APP, SPEC-COORD | In Implementation |
 | FR-006 | Polling Fallback | Must | ARC-002, ARC-004 | TBD | TBD | Architecture Draft |
 | FR-007 | 시작 시 즉시 조회 | Must | ARC-002, ARC-003 | TBD | TBD | Architecture Draft |
 | FR-008 | 신규 장치 즉시 조회 | Must | ARC-002, ARC-003 | TBD | TBD | Architecture Draft |
-| FR-009 | 장치 해제 즉시 제거 | Must | ARC-003, ARC-004 | TBD | TBD | Architecture Draft |
+| FR-009 | 장치 해제 즉시 제거 | Must | ARC-003, ARC-004 | DeviceStateReducer | SPEC-APP | In Implementation |
 | FR-010 | 절전 복귀 처리 | Must | ARC-002, ARC-004 | TBD | TBD | Architecture Draft |
 | FR-011 | 개별 장치 숨김/영속화 | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
 | FR-012 | Widget 위치 저장/복원 | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
@@ -48,13 +48,13 @@
 | NFR-STAB-002 | 24시간 안정성 | Must | ARC-009 | TBD | TBD | Architecture Draft |
 | NFR-STAB-003 | 72시간 Soak Test | Must | ARC-009, ARC-010 | TBD | TBD | Architecture Draft |
 | NFR-STAB-004 | Resource 정리 | Must | ARC-002, ARC-007, ARC-009 | TBD | TBD | Architecture Draft |
-| NFR-STAB-005 | 예외 격리 | Must | ARC-002, ARC-003, ARC-009 | TBD | TBD | Architecture Draft |
+| NFR-STAB-005 | 예외 격리 | Must | ARC-002, ARC-003, ARC-009 | DeviceStateCoordinator | SPEC-COORD | In Implementation |
 | NFR-USAB-001 | 사용자 개입 최소화 | Must | ARC-002~008 | TBD | TBD | Architecture Draft |
 | NFR-MAINT-001 | 장치 유형 확장성 | Must | ARC-001~005 | TBD | TBD | Architecture Draft |
 | NFR-MAINT-002 | 장치별 Provider 분리 | Should | ARC-002, ARC-005 | TBD | TBD | Architecture Draft |
 | IR-001 | Windows Device Interface | Must | ARC-002 | TBD | TBD | Architecture Draft |
-| IR-002 | Event Interface | Must | ARC-002, ARC-003 | TBD | TBD | Architecture Draft |
-| IR-003 | 연결 유형 POC 검증 | Must | ARC-002 | TBD | TBD | Architecture Draft |
+| IR-002 | Event Interface | Must | ARC-002, ARC-003 | IBatteryProvider, ProviderEvent, DeviceStateCoordinator | SPEC-APP, SPEC-COORD | In Implementation |
+| IR-003 | 연결 유형 POC 검증 | Must | ARC-002 | DualSenseHidBatteryParser | SPEC-DS-PARSER + Gate 4 실장비 POC | In Implementation |
 | IR-004 | 장치 고유 식별 POC 검증 | Must | ARC-005 | TBD | TBD | Architecture Draft |
 | CR-001 | 지원 Windows | Must | ARC-002, ARC-006, ARC-007, ARC-010 | TBD | TBD | Architecture Draft |
 | CR-002 | 경량성 우선 | Must | ARC-002~004, ARC-009 | TBD | TBD | Architecture Draft |

@@ -160,3 +160,7 @@ The platform-independent state reducer now serializes semantic provider events, 
 ## Update 25 — Gate 6 Single-Reader Coordinator
 
 The application mailbox now has a single-reader coordinator with multi-producer writes, ordered drain-on-completion, per-event fault isolation, and late-write rejection. It feeds the deterministic reducer without introducing Windows HID or UI dependencies.
+
+## Update 26 — Gate 6 DualSense Parser
+
+The Production pure parser now recognizes the POC-verified 78-byte Bluetooth and 64-byte USB report layouts, normalizes valid battery/charging status into the Domain model, and rejects invalid shapes/status codes without overwriting prior state. The v1 Provider remains Bluetooth-only; no HID device is opened in this increment.
