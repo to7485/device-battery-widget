@@ -1,5 +1,6 @@
 using DeviceBattery.Application;
 using DeviceBattery.Domain;
+using System.Threading.Channels;
 
 DateTimeOffset now = new(2026, 8, 15, 0, 0, 0, TimeSpan.Zero);
 DeviceKey key = new("DualSenseHid", "device-1");
@@ -89,6 +90,21 @@ var specs = new (string Name, Action Run)[]
         var reducer = Started();
         BatteryState battery = BatteryState.Available(50, ChargingState.NotCharging, BatteryPrecision.ExactPercent, now, "OtherProvider");
         Throws<ArgumentException>(() => reducer.Apply(new BatteryChanged(key, 1, 2, now, battery)));
+    }),
+    ("Provider failure is isolated from a healthy provider", () =>
+    {
+        Channel<ProviderEvent> channel = Channel.CreateUnbounded<ProviderEvent>();
+        var healthy = new SpecProvider("Healthy", shouldFail: false);
+        var failing = new SpecProvider("Failing", shouldFail: true);
+        int failures = 0;
+        Task.WhenAll(
+            ProviderRunner.RunIsolatedAsync(failing, channel.Writer, CancellationToken.None, (_, _) => { Interlocked.Increment(ref failures); return ValueTask.CompletedTask; }),
+            ProviderRunner.RunIsolatedAsync(healthy, channel.Writer, CancellationToken.None, (_, _) => { Interlocked.Increment(ref failures); return ValueTask.CompletedTask; }))
+            .GetAwaiter().GetResult();
+        Equal(1, failures);
+        Equal(true, healthy.Ran);
+        Equal(true, channel.Reader.TryRead(out ProviderEvent? providerEvent));
+        Equal("Healthy", providerEvent!.DeviceKey.ProviderId);
     })
 };
 
@@ -143,4 +159,19 @@ static void Throws<TException>(Action action) where TException : Exception
     }
 
     throw new InvalidOperationException($"Expected {typeof(TException).Name}.");
+}
+
+sealed class SpecProvider(string providerId, bool shouldFail) : IBatteryProvider
+{
+    public string ProviderId { get; } = providerId;
+    public bool Ran { get; private set; }
+    public Task RunAsync(ChannelWriter<ProviderEvent> events, CancellationToken cancellationToken)
+    {
+        Ran = true;
+        if (shouldFail) throw new InvalidOperationException("Injected provider failure.");
+        var key = new DeviceKey(ProviderId, "spec-device");
+        events.TryWrite(new DeviceDiscovered(key, 1, 1, DateTimeOffset.UtcNow, "Spec Device"));
+        return Task.CompletedTask;
+    }
+    public ValueTask DisposeAsync() => ValueTask.CompletedTask;
 }

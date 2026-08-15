@@ -873,3 +873,6 @@ v1.8 기준 PASS다. CPU 및 24시간/72시간 안정성 기준은 변경하지 
 
 전체 Provider Production startup 10회는 Widget visible 10/10, 평균 846.7 ms, 최대/P95 939.1 ms다.
 최초 Available marker는 10/10, 평균 781.0 ms, 최대/P95 849.6 ms다. NFR-PERF-004/005는 PASS다.
+
+NFR-STAB-005는 Production App의 Provider 실행을 `ProviderRunner.RunIsolatedAsync`로 통일했다.
+실패 Provider와 정상 Provider 동시 실행 사양에서 실패 callback 1회와 정상 event 유지를 확인해 PASS다.

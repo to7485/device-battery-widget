@@ -258,3 +258,7 @@ Requirements v1.8 approves measured full-feature limits of 150 MiB Working Set a
 ## Update 45 — Production Startup Timing
 
 Ten full-provider Release starts reached a visible widget in 10/10 runs, averaging 846.7 ms with a 939.1 ms maximum/P95. Privacy-safe process-relative markers recorded first battery availability in 781.0 ms average and 849.6 ms maximum/P95. Both the two-second widget and five-second device-information targets pass.
+
+## Update 46 — Provider Exception Isolation
+
+Production provider execution now uses a shared `ProviderRunner` that isolates non-cancellation failures per provider. A deterministic specification injected one failing and one healthy provider concurrently and verified that the failure callback ran once while the healthy event remained available.

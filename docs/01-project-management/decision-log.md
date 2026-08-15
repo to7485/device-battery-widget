@@ -80,6 +80,7 @@
 | DEC-069 | Gate 6 | 메모리 분리 측정 결과 shell 108.78 MiB, DualSense +20.54, BLE +5.61, WGI +1.11 MiB이며 NFR-PERF-003 처리에는 기술/요구사항 결정 필요 | CHG-008로 종결 |
 | DEC-070 | CHG-008 | 실측 전체 기능 기준으로 Working Set 150 MiB / Private Memory 100 MiB를 승인하고 Requirements v1.8로 변경 | 확정 |
 | DEC-071 | Gate 6 | 전체 Provider Production 10회 Widget 표시와 최초 장치 Available 시간을 각각 외부 관찰/내부 marker로 검증해 성능 목표 PASS | 확정 |
+| DEC-072 | Gate 6 | Provider 실행을 검증 가능한 격리 runner로 통일하고 개별 실패가 정상 Provider event를 중단하지 않음을 결정적 사양으로 확인 | 확정 |
 
 ## 변경요청 현황
 

@@ -82,7 +82,15 @@ public partial class App : System.Windows.Application
         Trace.WriteLine($"PROVIDERS mode={GetOption(e.Args, "--providers") ?? "all"} count={providers.Length}");
         SystemEvents.PowerModeChanged += OnPowerModeChanged;
         coordinatorTask = coordinator.RunAsync();
-        providerTasks = providers.Select(activeProvider => RunProviderAsync(activeProvider, coordinator)).ToArray();
+        providerTasks = providers.Select(activeProvider => ProviderRunner.RunIsolatedAsync(
+            activeProvider,
+            coordinator.Events,
+            lifetime.Token,
+            (failedProvider, error) =>
+            {
+                Trace.WriteLine($"PROVIDER_ISOLATED provider={failedProvider.ProviderId} error={error.GetType().Name}");
+                return ValueTask.CompletedTask;
+            })).ToArray();
 
         viewModel.PropertyChanged += OnViewModelPropertyChanged;
         tray.SetTopmost(viewModel.IsTopmost);
@@ -99,19 +107,6 @@ public partial class App : System.Windows.Application
                 _ = ShutdownAsync("Timed Smoke");
             };
             timer.Start();
-        }
-    }
-
-    private async Task RunProviderAsync(IBatteryProvider activeProvider, DeviceStateCoordinator activeCoordinator)
-    {
-        try
-        {
-            await activeProvider.RunAsync(activeCoordinator.Events, lifetime.Token);
-        }
-        catch (Exception ex)
-        {
-            System.Diagnostics.Trace.WriteLine($"Provider stopped: {ex.GetType().Name}");
-            System.Diagnostics.Trace.WriteLine($"Provider {activeProvider.ProviderId} isolated after failure.");
         }
     }
 
