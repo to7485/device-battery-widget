@@ -1,6 +1,6 @@
 # Gate 4 POC 결과서
 
-- 상태: Gate 4 승인 검토 초안
+- 상태: Gate 4 APPROVED WITH CONDITIONS
 - 기준: Requirements Baseline v1.2 / CHG-002
 
 | Track | 판정 | 핵심 결과 | 제약 |
@@ -53,4 +53,5 @@
 3. Release 전 Windows 11, 장시간 soak 및 packaging 검증을 수행한다.
 4. Receiver/vendor 결과는 vNext 증적으로 보존하며 v1.0에 재도입하지 않는다.
 
-이 문서는 승인 제안이며 Gate 4 상태 자체는 발주자 승인 전까지 `IN PROGRESS`다.
+2026-08-15 발주자 승인에 따라 Gate 4는 `APPROVED WITH CONDITIONS`로 종료됐다.
+조건은 Gate 5 Architecture와 Release 전 검증 항목으로 이관한다.

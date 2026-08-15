@@ -5,63 +5,63 @@
 - Requirements Baseline: **v1.2**
 - 상태: Approved
 
-> 현재는 설계/구현 전이므로 설계·구현·테스트 칼럼의 TBD가 정상이다.
+> Gate 5 Architecture Draft의 ARC ID를 매핑했다. 구현·테스트 칼럼의 TBD는 Production 미착수 상태를 의미한다.
 
 | 요구사항 ID | 요구사항 요약 | 우선순위 | 설계 ID | 구현 대상 | 테스트 ID | 상태 |
 |---|---|---|---|---|---|---|
-| FR-001 | DualSense Bluetooth 탐색 | Must | TBD | TBD | TBD | Baseline v1.2 |
-| FR-002 | 장치 이름 획득 | Must | TBD | TBD | TBD | Baseline |
-| FR-003 | Battery 상태 조회 | Must | TBD | TBD | TBD | Baseline |
-| FR-004 | 충전 상태 조회 | Must | TBD | TBD | TBD | Baseline |
-| FR-005 | Event 기반 Battery 갱신 | Must | TBD | TBD | TBD | Baseline |
-| FR-006 | Polling Fallback | Must | TBD | TBD | TBD | Baseline |
-| FR-007 | 시작 시 즉시 조회 | Must | TBD | TBD | TBD | Baseline |
-| FR-008 | 신규 장치 즉시 조회 | Must | TBD | TBD | TBD | Baseline |
-| FR-009 | 장치 해제 즉시 제거 | Must | TBD | TBD | TBD | Baseline |
-| FR-010 | 절전 복귀 처리 | Must | TBD | TBD | TBD | Baseline |
-| FR-011 | 개별 장치 숨김/영속화 | Must | TBD | TBD | TBD | Baseline |
-| FR-012 | Widget 위치 저장/복원 | Must | TBD | TBD | TBD | Baseline |
-| FR-013 | Always On Top 저장/복원, 기본 OFF | Must | TBD | TBD | TBD | Baseline |
-| FR-014 | 동일 모델 장치 개별 식별 | Must | TBD | TBD | TBD | Baseline |
-| FR-015 | Windows 로그인 자동 실행, 기본 OFF | Should | TBD | TBD | TBD | Baseline |
-| FR-016 | 숨긴 장치 목록/숨김 해제 | Must | TBD | TBD | TBD | Baseline |
-| FR-017 | System Tray 제공 | Must | TBD | TBD | TBD | Baseline |
-| UIR-001 | Widget 형태 표시 | Must | TBD | TBD | TBD | Baseline |
-| UIR-002 | 장치 이름 표시 | Must | TBD | TBD | TBD | Baseline |
-| UIR-003 | Battery Gauge | Must | TBD | TBD | TBD | Baseline |
-| UIR-004 | Battery % 표시 | Must | TBD | TBD | TBD | Baseline |
-| UIR-005 | 충전 아이콘 | Must | TBD | TBD | TBD | Baseline |
-| UIR-006 | 충전 중 연두색 Gauge | Must | TBD | TBD | TBD | Baseline |
-| UIR-007 | Widget Drag | Must | TBD | TBD | TBD | Baseline |
-| UIR-008 | Always On Top UI | Must | TBD | TBD | TBD | Baseline |
-| UIR-009 | Empty State | Must | TBD | TBD | TBD | Baseline |
-| UIR-010 | 조회 중 상태 | Should | TBD | TBD | TBD | Baseline |
+| FR-001 | DualSense Bluetooth 탐색 | Must | ARC-002 | TBD | TBD | Architecture Draft |
+| FR-002 | 장치 이름 획득 | Must | ARC-002, ARC-006 | TBD | TBD | Architecture Draft |
+| FR-003 | Battery 상태 조회 | Must | ARC-001~004 | TBD | TBD | Architecture Draft |
+| FR-004 | 충전 상태 조회 | Must | ARC-001~003 | TBD | TBD | Architecture Draft |
+| FR-005 | Event 기반 Battery 갱신 | Must | ARC-002, ARC-003 | TBD | TBD | Architecture Draft |
+| FR-006 | Polling Fallback | Must | ARC-002, ARC-004 | TBD | TBD | Architecture Draft |
+| FR-007 | 시작 시 즉시 조회 | Must | ARC-002, ARC-003 | TBD | TBD | Architecture Draft |
+| FR-008 | 신규 장치 즉시 조회 | Must | ARC-002, ARC-003 | TBD | TBD | Architecture Draft |
+| FR-009 | 장치 해제 즉시 제거 | Must | ARC-003, ARC-004 | TBD | TBD | Architecture Draft |
+| FR-010 | 절전 복귀 처리 | Must | ARC-002, ARC-004 | TBD | TBD | Architecture Draft |
+| FR-011 | 개별 장치 숨김/영속화 | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
+| FR-012 | Widget 위치 저장/복원 | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
+| FR-013 | Always On Top 저장/복원, 기본 OFF | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
+| FR-014 | 동일 모델 장치 개별 식별 | Must | ARC-005 | TBD | TBD | Architecture Draft |
+| FR-015 | Windows 로그인 자동 실행, 기본 OFF | Should | ARC-008, ARC-010 | TBD | TBD | Architecture Draft |
+| FR-016 | 숨긴 장치 목록/숨김 해제 | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
+| FR-017 | System Tray 제공 | Must | ARC-007 | TBD | TBD | Architecture Draft |
+| UIR-001 | Widget 형태 표시 | Must | ARC-006 | TBD | TBD | Architecture Draft |
+| UIR-002 | 장치 이름 표시 | Must | ARC-006 | TBD | TBD | Architecture Draft |
+| UIR-003 | Battery Gauge | Must | ARC-006 | TBD | TBD | Architecture Draft |
+| UIR-004 | Battery % 표시 | Must | ARC-006 | TBD | TBD | Architecture Draft |
+| UIR-005 | 충전 아이콘 | Must | ARC-006 | TBD | TBD | Architecture Draft |
+| UIR-006 | 충전 중 연두색 Gauge | Must | ARC-006 | TBD | TBD | Architecture Draft |
+| UIR-007 | Widget Drag | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
+| UIR-008 | Always On Top UI | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
+| UIR-009 | Empty State | Must | ARC-006 | TBD | TBD | Architecture Draft |
+| UIR-010 | 조회 중 상태 | Should | ARC-006 | TBD | TBD | Architecture Draft |
 | UIR-011 | Battery 미지원 장치 표시 | Deferred | TBD | TBD | TBD | vNext / CHG-002 |
-| UIR-012 | Battery Unknown 표시 | Must | TBD | TBD | TBD | Baseline |
-| UIR-013 | System Tray Context Menu | Must | TBD | TBD | TBD | Baseline |
-| NFR-PERF-001 | 유휴 CPU 목표 | Must | TBD | TBD | TBD | Baseline |
-| NFR-PERF-002 | 작업 중 CPU 목표 | Must | TBD | TBD | TBD | Baseline |
-| NFR-PERF-003 | Memory 목표 | Must | TBD | TBD | TBD | Baseline |
-| NFR-PERF-004 | Widget 표시 시간 | Must | TBD | TBD | TBD | Baseline |
-| NFR-PERF-005 | 최초 장치 정보 시간 | Must | TBD | TBD | TBD | Baseline |
-| NFR-STAB-001 | Memory Leak 방지 | Must | TBD | TBD | TBD | Baseline |
-| NFR-STAB-002 | 24시간 안정성 | Must | TBD | TBD | TBD | Baseline |
-| NFR-STAB-003 | 72시간 Soak Test | Must | TBD | TBD | TBD | Baseline |
-| NFR-STAB-004 | Resource 정리 | Must | TBD | TBD | TBD | Baseline |
-| NFR-STAB-005 | 예외 격리 | Must | TBD | TBD | TBD | Baseline |
-| NFR-USAB-001 | 사용자 개입 최소화 | Must | TBD | TBD | TBD | Baseline |
-| NFR-MAINT-001 | 장치 유형 확장성 | Must | TBD | TBD | TBD | Baseline |
-| NFR-MAINT-002 | 장치별 Provider 분리 | Should | TBD | TBD | TBD | Baseline |
-| IR-001 | Windows Device Interface | Must | TBD | TBD | TBD | Baseline |
-| IR-002 | Event Interface | Must | TBD | TBD | TBD | Baseline |
-| IR-003 | 연결 유형 POC 검증 | Must | TBD | TBD | TBD | Baseline |
-| IR-004 | 장치 고유 식별 POC 검증 | Must | TBD | TBD | TBD | Baseline |
-| CR-001 | 지원 Windows | Must | TBD | TBD | TBD | Baseline |
-| CR-002 | 경량성 우선 | Must | TBD | TBD | TBD | Baseline |
-| CR-003 | Event-driven 우선 | Must | TBD | TBD | TBD | Baseline |
-| CR-004 | 고빈도 Polling 제한 | Must | TBD | TBD | TBD | Baseline |
-| OR-001 | 일반 사용자 실행 | Must | TBD | TBD | TBD | Baseline |
-| OR-002 | Release Build | Must | TBD | TBD | TBD | Baseline |
-| OR-003 | Version 관리 | Must | TBD | TBD | TBD | Baseline |
-| OR-004 | Installer/Portable 검토 | Should | TBD | TBD | TBD | Baseline |
-| OR-005 | Widget Close 시 Application 종료 | Must | TBD | TBD | TBD | Baseline |
+| UIR-012 | Battery Unknown 표시 | Must | ARC-001, ARC-006 | TBD | TBD | Architecture Draft |
+| UIR-013 | System Tray Context Menu | Must | ARC-007 | TBD | TBD | Architecture Draft |
+| NFR-PERF-001 | 유휴 CPU 목표 | Must | ARC-002~004, ARC-009 | TBD | TBD | Architecture Draft |
+| NFR-PERF-002 | 작업 중 CPU 목표 | Must | ARC-002~004, ARC-009 | TBD | TBD | Architecture Draft |
+| NFR-PERF-003 | Memory 목표 | Must | ARC-007, ARC-009 | TBD | TBD | Architecture Draft |
+| NFR-PERF-004 | Widget 표시 시간 | Must | ARC-006, ARC-007, ARC-009 | TBD | TBD | Architecture Draft |
+| NFR-PERF-005 | 최초 장치 정보 시간 | Must | ARC-002~004, ARC-009 | TBD | TBD | Architecture Draft |
+| NFR-STAB-001 | Memory Leak 방지 | Must | ARC-007, ARC-009 | TBD | TBD | Architecture Draft |
+| NFR-STAB-002 | 24시간 안정성 | Must | ARC-009 | TBD | TBD | Architecture Draft |
+| NFR-STAB-003 | 72시간 Soak Test | Must | ARC-009, ARC-010 | TBD | TBD | Architecture Draft |
+| NFR-STAB-004 | Resource 정리 | Must | ARC-002, ARC-007, ARC-009 | TBD | TBD | Architecture Draft |
+| NFR-STAB-005 | 예외 격리 | Must | ARC-002, ARC-003, ARC-009 | TBD | TBD | Architecture Draft |
+| NFR-USAB-001 | 사용자 개입 최소화 | Must | ARC-002~008 | TBD | TBD | Architecture Draft |
+| NFR-MAINT-001 | 장치 유형 확장성 | Must | ARC-001~005 | TBD | TBD | Architecture Draft |
+| NFR-MAINT-002 | 장치별 Provider 분리 | Should | ARC-002, ARC-005 | TBD | TBD | Architecture Draft |
+| IR-001 | Windows Device Interface | Must | ARC-002 | TBD | TBD | Architecture Draft |
+| IR-002 | Event Interface | Must | ARC-002, ARC-003 | TBD | TBD | Architecture Draft |
+| IR-003 | 연결 유형 POC 검증 | Must | ARC-002 | TBD | TBD | Architecture Draft |
+| IR-004 | 장치 고유 식별 POC 검증 | Must | ARC-005 | TBD | TBD | Architecture Draft |
+| CR-001 | 지원 Windows | Must | ARC-002, ARC-006, ARC-007, ARC-010 | TBD | TBD | Architecture Draft |
+| CR-002 | 경량성 우선 | Must | ARC-002~004, ARC-009 | TBD | TBD | Architecture Draft |
+| CR-003 | Event-driven 우선 | Must | ARC-002~004 | TBD | TBD | Architecture Draft |
+| CR-004 | 고빈도 Polling 제한 | Must | ARC-002, ARC-004 | TBD | TBD | Architecture Draft |
+| OR-001 | 일반 사용자 실행 | Must | ARC-007, ARC-010 | TBD | TBD | Architecture Draft |
+| OR-002 | Release Build | Must | ARC-010 | TBD | TBD | Architecture Draft |
+| OR-003 | Version 관리 | Must | ARC-010 | TBD | TBD | Architecture Draft |
+| OR-004 | Installer/Portable 검토 | Should | ARC-010 | TBD | TBD | Architecture Draft |
+| OR-005 | Widget Close 시 Application 종료 | Must | ARC-007 | TBD | TBD | Architecture Draft |

@@ -24,4 +24,5 @@
 - [x] 조건부 채택
 - [ ] 대체 기술 검토
 
-조건부 채택은 Gate 4 승인 제안이며 Architecture/Production 구현 승인이 아니다.
+조건부 채택은 Gate 4에서 승인됐으며 Gate 5 Architecture 입력이다. Production 구현은
+Gate 5 Architecture 승인 전 시작하지 않는다.

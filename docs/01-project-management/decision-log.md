@@ -41,6 +41,8 @@
 | DEC-030 | CHG-002 | Mouse/Keyboard/Headset/기타 Controller 지원을 vNext로 이관 | 확정 |
 | DEC-031 | CHG-002 | Receiver POC 결과를 보존하고 B04 추가 조사를 동결 | 확정 |
 | DEC-032 | CHG-002 | Requirements Baseline을 v1.2로 개정 | 확정 |
+| DEC-033 | Gate 4 | Technical Feasibility POC를 APPROVED WITH CONDITIONS로 승인 | 확정 |
+| DEC-034 | Gate 4 | C#/.NET 10, targeted read-only HID, event-first, normalized state, NotifyIcon을 Architecture 입력으로 채택 | 확정 |
 
 ## 변경요청 현황
 
@@ -48,3 +50,10 @@
 |---|---|---|
 | CHG-001 | System Tray 기능 추가 | **Approved** |
 | CHG-002 | v1.0 DualSense 단일 장치 범위 | **Approved** |
+
+## Gate 현황
+
+| Gate | 상태 |
+|---|---|
+| Gate 4 Technical Feasibility POC | **Approved With Conditions** |
+| Gate 5 Architecture Design | **In Progress** |

@@ -208,10 +208,11 @@ POC 코드는 기술 선택 근거로 보존한다.
 | Gate 2 Execution Plan | APPROVED |
 | Gate 3 Requirements | APPROVED |
 | CHG-001 System Tray | APPROVED |
-| Gate 4 Technical Feasibility POC | IN PROGRESS |
-| Gate 5 이후 | NOT STARTED |
+| Gate 4 Technical Feasibility POC | APPROVED WITH CONDITIONS |
+| Gate 5 Architecture Design | IN PROGRESS |
+| Gate 6 이후 | NOT STARTED |
 
-Gate 4 승인 전 다음 프로젝트 단계로 임의로 넘어가지 않는다.
+Gate 5 Architecture 승인 전 Production 구현으로 임의로 넘어가지 않는다.
 
 ---
 
@@ -799,12 +800,13 @@ DeviceInformation.GetAqsFilterFromDeviceClass(DeviceClass.All)
 
 ---
 
-## 33. 현재 최우선 목표 — Gate 4 승인 검토
+## 33. 현재 최우선 목표 — Gate 5 Architecture Design
 
 ```text
-Gate 4 결과서의 `APPROVE WITH CONDITIONS` 제안을 발주자가 검토하는 것.
-승인 전 Gate 5, Architecture 확정 또는 Production 구현을 시작하지 않는다.
+Gate 4 조건을 Architecture로 구체화하고 설계 승인을 준비하는 것.
+Provider 경계, 상태 직렬화, freshness/offline 정책, WPF/Tray lifecycle,
+settings/deployment 구조를 확정하기 전 Production 구현을 시작하지 않는다.
 Mouse/Keyboard/Headset/Receiver 지원은 vNext로 유지한다.
 ```
 
-Gate 4를 끝내기 전 UI 완성, Production Architecture 확정, Installer 제작 등으로 넘어가지 않는다.
+Gate 5 Architecture 승인 전 Production UI/Provider 구현, Installer 제작 등으로 넘어가지 않는다.

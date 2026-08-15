@@ -135,8 +135,12 @@ Added `poc/DeviceBattery.Poc.StartupSampler`. On Windows 10 22H2, framework-depe
 
 ## Update 19 — Gate 4 Technical Evaluation Draft
 
-The Gate 4 result and technology evaluation are reconciled against hardware evidence. The recommendation is `APPROVE WITH CONDITIONS` and conditional adoption of C#/.NET 10, targeted read-only HID, normalized BatteryState, event-first monitoring, and NotifyIcon tray integration. Gate 4 remains `IN PROGRESS` until explicit owner approval; Production implementation has not started.
+The Gate 4 result and technology evaluation were reconciled against hardware evidence. At this checkpoint the recommendation was `APPROVE WITH CONDITIONS`; the later approval is recorded in Update 21. Production implementation had not started.
 
 ## Update 20 — POC-C03 Event Continuity
 
 Added `poc/DeviceBattery.Poc.DualSenseEventContinuityProbe`. Passive Bluetooth HID testing identified the WinRT continuity counter as offset 7 bits 2–5. Across 288.675 seconds and 136,859 transitions, the modulo-16 sequence was 100% continuous with zero duplicates, gaps, estimated missing reports, or unsupported shapes. Result: `PASS`.
+
+## Update 21 — Gate 4 Approved / Gate 5 Started
+
+Gate 4 is `APPROVED WITH CONDITIONS`. Gate 5 Architecture Design is now in progress. Production implementation remains blocked until the architecture baseline is explicitly approved.
