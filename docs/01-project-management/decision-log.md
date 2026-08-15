@@ -71,6 +71,7 @@
 | DEC-060 | POC-B03 | Xbox 0x045E/0x0B13 Windows.Gaming.Input BatteryReport 10%/Discharging 실측을 PASS WITH LIMITATION으로 기록 | 확정 |
 | DEC-061 | CHG-007 | Xbox Windows.Gaming.Input BatteryReport Provider를 Requirements v1.7 Production 범위로 승인 | 확정 |
 | DEC-062 | Gate 6 | Xbox가 BLE와 WGI에서 중복 검출되면 실측 정상값인 BLE를 우선하고 WGI를 fallback으로 projection | 확정 |
+| DEC-063 | Gate 6 | 트레이 장치 표시 메뉴에서 개별 indicator를 숨김/복원하고 여러 장치를 연속 설정하며 선택 상태를 로컬 저장 | 확정 |
 
 ## 변경요청 현황
 

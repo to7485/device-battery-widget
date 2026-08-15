@@ -19,12 +19,12 @@
 | FR-008 | 신규 장치 즉시 조회 | Must | ARC-002, ARC-003 | watcher Added + read-only open | G6-CHG006-007-01 Xbox/AULA ON | Implemented / Integration PASS |
 | FR-009 | 장치 해제 즉시 제거 | Must | ARC-003, ARC-004 | DeviceStateReducer + provider removal events | SPEC-APP + G6-CHG006-007-01 Xbox/AULA OFF | Implemented / Integration PASS |
 | FR-010 | 절전 복귀 처리 | Must | ARC-002, ARC-004 | TBD | TBD | Architecture Draft |
-| FR-011 | 개별 장치 숨김/영속화 | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
+| FR-011 | 개별 장치 숨김/영속화 | Must | ARC-006, ARC-008 | WidgetViewModel hidden projection + JsonWidgetSettingsStore | SPEC-WPF + G6-VISIBILITY-01 | Implemented / Integration PASS |
 | FR-012 | Widget 위치 저장/복원 | Must | ARC-006, ARC-008 | JsonWidgetSettingsStore + WindowPositionPolicy | SPEC-WPF + manual restart TBD | In Implementation |
 | FR-013 | Always On Top 저장/복원, 기본 OFF | Must | ARC-006, ARC-008 | JsonWidgetSettingsStore + tray projection | SPEC-WPF + manual restart TBD | In Implementation |
 | FR-014 | 동일 모델 장치 개별 식별 | Must | ARC-005 | DualSenseDeviceIdentity provider-owned hash key | SPEC-DS-PARSER | In Implementation |
 | FR-015 | Windows 로그인 자동 실행, 기본 OFF | Should | ARC-008, ARC-010 | TBD | TBD | Architecture Draft |
-| FR-016 | 숨긴 장치 목록/숨김 해제 | Must | ARC-006, ARC-008 | TBD | TBD | Architecture Draft |
+| FR-016 | 숨긴 장치 목록/숨김 해제 | Must | ARC-006, ARC-008 | tray device visibility submenu | SPEC-WPF + G6-VISIBILITY-01 | Implemented / Integration PASS |
 | FR-017 | System Tray 제공 | Must | ARC-007 | TrayIconController | G6-APP-SMOKE-01 + manual lifecycle TBD | In Implementation |
 | UIR-001 | 장치별 인디케이터 표시 | Must | ARC-006 | approved frameless visual + DualSense USB priority + BLE/WGI arbitration | SPEC-WPF + G6-CHG006-007-01 + owner visual approval | Implemented / Integration PASS |
 | UIR-002 | 장치 이름 표시 | Must | ARC-006 | DeviceCardViewModel/WidgetWindow | SPEC-WPF | In Implementation |

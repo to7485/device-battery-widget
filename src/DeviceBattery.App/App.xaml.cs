@@ -30,6 +30,7 @@ public partial class App : System.Windows.Application
 
         WidgetSettings settings = settingsStore.Load();
         viewModel.IsTopmost = settings.IsTopmost;
+        viewModel.SetHiddenDeviceKeys(settings.HiddenDeviceKeys);
         window = new WidgetWindow { DataContext = viewModel };
         window.ContentRendered += (_, _) => RestoreWindowPlacement(settings);
         window.Closing += OnWindowClosing;
@@ -37,11 +38,16 @@ public partial class App : System.Windows.Application
         tray = new TrayIconController(
             ShowWidget,
             ToggleTopmost,
+            ToggleDeviceVisibility,
             () => _ = ShutdownAsync("Tray Exit"));
 
         coordinator = new DeviceStateCoordinator(
             reducer,
-            result => new ValueTask(Dispatcher.InvokeAsync(() => viewModel.Apply(result)).Task),
+            result => new ValueTask(Dispatcher.InvokeAsync(() =>
+            {
+                viewModel.Apply(result);
+                tray?.SetDevices(viewModel.GetDeviceCatalog());
+            }).Task),
             (_, error) =>
             {
                 System.Diagnostics.Trace.WriteLine($"Coordinator event error: {error.GetType().Name}");
@@ -149,6 +155,12 @@ public partial class App : System.Windows.Application
 
     private void ToggleTopmost() => viewModel.IsTopmost = !viewModel.IsTopmost;
 
+    private void ToggleDeviceVisibility(string key)
+    {
+        viewModel.ToggleDeviceVisibility(key);
+        SaveSettings();
+    }
+
     private void RestoreWindowPlacement(WidgetSettings settings)
     {
         if (window is null || windowPlacementRestored) return;
@@ -168,7 +180,7 @@ public partial class App : System.Windows.Application
     private void SaveSettings()
     {
         if (window is null || !windowPlacementRestored) return;
-        try { settingsStore.Save(new(window.Left, window.Top, viewModel.IsTopmost)); }
+        try { settingsStore.Save(new(window.Left, window.Top, viewModel.IsTopmost, viewModel.HiddenDeviceKeys.Order().ToArray())); }
         catch (IOException error) { System.Diagnostics.Trace.WriteLine($"Settings save failed: {error.GetType().Name}"); }
         catch (UnauthorizedAccessException error) { System.Diagnostics.Trace.WriteLine($"Settings save failed: {error.GetType().Name}"); }
     }

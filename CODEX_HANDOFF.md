@@ -839,3 +839,7 @@ Gate 5 Architecture는 `APPROVED WITH CONDITIONS`다. ADR-001~010은 `Accepted`�
 
 Gate 6 구현은 승인된 Architecture와 ADR 범위 안에서 단계별로 진행하며,
 각 구현 increment는 검증 후 기록한다. Installer와 Gate 7 검증으로는 별도 승인 없이 넘어가지 않는다.
+
+FR-011/FR-016 장치 표시 관리는 트레이 하위 메뉴, 다중 연속 선택, 로컬 설정 영속화까지
+실장비 확인을 완료해 PASS다. Provider 감시는 숨김 상태에서도 계속되며 Xbox BLE/WGI 중복 중재는
+위젯과 트레이 장치 목록에 동일하게 적용한다.

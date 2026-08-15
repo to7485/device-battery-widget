@@ -3,7 +3,11 @@ using System.Text.Json;
 
 namespace DeviceBattery.Presentation.Wpf;
 
-public sealed record WidgetSettings(double? Left = null, double? Top = null, bool IsTopmost = false);
+public sealed record WidgetSettings(
+    double? Left = null,
+    double? Top = null,
+    bool IsTopmost = false,
+    string[]? HiddenDeviceKeys = null);
 
 public sealed class JsonWidgetSettingsStore
 {

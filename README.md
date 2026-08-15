@@ -222,3 +222,7 @@ Requirements v1.6 adds a Production provider for the Bluetooth SIG Battery Servi
 ## Update 36 — CHG-007 Xbox Battery
 
 Requirements v1.7 adds a Production provider for Xbox controllers that expose a valid `Windows.Gaming.Input` BatteryReport. It uses Gamepad lifecycle events, polls only the battery report every 30 seconds, excludes DualSense to avoid duplicate ownership, and marks potentially granular percentages as estimated.
+
+## Update 37 — Device Visibility Management
+
+The tray `장치 표시` submenu now controls each known indicator without stopping provider monitoring. Hidden keys persist in the existing local settings file, BLE/WGI Xbox arbitration is shared by the widget and tray catalog, and the submenu remains open for consecutive multi-device changes.
