@@ -9,6 +9,7 @@ obj/
 build/
 dist/
 out/
+artifacts/tools/
 
 # Test / Coverage
 TestResults/
