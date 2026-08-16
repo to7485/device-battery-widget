@@ -876,3 +876,7 @@ v1.8 기준 PASS다. CPU 및 24시간/72시간 안정성 기준은 변경하지 
 
 NFR-STAB-005는 Production App의 Provider 실행을 `ProviderRunner.RunIsolatedAsync`로 통일했다.
 실패 Provider와 정상 Provider 동시 실행 사양에서 실패 callback 1회와 정상 event 유지를 확인해 PASS다.
+
+발주자 결정으로 24/72시간 soak는 완료 전에 종료했다. 최장 사용자 실행은 7.07시간/424샘플이며
+CPU 평균 0.270%, Working Set 127.26 MiB, Private 73.05 MiB, Handle/Thread 감소였다. 이 결과는
+부분 관찰로만 보존하며 NFR-STAB-001/002/003은 PASS가 아닌 Deferred/잔여위험 수용 상태다.

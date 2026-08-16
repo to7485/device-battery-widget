@@ -262,3 +262,7 @@ Ten full-provider Release starts reached a visible widget in 10/10 runs, averagi
 ## Update 46 — Provider Exception Isolation
 
 Production provider execution now uses a shared `ProviderRunner` that isolates non-cancellation failures per provider. A deterministic specification injected one failing and one healthy provider concurrently and verified that the failure callback ran once while the healthy event remained available.
+
+## Update 47 — Long Soak Deferred
+
+The owner stopped long-duration testing before completion. The longest user-owned run collected 424 samples over 7.07 hours with 0.270% average CPU, 127.26 MiB final Working Set, 73.05 MiB Private Memory, and decreasing handle/thread counts. The partial result is preserved but 24-hour/72-hour stability remains explicitly deferred, not PASS.

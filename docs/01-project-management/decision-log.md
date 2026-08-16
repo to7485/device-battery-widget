@@ -81,6 +81,7 @@
 | DEC-070 | CHG-008 | 실측 전체 기능 기준으로 Working Set 150 MiB / Private Memory 100 MiB를 승인하고 Requirements v1.8로 변경 | 확정 |
 | DEC-071 | Gate 6 | 전체 Provider Production 10회 Widget 표시와 최초 장치 Available 시간을 각각 외부 관찰/내부 marker로 검증해 성능 목표 PASS | 확정 |
 | DEC-072 | Gate 6 | Provider 실행을 검증 가능한 격리 runner로 통일하고 개별 실패가 정상 Provider event를 중단하지 않음을 결정적 사양으로 확인 | 확정 |
+| DEC-073 | Gate 6 | 24/72시간 soak를 완료 전 종료하고 7.07시간 부분 결과를 보존하며 미완료 안정성 위험을 발주자 수용으로 이관 | 확정 |
 
 ## 변경요청 현황
 
