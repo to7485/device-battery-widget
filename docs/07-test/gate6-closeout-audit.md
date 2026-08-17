@@ -35,6 +35,7 @@ Gate 6 종료 권고는 **APPROVED WITH CONDITIONS 후보**다. 이 문서는 �
 | Provider 예외 격리 | PASS | `gate6-provider-isolation-spec-01.md` |
 | 시작 시간 | PASS | `gate6-production-startup-10x-01.md` |
 | Production 성능 | PASS (v1.8) | Working Set 138.16 MiB <= 150 MiB, Private 71.43 MiB <= 100 MiB |
+| Release 전체 빌드 | PASS | 2026-08-17, warnings 0 / errors 0 |
 
 `gate6-memory-attribution-01.md`의 `NEED DECISION`은 v1.7의 Working Set 100 MiB 기준으로
 작성된 선행 증적이다. CHG-008로 승인된 v1.8 기준에서는 동일 측정값이 PASS이며, 선행 문서는
@@ -76,19 +77,20 @@ Production 동작이 변경됐다. 현재 코드에는 단일 `ShutdownAsync` �
 - Windows 10 22H2 지원 종료 위험은 기존 Risk로 유지한다.
 - UIR-011 Battery 미지원 장치 표시는 승인된 Deferred/vNext다.
 
-## 6. 이번 감사의 검증 제한
+## 6. 이번 감사의 최종 자동 검증
 
-자동 사양 66건은 모두 PASS했다. 전체 Release build 재검증은 실행 중인
-`DeviceBattery.App`이 Release 출력 DLL을 점유해 copy 단계에서 실패했다. 이는 컴파일 오류가
-아니며, 사용자의 실행 중 위젯을 강제 종료하지 않았다. 앱 종료 후 clean Release build를 Gate 6
-서명 전 마지막으로 1회 수행해야 한다.
+- 자동 사양: 66/66 PASS
+- `dotnet build DeviceBatteryWidget.slnx -c Release`: PASS
+- Build result: warnings 0 / errors 0
+
+최초 감사 중 실행 중인 앱의 DLL 점유로 copy 단계가 실패했으나, 사용자가 앱을 정상 종료한 뒤
+동일 명령을 재실행해 전체 Release build 성공을 확인했다.
 
 ## 7. Gate 6 승인 전 체크리스트
 
 - [ ] OR-005를 Tray-only 종료 동작으로 기준선 변경 승인
 - [ ] 위젯 이동 후 앱 종료/재실행 시 위치 복원 확인
 - [ ] Always On Top ON/OFF 각각 앱 종료/재실행 후 설정 복원 확인
-- [ ] 실행 중 앱 종료 후 `dotnet build DeviceBatteryWidget.slnx -c Release` PASS 확인
+- [x] 실행 중 앱 종료 후 `dotnet build DeviceBatteryWidget.slnx -c Release` PASS 확인
 - [ ] Deferred soak 잔여 위험 유지 확인
 - [ ] Gate 6 `APPROVED WITH CONDITIONS` 또는 추가 조치 결정
-
