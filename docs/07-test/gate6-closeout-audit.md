@@ -3,7 +3,7 @@
 - Date: 2026-08-17
 - Requirements baseline: v1.8
 - Scope: Production implementation and available Gate 6 evidence
-- Status: **OWNER APPROVAL REQUIRED**
+- Status: **APPROVED WITH CONDITIONS**
 
 ## 1. Executive result
 
@@ -16,8 +16,9 @@ Gate 6의 핵심 Production 경로는 구현 및 실장비 검증을 마쳤다.
 - Tray-only lifecycle, cleanup, provider failure isolation
 - Production 성능 및 10회 시작 시간
 
-Gate 6 종료 권고는 **APPROVED WITH CONDITIONS 후보**다. 이 문서는 승인 자체가 아니며,
-발주자 승인 없이 Gate 7, installer 또는 Production 배포로 진행하지 않는다.
+2026-08-17 발주자가 위치/Always On Top 재시작 복원과 최종 Release build 결과를 확인하고
+Gate 6를 **APPROVED WITH CONDITIONS**로 승인했다. Gate 7, installer 또는 Production 배포는
+별도 승인 없이 진행하지 않는다.
 
 ## 2. 완료 증적
 
@@ -56,18 +57,14 @@ Gate 6 종료 권고는 **APPROVED WITH CONDITIONS 후보**다. 이 문서는 �
 
 ## 4. 요구사항 불일치
 
-현재 Requirements v1.8의 OR-005와 DEC-027은 `Widget X 버튼 클릭 시 Application 전체 종료`를
-요구한다. 이후 발주자 요구로 위젯 내 종료 표시를 제거하고 **종료는 Tray 메뉴에서만** 하도록
-Production 동작이 변경됐다. 현재 코드에는 단일 `ShutdownAsync` 정리 경로가 있지만, 일반 창 닫기는
+승인 직전 Requirements v1.8의 OR-005와 DEC-027은 `Widget X 버튼 클릭 시 Application 전체 종료`를
+요구했다. 이후 발주자 요구로 위젯 내 종료 표시를 제거하고 **종료는 Tray 메뉴에서만** 하도록
+Production 동작이 변경됐다. 현재 코드에는 단일 `ShutdownAsync` 정리 경로가 있고, 일반 창 닫기는
 종료 대신 숨김으로 처리한다.
 
-따라서 다음 중 하나를 승인 기록으로 남겨야 한다.
-
-1. 권고: OR-005를 “종료는 Tray 메뉴에서만 수행하며, Widget Close/Hide는 앱을 유지한다”로 변경
-2. 기존 OR-005 유지: 위젯 X와 전체 종료 동작을 다시 도입
-
-현재 승인된 UI 방향과 충돌하지 않는 1번을 권고한다. 이 정합성 수정 전에는 OR-005를 PASS로
-표시하지 않는다.
+2026-08-17 발주자 승인에 따라 CHG-009와 Requirements v1.9에 “종료는 Tray 메뉴에서만
+수행하며 Widget Hide/Show 중 앱을 유지한다”로 반영했다. OR-005는 현재 구현 및 승인된 UI와
+일치하며 PASS다.
 
 ## 5. 운영/Release 잔여 항목
 
@@ -88,9 +85,9 @@ Production 동작이 변경됐다. 현재 코드에는 단일 `ShutdownAsync` �
 
 ## 7. Gate 6 승인 전 체크리스트
 
-- [ ] OR-005를 Tray-only 종료 동작으로 기준선 변경 승인
-- [ ] 위젯 이동 후 앱 종료/재실행 시 위치 복원 확인
-- [ ] Always On Top ON/OFF 각각 앱 종료/재실행 후 설정 복원 확인
+- [x] OR-005를 Tray-only 종료 동작으로 기준선 변경 승인 (CHG-009 / v1.9)
+- [x] 위젯 이동 후 앱 종료/재실행 시 위치 복원 확인
+- [x] Always On Top ON/OFF 각각 앱 종료/재실행 후 설정 복원 확인
 - [x] 실행 중 앱 종료 후 `dotnet build DeviceBatteryWidget.slnx -c Release` PASS 확인
-- [ ] Deferred soak 잔여 위험 유지 확인
-- [ ] Gate 6 `APPROVED WITH CONDITIONS` 또는 추가 조치 결정
+- [x] Deferred soak 잔여 위험 유지 확인
+- [x] Gate 6 `APPROVED WITH CONDITIONS` 승인

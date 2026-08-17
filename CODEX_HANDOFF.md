@@ -3,7 +3,7 @@
 ## 1. 프로젝트 개요
 
 프로젝트명: **Device Battery Widget**
-현재 Requirements Baseline: **v1.8 (CHG-008 Approved)**
+현재 Requirements Baseline: **v1.9 (CHG-009 Approved)**
 
 Windows PC에 현재 연결된 주변기기의 이름과 배터리 상태를 표시하는 가벼운 데스크톱 위젯을 개발한다. 단순 데모가 아니라 실제 배포 가능한 Windows 응용프로그램을 목표로 하며, 기획 → 요구사항 → 기술검증 → 설계 → 구현 → 테스트 → 배포까지 SI 프로젝트 방식으로 진행한다.
 
@@ -86,7 +86,7 @@ Unknown과 NotCharging은 반드시 구분한다.
 - Windows 로그인 자동 실행 ON/OFF
 - 종료
 
-Widget 숨김/최소화 시 앱과 Tray는 유지한다. Tray에서 Widget 복원이 가능해야 한다. X 및 Tray 종료는 watcher/event/timer/tray icon을 포함하여 전체 정리한다.
+Widget 숨김/최소화 시 앱과 Tray는 유지한다. Tray에서 Widget 복원이 가능해야 한다. Widget에는 종료 버튼을 두지 않으며 Tray 종료는 watcher/event/timer/tray icon을 포함하여 전체 정리한다.
 
 ---
 
@@ -213,7 +213,7 @@ POC 코드는 기술 선택 근거로 보존한다.
 | CHG-001 System Tray | APPROVED |
 | Gate 4 Technical Feasibility POC | APPROVED WITH CONDITIONS |
 | Gate 5 Architecture Design | APPROVED WITH CONDITIONS |
-| Gate 6 Production Implementation | IN PROGRESS |
+| Gate 6 Production Implementation | APPROVED WITH CONDITIONS |
 | Gate 7 이후 | NOT STARTED |
 
 Gate 6 구현은 승인된 Architecture/RTM 범위 안에서 진행한다.
@@ -880,3 +880,11 @@ NFR-STAB-005는 Production App의 Provider 실행을 `ProviderRunner.RunIsolated
 발주자 결정으로 24/72시간 soak는 완료 전에 종료했다. 최장 사용자 실행은 7.07시간/424샘플이며
 CPU 평균 0.270%, Working Set 127.26 MiB, Private 73.05 MiB, Handle/Thread 감소였다. 이 결과는
 부분 관찰로만 보존하며 NFR-STAB-001/002/003은 PASS가 아닌 Deferred/잔여위험 수용 상태다.
+
+2026-08-17 CHG-009 승인으로 Requirements Baseline은 v1.9다. Widget에는 종료 버튼을 두지 않고
+Application 전체 종료는 Tray 메뉴에서만 수행한다. 위치 및 Always On Top 설정의 재시작 복원과
+Release 전체 빌드(warnings 0/errors 0)를 발주자가 확인했다.
+
+Gate 6 Production Implementation은 발주자 승인으로 `APPROVED WITH CONDITIONS`다. 조건은
+24/72시간 soak Deferred 잔여위험, Windows 11 실장비 검증, version/installer/portable/signing
+검증이며 Gate 7 또는 배포 작업은 별도 승인 없이 시작하지 않는다.

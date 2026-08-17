@@ -1,8 +1,8 @@
 # 의사결정 기록 (Decision Log)
 
 - 프로젝트: Device Battery Widget
-- 문서 버전: 1.2
-- 상태: Requirements Baseline v1.2
+- 문서 버전: 1.3
+- 상태: Requirements Baseline v1.9
 - 최종 승인권자: 발주자
 
 ## 주요 결정사항
@@ -82,6 +82,8 @@
 | DEC-071 | Gate 6 | 전체 Provider Production 10회 Widget 표시와 최초 장치 Available 시간을 각각 외부 관찰/내부 marker로 검증해 성능 목표 PASS | 확정 |
 | DEC-072 | Gate 6 | Provider 실행을 검증 가능한 격리 runner로 통일하고 개별 실패가 정상 Provider event를 중단하지 않음을 결정적 사양으로 확인 | 확정 |
 | DEC-073 | Gate 6 | 24/72시간 soak를 완료 전 종료하고 7.07시간 부분 결과를 보존하며 미완료 안정성 위험을 발주자 수용으로 이관 | 확정 |
+| DEC-074 | CHG-009 | Widget 내 종료 버튼을 제거하고 Application 전체 종료를 Tray 메뉴 전용으로 변경 | 확정 |
+| DEC-075 | Gate 6 | 위치/Always On Top 재시작 복원과 Release build를 확인하고 Gate 6를 APPROVED WITH CONDITIONS로 종료 | 확정 |
 
 ## 변경요청 현황
 
@@ -92,6 +94,7 @@
 | CHG-006 | 표준 BLE GATT Battery Production 지원 | **Approved** |
 | CHG-007 | Xbox Windows.Gaming.Input Battery Production 지원 | **Approved** |
 | CHG-008 | Production Memory Working Set/Private Memory 수용 기준 변경 | **Approved** |
+| CHG-009 | Tray-only Application 종료 lifecycle | **Approved** |
 
 ## Gate 현황
 
@@ -99,4 +102,4 @@
 |---|---|
 | Gate 4 Technical Feasibility POC | **Approved With Conditions** |
 | Gate 5 Architecture Design | **Approved With Conditions** |
-| Gate 6 Production Implementation | **In Progress** |
+| Gate 6 Production Implementation | **Approved With Conditions** |

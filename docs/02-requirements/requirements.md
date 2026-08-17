@@ -6,9 +6,9 @@
 |---|---|
 | 프로젝트 | Device Battery Widget |
 | 문서명 | 요구사항 명세서 |
-| 문서 버전 | **1.8** |
+| 문서 버전 | **1.9** |
 | 상태 | **Approved / Baseline** |
-| 기준 | Gate 3 승인 + CHG-001~CHG-008 승인 |
+| 기준 | Gate 3 승인 + CHG-001~CHG-009 승인 |
 | 최종 승인권자 | 발주자 |
 
 ---
@@ -26,6 +26,7 @@
 | v1.6 | CHG-006 표준 BLE GATT Battery Production 지원 및 다중 indicator |
 | v1.7 | CHG-007 Xbox Windows.Gaming.Input Battery Production 지원 |
 | v1.8 | CHG-008 Production Memory 수용 기준을 Working Set 150 MiB / Private Memory 100 MiB로 현실화 |
+| v1.9 | CHG-009 Application 종료를 Tray 메뉴 전용 lifecycle로 변경 |
 
 ---
 
@@ -274,10 +275,12 @@ Widget window는 taskbar에 표시하지 않으며 실행 중 presence는 Tray i
 ## OR-004 — Installer/Portable 검토
 - Should
 
-## OR-005 — Widget Close 시 Application 종료
+## OR-005 — Tray 메뉴에서 Application 종료
 - Must
-- Widget X 버튼 클릭 시 Application 전체 종료
-- Tray Icon도 제거
+- Widget에는 종료 버튼을 표시하지 않음
+- Application 전체 종료는 Tray 메뉴의 종료에서만 수행
+- Widget 숨김/표시 전환 시 Application과 Tray 유지
+- 종료 시 Tray Icon 제거
 - Event/Timer/Device Resource 정상 정리
 
 ---
@@ -285,10 +288,6 @@ Widget window는 taskbar에 표시하지 않으며 실행 중 presence는 Tray i
 # 9. System Tray Lifecycle
 
 ```text
-Widget X 버튼
-→ Application 전체 종료
-→ Tray Icon 제거
-
 Widget 숨김/최소화
 → Widget만 숨김
 → Application 계속 실행
