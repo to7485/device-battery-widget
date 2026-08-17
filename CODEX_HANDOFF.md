@@ -907,3 +907,9 @@ installed-path autostart 수동 검증도 남았다. GitHub Release 생성, 업�
 발주자는 다른 PC의 Windows 11 검증을 위해 unsigned `v1.0.0-rc.1`을 GitHub Pre-release
 프로토타입으로 배포하도록 승인했다. 이는 Windows 11 증적 수집용이며 signed Production Release
 승인이 아니다. 배포 화면과 Release notes에는 unsigned/SmartScreen 가능성을 명시한다.
+
+`v1.0.0-rc.1` Pre-release는 다음 주소에 게시됐다.
+https://github.com/to7485/device-battery-widget/releases/tag/v1.0.0-rc.1
+unsigned installer, self-contained win-x64 ZIP, SHA256SUMS.txt를 업로드했으며 원격 자산을 다시
+다운로드해 SHA-256 일치를 확인했다. 다음 작업은 Windows 11 PC의 설치/실행/장치/자동실행/제거
+실장비 증적 수집이다.

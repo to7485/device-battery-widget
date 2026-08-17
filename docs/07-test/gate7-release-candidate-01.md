@@ -55,4 +55,13 @@ The files remain local under ignored `artifacts/release/v1.0.0` and have not bee
 - No code-signing certificate; executable and installer cannot be signed/verified
 - Installed-path autostart toggle/reboot behavior not yet manually tested
 - Windows 11 real-system validation pending
-- Final release notes and deployment approval pending
+- Signed Production release notes and deployment approval pending
+
+## Windows 11 prototype distribution
+
+- GitHub Pre-release: `v1.0.0-rc.1`
+- URL: https://github.com/to7485/device-battery-widget/releases/tag/v1.0.0-rc.1
+- Purpose: unsigned prototype distribution for Windows 11 real-system validation
+- Uploaded: unsigned per-user installer, self-contained win-x64 ZIP, SHA256SUMS.txt
+- Remote asset verification: PASS; downloaded installer/ZIP hashes match the published manifest
+- Production status: **NOT APPROVED** pending Windows 11 evidence and production code signing
