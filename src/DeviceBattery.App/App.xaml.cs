@@ -28,6 +28,7 @@ public partial class App : System.Windows.Application
     private CancellationTokenSource? resumeRefreshCancellation;
     private Task resumeRefreshTask = Task.CompletedTask;
     private BoundedFileTraceListener? traceListener;
+    private Mutex? singleInstanceMutex;
     private int firstAvailableLogged;
     private int shutdownStarted;
     private bool allowWindowClose;
@@ -36,6 +37,14 @@ public partial class App : System.Windows.Application
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
+        singleInstanceMutex = new Mutex(true, "Local\\DeviceBatteryWidget.SingleInstance", out bool isFirstInstance);
+        if (!isFirstInstance)
+        {
+            singleInstanceMutex.Dispose();
+            singleInstanceMutex = null;
+            Shutdown();
+            return;
+        }
         startupClock.Start();
 
         try
@@ -46,6 +55,11 @@ public partial class App : System.Windows.Application
         }
         catch (Exception error) when (error is IOException or UnauthorizedAccessException)
         {
+            if (traceListener is not null)
+            {
+                Trace.Listeners.Remove(traceListener);
+                traceListener.Dispose();
+            }
             traceListener = null;
             Trace.WriteLine($"Diagnostics initialization failed: {error.GetType().Name}");
         }
@@ -162,6 +176,9 @@ public partial class App : System.Windows.Application
             traceListener.Dispose();
             traceListener = null;
         }
+        singleInstanceMutex?.ReleaseMutex();
+        singleInstanceMutex?.Dispose();
+        singleInstanceMutex = null;
         Shutdown();
     }
 

@@ -68,8 +68,9 @@ Production 동작이 변경됐다. 현재 코드에는 단일 `ShutdownAsync` �
 
 ## 5. 운영/Release 잔여 항목
 
-- OR-003: 첫 Release 후보 `v1.0.0`에 대한 assembly/file/package version 명시가 아직 없다.
-- OR-004: installer/portable 방식 선택 및 서명 검증이 남았다.
+- OR-003: Gate 6 종료 시점에는 v1.0.0 version 명시가 없었으며 Gate 7 G7-RC-01에서 완료됐다.
+- OR-004: Gate 6 종료 시점에는 packaging이 남았으며 Gate 7에서 unsigned installer/portable
+  integration은 PASS했다. Production code signing은 계속 pending이다.
 - CR-001: Windows 10 22H2 실측은 있으나 Windows 11 실장비 증적이 없다.
 - Windows 10 22H2 지원 종료 위험은 기존 Risk로 유지한다.
 - UIR-011 Battery 미지원 장치 표시는 승인된 Deferred/vNext다.

@@ -266,3 +266,7 @@ Production provider execution now uses a shared `ProviderRunner` that isolates n
 ## Update 47 — Long Soak Deferred
 
 The owner stopped long-duration testing before completion. The longest user-owned run collected 424 samples over 7.07 hours with 0.270% average CPU, 127.26 MiB final Working Set, 73.05 MiB Private Memory, and decreasing handle/thread counts. The partial result is preserved but 24-hour/72-hour stability remains explicitly deferred, not PASS.
+
+## Update 48 — Gate 7 Release Candidate Preparation
+
+The owner authorized Release validation and packaging preparation through immediately before external distribution. The application is versioned as v1.0.0 and now has asInvoker, self-contained/FDD win-x64 profiles, repeatable ZIP/SHA-256 generation, and a per-user Inno Setup definition. Both portable profiles passed version and timed lifecycle checks, SHA-256 revalidation passed, and duplicate launches are rejected by a named single-instance mutex. Installer compilation, code signing, Windows 11, and clean install/upgrade/uninstall remain distribution blockers.

@@ -214,7 +214,7 @@ POC 코드는 기술 선택 근거로 보존한다.
 | Gate 4 Technical Feasibility POC | APPROVED WITH CONDITIONS |
 | Gate 5 Architecture Design | APPROVED WITH CONDITIONS |
 | Gate 6 Production Implementation | APPROVED WITH CONDITIONS |
-| Gate 7 이후 | NOT STARTED |
+| Gate 7 Release Validation / Packaging Preparation | IN PROGRESS — DISTRIBUTION NOT APPROVED |
 
 Gate 6 구현은 승인된 Architecture/RTM 범위 안에서 진행한다.
 
@@ -888,3 +888,18 @@ Release 전체 빌드(warnings 0/errors 0)를 발주자가 확인했다.
 Gate 6 Production Implementation은 발주자 승인으로 `APPROVED WITH CONDITIONS`다. 조건은
 24/72시간 soak Deferred 잔여위험, Windows 11 실장비 검증, version/installer/portable/signing
 검증이며 Gate 7 또는 배포 작업은 별도 승인 없이 시작하지 않는다.
+
+2026-08-18 발주자는 실제 배포·공개 직전까지 Gate 7 검증과 패키징 준비를 승인했다. App은
+v1.0.0으로 versioning했고 asInvoker manifest, self-contained/FDD win-x64 publish profile,
+Inno Setup per-user installer 정의, ZIP/SHA-256 자동 생성 스크립트를 추가했다.
+
+격리 Release build는 warnings 0/errors 0, 자동 사양은 66/66 PASS다. SCD/FDD RC 모두
+FileVersion 1.0.0.0/ProductVersion 1.0.0, 5초 lifecycle exit 0이며 SHA-256 재검산이 일치한다.
+중복 실행 RC smoke에서 이전 인스턴스의 로그 점유로 시작 예외가 발견되어 named mutex와 진단
+listener 실패 격리를 추가했고 재검증 PASS했다.
+
+현재 로컬 RC는 `artifacts/release/v1.0.0`에만 있으며 Git에서 ignore된다. Inno Setup 6.7.3으로
+54.46 MiB unsigned installer를 빌드했고 격리 per-user install/reinstall/installed-app smoke/uninstall이
+모두 exit 0으로 PASS했다. code-signing certificate가 없어 signature 검증은 미완료다. Windows 11과
+installed-path autostart 수동 검증도 남았다. GitHub Release 생성, 업로드, 공개 배포는 최종 승인 전
+금지다.

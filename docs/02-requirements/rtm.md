@@ -62,6 +62,6 @@
 | CR-004 | 고빈도 Polling 제한 | Must | ARC-002, ARC-004 | event-first + 30-second fallback | implementation review | Implemented / Spec PASS |
 | OR-001 | 일반 사용자 실행 | Must | ARC-007, ARC-010 | unpackaged per-user app + HKCU autostart | G6-AUTOSTART-01 + real-device runs | Integration PASS |
 | OR-002 | Release Build | Must | ARC-010 | DeviceBatteryWidget.slnx Release | 2026-08-17 warnings 0/errors 0 | PASS |
-| OR-003 | Version 관리 | Must | ARC-010 | TBD | TBD | Architecture Draft |
-| OR-004 | Installer/Portable 검토 | Should | ARC-010 | TBD | TBD | Architecture Draft |
+| OR-003 | Version 관리 | Must | ARC-010 | assembly/file/product/package v1.0.0 | G7-RC-01 | Implemented / PASS |
+| OR-004 | Installer/Portable 검토 | Should | ARC-010 | SCD primary + FDD secondary + Inno per-user installer | G7-RC-01 | Unsigned Integration PASS / signing pending |
 | OR-005 | Tray 메뉴에서 Application 종료 | Must | ARC-007 | Tray Exit + App single ShutdownAsync path | G6-CLEANUP-01 + CHG-009 owner approval | Implemented / Integration PASS |

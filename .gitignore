@@ -10,6 +10,8 @@ build/
 dist/
 out/
 artifacts/tools/
+artifacts/gate7-build*/
+artifacts/release/
 
 # Test / Coverage
 TestResults/
