@@ -3,7 +3,7 @@
 - Date opened: 2026-08-18
 - Candidate: v1.0.0 / win-x64
 - Authorization: prepare through immediately before external deployment
-- Current status: **IN PROGRESS — DO NOT DISTRIBUTE**
+- Current status: **WINDOWS 11 PROTOTYPE DISTRIBUTION APPROVED — PRODUCTION NOT APPROVED**
 
 ## Approved release shape
 
@@ -11,7 +11,8 @@
 - Secondary: framework-dependent win-x64 portable diagnostic profile
 - No trimming and no single-file bundling for v1.0.0
 - Installer runs with normal user privileges and installs below LocalAppData
-- Actual GitHub Release creation, upload, public distribution, and deployment require a final approval
+- GitHub Pre-release `v1.0.0-rc.1` is approved only for Windows 11 validation
+- Signed Production Release creation remains subject to separate final approval
 
 ## Implemented preparation
 
@@ -42,7 +43,8 @@
 - [ ] Autostart after installed-path move PASS
 - [x] No known Critical/Major code defect open after duplicate-instance fix
 - [ ] Release notes and known limitations approved
-- [ ] Final deployment approval received
+- [x] Unsigned Windows 11 test prototype distribution approval received
+- [ ] Signed Production deployment approval received
 
 ## Preserved release conditions
 

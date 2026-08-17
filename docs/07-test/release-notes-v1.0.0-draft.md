@@ -1,6 +1,10 @@
 # Device Battery Widget v1.0.0 — Release Notes (Draft)
 
-Status: **PRE-RELEASE / DO NOT DISTRIBUTE**
+Status: **UNSIGNED PROTOTYPE / WINDOWS 11 VALIDATION ONLY**
+
+This build is distributed as GitHub Pre-release `v1.0.0-rc.1` only to collect Windows 11
+compatibility evidence. It is not a signed Production release. Windows SmartScreen may warn because
+no production code-signing certificate is available.
 
 ## Supported battery sources
 
@@ -29,7 +33,8 @@ rows. Individual device rows can be hidden or restored from the tray menu.
 - Two physical devices of the exact same model have not completed a dedicated simultaneous identity test.
 - The 24-hour and 72-hour Production soak requirements are Deferred with owner-accepted residual risk;
   the longest preserved partial run is 7.07 hours.
-- Windows 11, signed installer, and clean install/upgrade/uninstall validation remain release blockers.
+- Windows 11 validation is the purpose of this prototype distribution.
+- Production code signing remains a blocker for the final Production release.
 
 ## Privacy and safety
 

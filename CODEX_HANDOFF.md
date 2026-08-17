@@ -214,7 +214,7 @@ POC 코드는 기술 선택 근거로 보존한다.
 | Gate 4 Technical Feasibility POC | APPROVED WITH CONDITIONS |
 | Gate 5 Architecture Design | APPROVED WITH CONDITIONS |
 | Gate 6 Production Implementation | APPROVED WITH CONDITIONS |
-| Gate 7 Release Validation / Packaging Preparation | IN PROGRESS — DISTRIBUTION NOT APPROVED |
+| Gate 7 Release Validation / Packaging Preparation | WINDOWS 11 PROTOTYPE DISTRIBUTION APPROVED — PRODUCTION NOT APPROVED |
 
 Gate 6 구현은 승인된 Architecture/RTM 범위 안에서 진행한다.
 
@@ -903,3 +903,7 @@ listener 실패 격리를 추가했고 재검증 PASS했다.
 모두 exit 0으로 PASS했다. code-signing certificate가 없어 signature 검증은 미완료다. Windows 11과
 installed-path autostart 수동 검증도 남았다. GitHub Release 생성, 업로드, 공개 배포는 최종 승인 전
 금지다.
+
+발주자는 다른 PC의 Windows 11 검증을 위해 unsigned `v1.0.0-rc.1`을 GitHub Pre-release
+프로토타입으로 배포하도록 승인했다. 이는 Windows 11 증적 수집용이며 signed Production Release
+승인이 아니다. 배포 화면과 Release notes에는 unsigned/SmartScreen 가능성을 명시한다.

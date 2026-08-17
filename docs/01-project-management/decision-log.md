@@ -87,6 +87,7 @@
 | DEC-076 | Gate 7 | 실제 배포·공개 직전까지 Release validation, versioning, packaging 준비를 진행하도록 승인 | 확정 |
 | DEC-077 | Gate 7 | v1.0.0 self-contained win-x64를 primary, framework-dependent win-x64를 secondary profile로 확정 | 확정 |
 | DEC-078 | Gate 7 | RC smoke에서 발견한 중복 실행 로그 충돌을 단일 인스턴스 및 진단 초기화 격리로 수정 | 확정 |
+| DEC-079 | Gate 7 | Windows 11 실장비 검증을 위해 unsigned v1.0.0-rc.1을 GitHub Pre-release 프로토타입으로 배포 | 확정 |
 
 ## 변경요청 현황
 
@@ -106,4 +107,4 @@
 | Gate 4 Technical Feasibility POC | **Approved With Conditions** |
 | Gate 5 Architecture Design | **Approved With Conditions** |
 | Gate 6 Production Implementation | **Approved With Conditions** |
-| Gate 7 Release Validation / Packaging Preparation | **In Progress — Distribution Not Approved** |
+| Gate 7 Release Validation / Packaging Preparation | **Windows 11 Prototype Distribution Approved — Production Not Approved** |
