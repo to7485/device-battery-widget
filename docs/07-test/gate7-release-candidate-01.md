@@ -74,3 +74,6 @@ The files remain local under ignored `artifacts/release/v1.0.0` and have not bee
 - Result: PASS (install 0 / uninstall 0)
 - RC.2 unsigned installer SHA-256:
   `e803851d9750c76374d8c25661cf2e69e9e37d42d2e043b3d4cb00354ec81e32`
+- RC.2 URL: https://github.com/to7485/device-battery-widget/releases/tag/v1.0.0-rc.2
+- Remote asset re-download SHA-256: PASS
+- RC.1 is marked superseded.

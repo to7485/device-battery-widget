@@ -45,7 +45,7 @@
 - [ ] Release notes and known limitations approved
 - [x] Unsigned Windows 11 test prototype distribution approval received
 - [x] GitHub Pre-release v1.0.0-rc.1 uploaded and remote SHA-256 verified (superseded)
-- [ ] GitHub Pre-release v1.0.0-rc.2 desktop-shortcut build uploaded and remote SHA-256 verified
+- [x] GitHub Pre-release v1.0.0-rc.2 desktop-shortcut build uploaded and remote SHA-256 verified
 - [ ] Signed Production deployment approval received
 
 ## Preserved release conditions

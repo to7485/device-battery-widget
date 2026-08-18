@@ -917,3 +917,6 @@ unsigned installer, self-contained win-x64 ZIP, SHA256SUMS.txt를 업로드했�
 Windows 11 테스트 편의를 위해 installer에 Start menu와 바탕화면 바로가기를 추가했다. 격리
 설치에서 바로가기 생성, 설치 실행 파일 target, uninstall 제거를 PASS로 확인했다. 이 증분은
 `v1.0.0-rc.2`로 게시하며 rc.1은 superseded로 표시한다.
+
+rc.2는 https://github.com/to7485/device-battery-widget/releases/tag/v1.0.0-rc.2 에 게시했고
+원격 installer/SCD ZIP을 재다운로드해 SHA-256 일치를 확인했다.
