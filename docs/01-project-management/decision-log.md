@@ -88,6 +88,7 @@
 | DEC-077 | Gate 7 | v1.0.0 self-contained win-x64를 primary, framework-dependent win-x64를 secondary profile로 확정 | 확정 |
 | DEC-078 | Gate 7 | RC smoke에서 발견한 중복 실행 로그 충돌을 단일 인스턴스 및 진단 초기화 격리로 수정 | 확정 |
 | DEC-079 | Gate 7 | Windows 11 실장비 검증을 위해 unsigned v1.0.0-rc.1을 GitHub Pre-release 프로토타입으로 배포 | 확정 |
+| DEC-080 | Gate 7 | Windows 11 테스트 편의를 위해 installer가 Start menu와 바탕화면 바로가기를 생성 | 확정 |
 
 ## 변경요청 현황
 

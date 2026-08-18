@@ -58,6 +58,7 @@ if ($BuildInstaller) {
 
 $hashFile = Join-Path $releaseRoot 'SHA256SUMS.txt'
 Get-ChildItem -LiteralPath $releaseRoot -File |
+    Where-Object Name -Like "DeviceBatteryWidget-$Version-*" |
     Where-Object Extension -In '.zip', '.exe' |
     Sort-Object Name |
     ForEach-Object {

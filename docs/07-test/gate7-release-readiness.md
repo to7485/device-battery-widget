@@ -11,7 +11,7 @@
 - Secondary: framework-dependent win-x64 portable diagnostic profile
 - No trimming and no single-file bundling for v1.0.0
 - Installer runs with normal user privileges and installs below LocalAppData
-- GitHub Pre-release `v1.0.0-rc.1` is approved only for Windows 11 validation
+- GitHub Pre-release `v1.0.0-rc.2` is approved only for Windows 11 validation
 - Signed Production Release creation remains subject to separate final approval
 
 ## Implemented preparation
@@ -44,7 +44,8 @@
 - [x] No known Critical/Major code defect open after duplicate-instance fix
 - [ ] Release notes and known limitations approved
 - [x] Unsigned Windows 11 test prototype distribution approval received
-- [x] GitHub Pre-release v1.0.0-rc.1 uploaded and remote SHA-256 verified
+- [x] GitHub Pre-release v1.0.0-rc.1 uploaded and remote SHA-256 verified (superseded)
+- [ ] GitHub Pre-release v1.0.0-rc.2 desktop-shortcut build uploaded and remote SHA-256 verified
 - [ ] Signed Production deployment approval received
 
 ## Preserved release conditions

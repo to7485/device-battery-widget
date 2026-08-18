@@ -2,7 +2,7 @@
 
 Status: **UNSIGNED PROTOTYPE / WINDOWS 11 VALIDATION ONLY**
 
-This build is distributed as GitHub Pre-release `v1.0.0-rc.1` only to collect Windows 11
+This build is distributed as GitHub Pre-release `v1.0.0-rc.2` only to collect Windows 11
 compatibility evidence. It is not a signed Production release. Windows SmartScreen may warn because
 no production code-signing certificate is available.
 
@@ -24,6 +24,7 @@ rows. Individual device rows can be hidden or restored from the tray menu.
 - Position and Always On Top settings persist across restarts
 - Application exit is available only from the tray menu
 - Optional per-user Windows logon startup, disabled by default
+- Installer creates Start menu and desktop shortcuts
 
 ## Known limitations
 

@@ -65,3 +65,12 @@ The files remain local under ignored `artifacts/release/v1.0.0` and have not bee
 - Uploaded: unsigned per-user installer, self-contained win-x64 ZIP, SHA256SUMS.txt
 - Remote asset verification: PASS; downloaded installer/ZIP hashes match the published manifest
 - Production status: **NOT APPROVED** pending Windows 11 evidence and production code signing
+
+### RC.2 desktop shortcut increment
+
+- Installer creates `Device Battery Widget.lnk` on the current user's desktop.
+- Isolated install verified the shortcut target points to the installed executable.
+- Uninstall removed the desktop shortcut.
+- Result: PASS (install 0 / uninstall 0)
+- RC.2 unsigned installer SHA-256:
+  `e803851d9750c76374d8c25661cf2e69e9e37d42d2e043b3d4cb00354ec81e32`
